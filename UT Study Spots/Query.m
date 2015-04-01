@@ -24,19 +24,9 @@
 
 @interface Query ()
 
-// private Context mContext;
-
-    // private Date start_date;
-    // private Date end_date;
 @property (strong, nonatomic) DTTimePeriod *date;
 @property (nonatomic) int duration;
-
 @property (strong, nonatomic) NSString *search_building;
-
-// private Map<String, Object> options; // MOVE TO SEPARATE IMPLEMENTING CLASSES (capacity, power plugs, search building, search room]
-
-
-
 
 - (NSString *) get_current_course_schedule : (SearchStatus *) search_status;
 - (int) get_this_day_of_week;
@@ -47,7 +37,7 @@
 @implementation Query
 
 - (instancetype) init {
-    return ([self initWithStartDate : [Utilities get_date : false]]);
+    return ([self initWithStartDate : [Utilities get_date]]);
 }
 
 - (instancetype) initWithStartDate : (NSDate *) start_date {
@@ -92,7 +82,7 @@
     NSString *out = nil;
     
     NSDate *start_date = self.date.StartDate;
-    NSDate *now = [Utilities get_date : false];
+    NSDate *now = [Utilities get_date];
     
     if ([Utilities date_is_during_spring_trimester : start_date]) {
         if ([Utilities date_is_during_spring : start_date]) {
@@ -255,7 +245,7 @@
     int start_hour = [[Utilities get_time_with_format : self.date.StartDate format : @"HH"] intValue];
     int start_minute = [[Utilities get_time_with_format : self.date.StartDate format : @"mm"] intValue];
     
-    self.date.StartDate = [Utilities get_date : month day : day year : year hour : (unsigned) start_hour minute : (unsigned) start_minute localise : false];
+    self.date.StartDate = [Utilities get_date : month day : day year : year hour : (unsigned) start_hour minute : (unsigned) start_minute];
 //    self.date.StartDate = [Utilities set_to_current_time_zone : self.date.StartDate];
     [self set_end_date];
     
@@ -274,7 +264,7 @@
     int day = (int) components.day;
     int year = (int) components.year;       // CHECK FORMAT OF THIS !!!!!!!!!!!!!!!!
     
-    self.date.StartDate = [Utilities get_date : month day : day year : year hour : hour minute : minute localise : false];
+    self.date.StartDate = [Utilities get_date : month day : day year : year hour : hour minute : minute];
 //    self.date.startDate = [Utilities set_to_current_time_zone : self.date.StartDate];
     [self set_end_date];
     

@@ -51,6 +51,7 @@
 		AAC99F601ACBA5BD00BBBF75 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F5F1ACBA5BD00BBBF75 /* ConnectionManager.m */; };
 		AAC99F631ACBA60500BBBF75 /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F621ACBA60500BBBF75 /* Stopwatch.m */; };
 		AAC99F661ACBB60400BBBF75 /* LoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F651ACBB60400BBBF75 /* LoadViewController.m */; };
+		AAC99F6A1ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F691ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,8 @@
 		AAC99F621ACBA60500BBBF75 /* Stopwatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stopwatch.m; sourceTree = "<group>"; };
 		AAC99F641ACBB5F500BBBF75 /* LoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadViewController.h; sourceTree = "<group>"; };
 		AAC99F651ACBB60400BBBF75 /* LoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadViewController.m; sourceTree = "<group>"; };
+		AAC99F681ACBE1DC00BBBF75 /* UTCSVFeedDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVFeedDownloadManager.h; sourceTree = "<group>"; };
+		AAC99F691ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVFeedDownloadManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +175,6 @@
 			children = (
 				AAC99F5C1ACBA30B00BBBF75 /* SystemConfiguration.framework */,
 				AAC99F481ACA667300BBBF75 /* libsqlite3.dylib */,
-				AA992E431AC4E8DF00637C96 /* Main.storyboard */,
 				AA992E381AC4E8DF00637C96 /* UT Study Spots */,
 				AA992E521AC4E8DF00637C96 /* UT Study SpotsTests */,
 				AA992E371AC4E8DF00637C96 /* Products */,
@@ -191,6 +193,7 @@
 		AA992E381AC4E8DF00637C96 /* UT Study Spots */ = {
 			isa = PBXGroup;
 			children = (
+				AA992E431AC4E8DF00637C96 /* Main.storyboard */,
 				AAC99F671ACBB61700BBBF75 /* Controllers */,
 				AAC99F541ACBA2E800BBBF75 /* Reachability */,
 				AA992E681AC55AC400637C96 /* Model */,
@@ -209,6 +212,10 @@
 		AA992E391AC4E8DF00637C96 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AAC99F2D1AC8B62900BBBF75 /* NSMutableString+Stack.h */,
+				AAC99F2E1AC8B63500BBBF75 /* NSMutableString+Stack.m */,
+				AAC99F511ACB5F0100BBBF75 /* NSString+Tools.h */,
+				AAC99F521ACB5F0E00BBBF75 /* NSString+Tools.m */,
 				AAC99F611ACBA5F700BBBF75 /* Stopwatch.h */,
 				AAC99F621ACBA60500BBBF75 /* Stopwatch.m */,
 				AA992E3A1AC4E8DF00637C96 /* Info.plist */,
@@ -269,10 +276,8 @@
 				AA992E9A1AC7E09400637C96 /* FileOutputWriter.m */,
 				AAC99F4E1ACA692900BBBF75 /* CourseScheduleDatabaseManager.h */,
 				AAC99F4F1ACA693700BBBF75 /* CourseScheduleDatabaseManager.m */,
-				AAC99F2D1AC8B62900BBBF75 /* NSMutableString+Stack.h */,
-				AAC99F2E1AC8B63500BBBF75 /* NSMutableString+Stack.m */,
-				AAC99F511ACB5F0100BBBF75 /* NSString+Tools.h */,
-				AAC99F521ACB5F0E00BBBF75 /* NSString+Tools.m */,
+				AAC99F681ACBE1DC00BBBF75 /* UTCSVFeedDownloadManager.h */,
+				AAC99F691ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 				AA992E981AC7E07200637C96 /* InputReader.m in Sources */,
 				AA992E3C1AC4E8DF00637C96 /* main.m in Sources */,
 				AAC99F5B1ACBA2E800BBBF75 /* SQLiteManager.m in Sources */,
+				AAC99F6A1ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m in Sources */,
 				AA992E7B1AC55C7900637C96 /* BuildingList.m in Sources */,
 				AAC99F351AC91ED200BBBF75 /* QueryRandomRoom.m in Sources */,
 				AA992E6E1AC55BBD00637C96 /* EventList.m in Sources */,
@@ -508,7 +514,6 @@
 				AA992E441AC4E8DF00637C96 /* Base */,
 			);
 			name = Main.storyboard;
-			path = "UT Study Spots";
 			sourceTree = "<group>";
 		};
 		AA992E481AC4E8DF00637C96 /* LaunchScreen.xib */ = {

@@ -14,7 +14,14 @@
 
 @implementation LoadViewController
 
-
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+    UIImage *panda_cycle_loader = [UIImage animatedImageNamed : @"frame_" duration : 1.0f];
+    UIImageView *panda_anim = [[UIImageView alloc] initWithImage : panda_cycle_loader];
+    
+    [self.view addSubview : panda_anim];
+}
 
 @end
 

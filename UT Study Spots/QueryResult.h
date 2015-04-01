@@ -13,8 +13,6 @@
 
 @interface QueryResult : NSObject
 
-//- (instancetype) init : (SearchType) search_type building_name : (NSString *) building_name;        // private
-
 - (instancetype) init : (SearchType) search_type
         search_status : (SearchStatus) search_status
          building_name : (NSString *) building_name
@@ -27,9 +25,6 @@
 - (SearchStatus) get_search_status;
 - (NSString *) get_search_status_string;
 - (SearchType) get_search_type;
-
-//- (bool) set_results : (NSArray *) results;                     // private
-//- (bool) set_search_status : (SearchStatus) message_status;     // private
 
 @end
 

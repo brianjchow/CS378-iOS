@@ -20,7 +20,7 @@
 + (NSDictionary *) populate : (NSString *) building_code db_filename : (NSString *) db_filename;
 
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSDictionary *rooms;  // HashMap<String, Room>
+@property (strong, nonatomic) NSDictionary *rooms;  // NSDictionary<String, Room>
 
 @end
 
@@ -59,7 +59,6 @@
         }
         
         out = [[Building alloc] init : building_code];
-//        [self populate : db_filename];
         out.rooms = [self populate : building_code db_filename : db_filename];
         
         if (blns) {
@@ -75,7 +74,6 @@
         }
         
         out = [[Building alloc] init : building_code];
-//        [self populate : db_filename];
         out.rooms = [self populate : building_code db_filename : db_filename];
         
         if (blts) {
@@ -229,8 +227,6 @@
     if ([Utilities is_null : db_filename] || db_filename.length <= 0) {
         // TODO - throw IAException
     }
-    
-//    self.rooms = [CourseScheduleDatabaseManager get_courses  : self.name db_filename : db_filename];
     
     return [CourseScheduleDatabaseManager get_courses : building_code db_filename : db_filename];
 }

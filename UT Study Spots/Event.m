@@ -15,8 +15,6 @@
 @interface Event ()
 
 @property (strong, nonatomic) NSString *event_name;
-    // private Date start_date;
-    // private Date end_date;
 @property (strong, nonatomic) DTTimePeriod *date;
 @property (strong, nonatomic) Location *location;
 
@@ -40,28 +38,22 @@
         
         NSDate *date_start_date = [Event to_date : start_date];
         if ([Utilities is_null : date_start_date]) {
-            date_start_date = [Utilities get_date : false];
+            date_start_date = [Utilities get_date];
         }
         
-//        date_start_date = [Utilities zero_out_seconds : date_start_date];
         self.date.StartDate = date_start_date;
         
         if ([Utilities is_null : end_date]) {
-//            self.date.EndDate = [Utilities get_date_clone : date_start_date];
-            
             self.date.EndDate = date_start_date;
             self.date.EndDate = [self.date.EndDate dateByAddingTimeInterval : (DEFAULT_EVENT_DURATION * 60)];
         }
         else {
             NSDate *date_end_date = [Event to_date : end_date];
             if ([Utilities is_null : date_end_date]) {
-//                date_end_date = [Utilities get_date_clone : date_start_date];
-                
                 date_end_date = date_start_date;
                 date_end_date = [date_end_date dateByAddingTimeInterval : (DEFAULT_EVENT_DURATION * 60)];
             }
             
-//            date_end_date = [Utilities zero_out_seconds : date_end_date];
             self.date.EndDate = date_end_date;
         }
     }
@@ -88,21 +80,16 @@
         self.date = [[DTTimePeriod alloc] init];
         self.location = location;
         
-//        start_date = [Utilities zero_out_seconds : start_date];
         self.date.StartDate = start_date;
         
         if ([Utilities is_null : end_date]) {
-//            NSDate *date_end_date = [Utilities get_date_clone : start_date];
-            
             NSDate *date_end_date = start_date;
             date_end_date = [date_end_date dateByAddingTimeInterval : (DEFAULT_EVENT_DURATION * 60)];
             self.date.EndDate = date_end_date;
         }
         else {
-//            end_date = [Utilities zero_out_seconds : end_date];
             self.date.EndDate = end_date;
         }
-        
     }
     
     return self;
@@ -162,8 +149,7 @@
     [formatter setDateFormat : UTCS_CSV_FEED_FORMAT];
     
     NSDate *out = [formatter dateFromString : date_time];
-//    out = [Utilities set_to_current_time_zone : out];
-    
+
     return out;
 }
 
@@ -182,11 +168,6 @@
     
     if (out) {
         out.event_name = [self.event_name copyWithZone : zone];
-        
-//        out.date.StartDate = [Utilities get_date_clone : self.date.StartDate];
-//        out.date.EndDate = [Utilities get_date_clone : self.date.EndDate];
-//        out.location = [[Location alloc] initFullyQualified : [self.location toString]];
-        
         out.date.StartDate = [self.date.StartDate copyWithZone : zone];
         out.date.EndDate = [self.date.EndDate copyWithZone : zone];
         out.location = [self.location copyWithZone : zone];
@@ -260,7 +241,6 @@
 }
 
 - (NSString *) toString {
-//    NSMutableString *out = [NSMutableString new];
     NSString *out = [NSString stringWithFormat : @"%@\n%@\n%@", self.event_name, [self.date toString], [self.location toString]];
     
     return out;

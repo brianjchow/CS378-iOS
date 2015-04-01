@@ -42,7 +42,8 @@ static NSString *const END_TIME = @"end_time";
         // TODO - throw IAException
     }
     
-    NSMutableDictionary *out = [[NSMutableDictionary alloc] init];
+//    NSMutableDictionary *out = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *out;
     
     building_code = [building_code uppercaseString];
     
@@ -68,6 +69,26 @@ static NSString *const END_TIME = @"end_time";
         out = [self initialise_gdc_room_properties];
         
 //        NSLog(@"%@", out);
+        
+//        for (NSString *room_num in out) {
+//            NSLog(@"Room num: %@\tType is NSString: %d", room_num, [room_num isKindOfClass : [NSString class]]);
+//        }
+        
+//        NSArray *fuck = [out allValues];
+//        for (Room *crap in fuck) {
+//            if ([Utilities is_null : crap]) {
+//                NSLog(@"crap");
+//            }
+//            else {
+//                NSLog(@"%@", crap);
+//            }
+//        }
+        
+//        for (id key in [out allKeys]) {
+//            NSLog(@"%@: %@", key, [[key class] description]);
+//        }
+//        NSString *regstr = @"Hello world";
+//        NSLog(@"Regular string: %@: %@", regstr, [[regstr class] description]);
     }
     
     NSString *room_num, *name;
@@ -81,7 +102,7 @@ static NSString *const END_TIME = @"end_time";
     NSInteger start_time, end_time;
     
     for (NSDictionary *curr_row in results) {
-        room_num = [curr_row objectForKey : ROOM];
+        room_num = [[curr_row objectForKey : ROOM] stringValue];
         capacity = [[curr_row objectForKey : CAPACITY] integerValue];
         name = [curr_row objectForKey : NAME];
         meeting_days = [self set_meeting_days : [curr_row objectForKey : MEETING_DAYS]];
@@ -95,27 +116,43 @@ static NSString *const END_TIME = @"end_time";
 //        NSLog(@"\n\tCurr row: %@", curr_row);
 //        NSLog(@"\n\tRoom num: %@\n\tCapacity: %ld\n\tName: %@\n\tMeets: %@\n\tStart: %ld\n\tEnd: %ld", room_num, capacity, name, meeting_days, start_time, end_time);
 //        NSLog(@"\n\tStart date: %@\n\tEnd date: %@", start_date, end_date);
+//        NSLog(@"Room number: %@ (%lu) (%d) (%@)", room_num, room_num.length, [room_num isKindOfClass : [NSString class]], [[room_num class] description]);
         
         if (start_date && end_date) {
-//            NSLog(@"Entered insertion block for course schedule");
             
             room = [out objectForKey : room_num];
-//            NSLog(@"%@", [room toString]);
-            
-//            if (room == nil) {
-//                if (building_is_gdc) {
-//                    continue;
-//                }
+//            if (room == nil && building_is_gdc) {
+////                NSLog(@"Skipping %@", room_num);
+//                
+//                continue;
 //            }
-            
+
             location = [[Location alloc] initSeparated : building_code room : room_num];
             event = [[Event alloc] initWithDatesAndLocation : name start_date : start_date end_date : end_date location : location];
             
-//            NSLog(@"\nEvent:\n%@", event);
-            
             if (room == nil) {
                 
-//                NSLog(@"SHOULDN'T SEE THIS FOR GDC");
+//                if (_DEBUG && building_is_gdc ) NSLog(@"SHOULDN'T SEE THIS FOR GDC (%@)", room_num);
+                
+                if (building_is_gdc) {
+                    NSString *curr_room = nil;
+                    for (curr_room in out) {
+//                        NSLog(@"Curr room: %@ Room num from db: %@", curr_room, room_num);
+                        if ([curr_room equalsIgnoreCase : room_num]) {
+//                            NSLog(@"BREAKING");
+                            room = [out objectForKey : curr_room];
+                            break;
+                        }
+                    }
+                    
+                    if (curr_room != nil) {
+//                        room = [[out objectForKey : curr_room] copy];
+                        [out removeObjectForKey : curr_room];
+                    }
+                    else {
+//                        continue;
+                    }
+                }
                 
                 if (capacity > 0) {
                     room = [[Room alloc] init : location type : DEFAULT_ROOM_TYPE capacity : (int) capacity has_power : false];
@@ -125,12 +162,8 @@ static NSString *const END_TIME = @"end_time";
                 }
             }
             
-//            NSLog(@"\n%@", room);
-            
             for (int i = MONDAY; i <= SUNDAY; i++) {
                 if ([[meeting_days objectAtIndex : i] boolValue]) {
-//                    NSLog(@"ADDING\n%@\n", event);
-                    
                     [room add_event : event day_of_week : i];
                 }
             }
@@ -142,6 +175,9 @@ static NSString *const END_TIME = @"end_time";
     if (_DEBUG) {
 //        NSLog(@"Number of courses in %@: %lu", building_code, [out count]);
 //        NSLog(@"%@", out);
+        
+//        NSArray *keys = [out allKeys];
+//        NSLog(@"%@", keys);
     }
     
     return out;
@@ -217,20 +253,25 @@ static NSString *const END_TIME = @"end_time";
     
     Room *room;
     for (int i = 0; i < NUM_VALID_GDC_ROOMS; i++) {
-        if ((!INCLUDE_GDC_CONFERENCE_ROOMS && [VALID_GDC_ROOMS_TYPES[i] isEqualToString : CONFERENCE]) ||
-            (!INCLUDE_GDC_LOBBY_ROOMS && [VALID_GDC_ROOMS_TYPES[i] isEqualToString : LOBBY]) ||
-            (!INCLUDE_GDC_LOUNGE_ROOMS && [VALID_GDC_ROOMS_TYPES[i] isEqualToString : LOUNGE])) {
+        if ((!INCLUDE_GDC_CONFERENCE_ROOMS && [VALID_GDC_ROOMS_TYPES[i] equalsIgnoreCase : CONFERENCE]) ||
+            (!INCLUDE_GDC_LOBBY_ROOMS && [VALID_GDC_ROOMS_TYPES[i] equalsIgnoreCase : LOBBY]) ||
+            (!INCLUDE_GDC_LOUNGE_ROOMS && [VALID_GDC_ROOMS_TYPES[i] equalsIgnoreCase : LOUNGE])) {
+            
+//            NSLog(@"Skipping GDC %@", VALID_GDC_ROOMS[i]);
+            
             continue;
         }
         
-        room = [[Room alloc] init : [[Location alloc] initFullyQualified : [NSString stringWithFormat : @"%@ %@", GDC, VALID_GDC_ROOMS[i]]]
+        NSString *curr_room = [VALID_GDC_ROOMS[i] copy];
+        
+        room = [[Room alloc] init : [[Location alloc] initSeparated : GDC room : curr_room]
                              type : VALID_GDC_ROOMS_TYPES[i]
                          capacity : VALID_GDC_ROOMS_CAPACITIES[i]
                         has_power : VALID_GDC_ROOMS_POWERS[i]];
         
 //        NSLog(@"%@", [room toString]);
         
-        [out setObject : room forKey : VALID_GDC_ROOMS[i]];
+        [out setObject : room forKey : curr_room];
     }
     
 //    NSLog(@"%@", out);

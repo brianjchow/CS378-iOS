@@ -28,6 +28,7 @@
         - create NSString class extension for methods in Utilities
         - multiple categories for Query?
         - fix copyWithZone methods for all classes
+        - remove all refs to localise() -> was implemented due to misunderstanding
  */
 
 @interface ViewController ()
@@ -40,17 +41,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-//    for (int i = 0; i < 7; i++) {
-//        NSLog(@"%@", DAYS_OF_WEEK_SHORT[i]);
-//    }
-//    
-//    for (int i = 0; i < 12; i++) {
-//        NSLog(@"%d", DAYS_IN_MONTH[i]);
-//    }
-    
 //    [self test_csvreader_local];
   
-//    [self test_constants_init_default];
+    [self test_constants_init_default];
     
 //    [self test_weekend_dates];
     
@@ -59,15 +52,15 @@
     // http://stackoverflow.com/questions/640885/best-cocoa-objective-c-wrapper-library-for-sqlite-on-iphone
     // https://github.com/misato/SQLiteManager4iOS
     
-
-    
+//    UIImage *panda_cycle_loader = [UIImage animatedImageNamed : @"frame_" duration : 1.0f];
+//    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage : [UIImage imageNamed : @"backgroundinitial"]];
 }
 
 - (void) test_dates {
-    NSDate *curr_date = [Utilities get_date : true];
+    NSDate *curr_date = [Utilities get_date];
     NSLog(@"Current date: %@", curr_date);
     
-    NSDate *test_date = [Utilities get_date : 11 day : 12 year : 2014 hour : 22 minute : 10 localise : true];
+    NSDate *test_date = [Utilities get_date : 11 day : 12 year : 2014 hour : 22 minute : 10];
     NSLog(@"Test date: %@", test_date);
     
     NSDate *test0 = [Utilities get_date : 13 minute : 12];
@@ -105,7 +98,7 @@
 }
 
 - (void) test_event {
-    NSDate *curr_date = [Utilities get_date : true];
+    NSDate *curr_date = [Utilities get_date];
     Event *test_event0 = [[Event alloc] initWithDatesNoLocation : @"Test Event 0" start_date : curr_date end_date : nil location : @"GDC 2.410"];
     NSLog(@"%@", [test_event0 toString]);
 }
@@ -148,7 +141,13 @@
 }
 
 - (void) test_constants_init_default {
+    Stopwatch *stopwatch = [Stopwatch new];
+    
+    [stopwatch start];
     [Constants init_default];
+    [stopwatch stop];
+    
+    NSLog(@"Took %f seconds to complete initialisation", [stopwatch time]);
 }
 
 - (void) test_weekend_dates {
@@ -156,8 +155,7 @@
                                        day : 28
                                       year : 15
                                       hour : 4
-                                    minute : 39
-                                  localise : false];
+                                    minute : 39];
     NSLog(@"Date is on weekend : %d (%@)", saturday.isWeekend, saturday);
     NSLog(@"Weekday: %ld (ordinal: %ld)", saturday.weekday, saturday.weekdayOrdinal);
     
@@ -165,8 +163,7 @@
                                      day : 29
                                     year : 15
                                     hour : 23
-                                  minute : 45
-                                localise : false];
+                                  minute : 45];
     NSLog(@"Date is on weekend : %d (%@)", sunday.isWeekend, sunday);
     NSLog(@"Weekday: %ld (ordinal: %ld)", sunday.weekday, sunday.weekdayOrdinal);
     
@@ -174,8 +171,7 @@
                                      day : 30
                                     year : 15
                                     hour : 4
-                                  minute : 39
-                                localise : false];
+                                  minute : 39];
     NSLog(@"Date is on weekend : %d (%@)", monday.isWeekend, monday);
     NSLog(@"Weekday: %ld (ordinal: %ld)", monday.weekday, monday.weekdayOrdinal);
     
@@ -215,7 +211,7 @@
 }
 
 - (void) qrr_basic_test {
-    NSDate *curr_date = [Utilities get_date : false];
+    NSDate *curr_date = [Utilities get_date];
     QueryRandomRoom *qrr = [[QueryRandomRoom alloc] initWithStartDate : curr_date];
     Query *query = [[Query alloc] initWithStartDate : curr_date];
     NSLog(@"Curr date: %@\n\nQueryRandomRoom:\n%@\n\nQuery:\n%@\n\n", curr_date, [qrr toString], [query toString]);

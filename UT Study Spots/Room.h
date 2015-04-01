@@ -13,7 +13,7 @@
 
 #import "Constants.h"
 
-@interface Room : NSObject
+@interface Room : NSObject <NSCopying>
 
 - (instancetype) initWithLocation : (Location *) location;
 - (instancetype) init : (Location *) location type : (NSString *) type capacity : (int) capacity has_power : (bool) has_power;

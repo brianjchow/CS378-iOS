@@ -21,8 +21,8 @@ static NSString *const TAB = @"    ";
 @property (nonatomic) int capacity;
 @property (nonatomic) bool has_power;
 
-// NSMutableDictionary<NSNumber, NSMutableSet>
-@property (strong, nonatomic) NSMutableDictionary *course_schedule;    // SparseArray<Set<Event>>
+// NSMutableDictionary<NSNumber, NSMutableSet<Event>>
+@property (strong, nonatomic) NSMutableDictionary *course_schedule;
 
 @end
 
@@ -186,18 +186,44 @@ static NSString *const TAB = @"    ";
 }
 
 - (id) copyWithZone : (NSZone *) zone {
+    
     Room *out = [[[self class] allocWithZone : zone] init];
     
     if (out) {
-        out.location = [self.location copyWithZone : zone];
-        out.type = [self.type copyWithZone : zone];
+//        out.location = [self.location copyWithZone : zone];
+ //       out.type = [self.type copyWithZone : zone];
+        out.location = [self.location copy];
+        out.type = [self.type copy];
         out.capacity = self.capacity;
         out.has_power = self.has_power;
         
-        out.course_schedule = [self.course_schedule copyWithZone : zone];   // ? !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//        out.course_schedule = [self.course_schedule copyWithZone : zone];   // ? !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        out.course_schedule = [[NSMutableDictionary alloc] initWithCapacity : [self.course_schedule count]];
+        for (NSNumber *num in self.course_schedule) {
+            NSNumber *num_copy = [num copy];
+            
+            NSMutableSet *curr_day_events = [self.course_schedule objectForKey : num];
+            NSMutableSet *curr_day_events_copy = [[NSMutableSet alloc] initWithCapacity : [curr_day_events count]];
+            for (Event *curr_event in curr_day_events) {
+                Event *curr_event_copy = [curr_event copy];
+                [curr_day_events_copy addObject : curr_event_copy];
+            }
+            
+            [out.course_schedule setObject : curr_day_events_copy forKey : num_copy];
+        }
     }
     
+//    if (out) {
+//        out.location = self.location;
+//        out.type = self.type;
+//        out.capacity = self.capacity;
+//        out.has_power = self.has_power;
+//        out.course_schedule = self.course_schedule;
+//    }
+    
     return out;
+    
+//    return self;
 }
 
 // IS THIS WHAT WE REALLY WANT? !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -38,7 +38,8 @@
     return self;
 }
 
-- (instancetype) initWithHashMapList : (NSArray *) strings {     // List<HashMap<String, String>>
+// arg: NSArray<NSDictionary<NSString, NSString>
+- (instancetype) initWithHashMapList : (NSArray *) strings {
     if ([Utilities is_null : strings]) {
         // TODO - throw IAException
     }
@@ -65,15 +66,8 @@
     return true;
 }
 
-//- (bool) add_eventlist : (EventList *) eolist {
-//    if ([Utilities is_null : eolist]) {
-//        return false;
-//    }
-//    
-//    return true;
-//}
-
-- (bool) add_hashmap_list : (NSArray *) strings {        // List<HashMap<String, String>>
+// arg: NSArray<NSDictionary<NSString, NSString>
+- (bool) add_hashmap_list : (NSArray *) strings {
     if ([Utilities is_null : strings]) {
         // TODO - throw IAException
     }

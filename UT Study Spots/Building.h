@@ -11,7 +11,7 @@
 #import "Room.h"
 #import "Constants.h"
 
-@interface Building : NSObject
+@interface Building : NSObject <NSCopying>
 
 + (Building *) get_instance : (NSString *) building_code db_filename : (NSString *) db_filename;
 

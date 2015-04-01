@@ -34,15 +34,13 @@
                                day : SPRING_START_DAY
                               year : year
                               hour : 0
-                            minute : 0
-                          localise : false];
+                            minute : 0];
     
     NSDate *end = [self get_date : SPRING_END_MONTH
                              day : SPRING_END_DAY
                             year : year
                             hour : 0
-                          minute : 0
-                        localise : false];
+                          minute : 0];
     
     bool result = [self date_is_in_range : date start : start end : end];
     return result;
@@ -54,13 +52,12 @@
     }
     
     NSInteger year = date.year;
-    NSDate *start = [self get_date : 1 day : 1 year : year hour : 0 minute : 0 localise : false];
+    NSDate *start = [self get_date : 1 day : 1 year : year hour : 0 minute : 0];
     NSDate *end = [self get_date : SUMMER_START_MONTH
                              day : SUMMER_START_DAY
                             year : year
                             hour : 0
-                          minute : 0
-                        localise : false];
+                          minute : 0];
     
     bool result = [self date_is_in_range : date start : start end : end];
     return result;
@@ -76,15 +73,13 @@
                                day : SUMMER_START_DAY
                               year : year
                               hour : 0
-                            minute : 0
-                          localise : false];
+                            minute : 0];
     
     NSDate *end = [self get_date : SUMMER_END_MONTH
                              day : SUMMER_START_DAY
                             year : year
                             hour : 0
-                          minute : 0
-                        localise : false];
+                          minute : 0];
     
     bool result = [self date_is_in_range : date start : start end : end];
     return result;
@@ -100,15 +95,13 @@
                                day : FALL_START_DAY
                               year : year
                               hour : 0
-                            minute : 0
-                          localise : false];
+                            minute : 0];
     
     NSDate *end = [self get_date : FALL_END_MONTH
                              day : FALL_END_DAY
                             year : year
                             hour : 0
-                          minute : 0
-                        localise : false];
+                          minute : 0];
     
     bool result = [self date_is_in_range : date start : start end : end];
     return result;
@@ -124,15 +117,13 @@
                                day : SUMMER_END_DAY
                               year : year
                               hour : 0
-                            minute : 0
-                          localise : false];
+                            minute : 0];
     
     NSDate *end = [self get_date : 12
                              day : 31
                             year : year
                             hour : 0
-                          minute : 0
-                        localise : false];
+                          minute : 0];
     
     bool result = [self date_is_in_range : date start : start end : end];
     return result;
@@ -212,7 +203,7 @@
         return nil;
     }
     
-    NSDate *old_date = [self get_date : true];
+    NSDate *old_date = [self get_date];
     
 //    NSLog(@"hi %@", old_date);
     
@@ -270,23 +261,23 @@
     NSDate *start1_copy, *end1_copy, *start2_copy, *end2_copy;
     NSUInteger end1_day, end2_day;
     
-    start1_copy = [self get_date : 1 day : 1 year : 15 hour : start1.hour minute : start1.minute localise : false];
+    start1_copy = [self get_date : 1 day : 1 year : 15 hour : start1.hour minute : start1.minute];
     if (start1.weekday == end1.weekday) {
         end1_day = 1;
     }
     else {
         end1_day = 2;
     }
-    end1_copy = [self get_date : 1 day : end1_day year : 15 hour : end1.hour minute : end1.minute localise : false];
+    end1_copy = [self get_date : 1 day : end1_day year : 15 hour : end1.hour minute : end1.minute];
     
-    start2_copy = [self get_date : 1 day : 1 year : 15 hour : start2.hour minute : start2.minute localise : false];
+    start2_copy = [self get_date : 1 day : 1 year : 15 hour : start2.hour minute : start2.minute];
     if (start2.weekday == end2.weekday) {
         end2_day = 1;
     }
     else {
         end2_day = 2;
     }
-    end1_copy = [self get_date : 1 day : end2_day year : 15 hour : end1.hour minute : end1.minute localise : false];
+    end1_copy = [self get_date : 1 day : end2_day year : 15 hour : end1.hour minute : end1.minute];
     
     return ([self dates_overlap : start1_copy end1 : end1_copy start2 : start2_copy end2 : end2_copy]);
 }
@@ -321,7 +312,7 @@
     return false;
 }
 
-+ (NSDate *) get_date : (NSUInteger) month day : (NSUInteger) day year : (NSUInteger) year hour : (NSUInteger) hour minute : (NSUInteger) minute localise : (bool) localise {
++ (NSDate *) get_date : (NSUInteger) month day : (NSUInteger) day year : (NSUInteger) year hour : (NSUInteger) hour minute : (NSUInteger) minute {
     if (month < 1 || month > 12) {
         return nil;
     }
@@ -353,27 +344,14 @@
         return nil;
     }
     
-    NSDate *out = [NSDate dateWithYear : (NSInteger) year month : (NSInteger) month day : (NSInteger) day hour : (NSInteger) hour minute : (NSInteger) minute second : 0 localise : localise];
+    NSDate *out = [NSDate dateWithYear : (NSInteger) year month : (NSInteger) month day : (NSInteger) day hour : (NSInteger) hour minute : (NSInteger) minute second : 0];
 
     return out;
 }
 
-+ (bool) localise : (NSDate *) date {
-    if ([self is_null : date]) {
-        // TODO - throw IAException
-    }
-    
-    return ([NSDate localise : &date]);
-}
-
 // https://buildingmyworld.wordpress.com/2011/04/13/get-local-time-from-iphone-local-nsdate/
-+ (NSDate *) get_date : (bool) localise {
++ (NSDate *) get_date {
     NSDate *out = [NSDate date];
-    
-    if (out && localise) {
-//        out = [self set_to_current_time_zone : out];
-        [self localise : out];
-    }
     
     return out;
 }
@@ -459,7 +437,7 @@
     
     NSString *out = nil;
     
-    NSDate *now = [self get_date : false];
+    NSDate *now = [self get_date];
     
     if ([self date_is_during_spring_trimester : date]) {
         if ([self date_is_during_spring_trimester : now]) {

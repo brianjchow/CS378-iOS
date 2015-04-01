@@ -13,31 +13,14 @@
 @interface QueryResult ()
 
 @property (nonatomic) SearchType search_type;
-@property (nonatomic) SearchStatus search_status;   // //@property (strong, nonatomic) NSString *message_status;
+@property (nonatomic) SearchStatus search_status;
 
 @property (strong, nonatomic) NSString *building_name;
-@property (strong, nonatomic) NSArray *results;  // List<String>
+@property (strong, nonatomic) NSArray *results;  // NSArray<String>
 
 @end
 
 @implementation QueryResult
-
-//- (instancetype) init : (SearchType) search_type building_name : (NSString *) building_name {
-//    if ([Utilities is_null : building_name] || building_name.length != BUILDING_CODE_LENGTH) {
-//        // TODO - throw IAException
-//    }
-//    
-//    self = [super init];
-//    
-//    if (self) {
-//        self.search_type = search_type;
-//        self.search_status = SEARCH_ERROR;
-//        self.building_name = [NSString stringWithString : building_name];
-//        self.results = [NSMutableArray new];
-//    }
-//    
-//    return self;
-//}
 
 - (instancetype) init : (SearchType) search_type
         search_status : (SearchStatus) search_status
@@ -95,36 +78,7 @@
     return self.search_type;
 }
 
-//- (bool) set_results : (NSArray *) results {
-//    if ([Utilities is_null : results]) {
-//        return false;
-//    }
-//    
-//    self.results = [results mutableCopy];
-//    return true;
-//}
-//
-//- (bool) set_search_status : (SearchStatus) message_status {
-//    
-//}
-
 @end
-
-/*
- 
- Original (nested in Query; only a Query object could create a QueryResult)
- 
-    - private QueryResult(SearchType search_type, final String building_name);
-    - protected String get_building_name();
-    - protected int get_num_results();
-    - protected String get_random_room();
-    - protected List<String> get_results();
-    - protected String get_search_status();
-    - protected int get_search_type();
-    - private boolean set_results(List<String> results);
-    - private boolean set_search_status(SearchStatus message_status);
- 
- */
 
 
 

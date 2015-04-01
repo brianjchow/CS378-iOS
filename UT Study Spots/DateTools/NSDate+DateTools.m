@@ -711,12 +711,12 @@ static NSCalendar *implicitCalendar = nil;
 }
 
 #pragma mark - Date Creating
-+ (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day localise : (bool) localise {
++ (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day {
 	
-    return [self dateWithYear:year month:month day:day hour:0 minute:0 second:0 localise : localise];
+    return [self dateWithYear:year month:month day:day hour:0 minute:0 second:0];
 }
 
-+ (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second localise : (bool) localise {
++ (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second {
 	
 	NSDate *nsDate = nil;
 	NSDateComponents *components = [[NSDateComponents alloc] init];
@@ -730,37 +730,7 @@ static NSCalendar *implicitCalendar = nil;
 	
 	nsDate = [[[self class] implicitCalendar] dateFromComponents:components];
     
-//    NSLog(@"Before localisation: %ld %ld %ld %ld %ld", nsDate.month, nsDate.day, nsDate.year, nsDate.hour, nsDate.minute);
-    
-    if (nsDate && localise) {
-//        nsDate = [self localise : nsDate];
-        [self localise : &nsDate];
-        
-//        NSLog(@"After localisation: %ld %ld %ld %ld %ld", nsDate.month, nsDate.day, nsDate.year, nsDate.hour, nsDate.minute);
-    }
-    
-//	    NSLog(@"IKKKKKKKK %@", nsDate);
-    
 	return nsDate;
-}
-
-+ (bool) localise : (NSDate **) date {
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:*date];
-    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:*date];
-    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-    
-    NSDate *out = [[NSDate alloc] initWithTimeInterval : interval sinceDate : *date];
-    
-//    NSLog(@"IKKKKKKKK %@ %@", date, out);
-    
-    if (![out isEqual : *date]) {
-        *date = out;
-        return true;
-    }
-    return false;
 }
 
 #pragma mark - Date Editing

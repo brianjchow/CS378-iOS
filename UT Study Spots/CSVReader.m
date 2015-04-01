@@ -36,21 +36,10 @@
 
 @implementation CSVReader
 
-static NSString *const ALL_EVENTS_SCHEDULE = @"https://www.cs.utexas.edu/calendar/touch/feed";
-static NSString *const ALL_ROOMS_SCHEDULE = @"https://www.cs.utexas.edu/calendar/touch/all/feed";
-static NSString *const ALL_TODAYS_EVENTS = @"https://www.cs.utexas.edu/calendar/touch/today/feed";
-
-static NSString *const CSV_EXT = @"csv";
-static NSString *const ALL_EVENTS_SCHEDULE_FILENAME = @"calendar_events_feed.csv";
-static NSString *const ALL_ROOMS_SCHEDULE_FILENAME = @"calendar_rooms_feed.csv";
-static NSString *const ALL_TODAYS_EVENTS_FILENAME = @"calendar_events_today_feed.csv";
-
 //static int const DAILY_UPDATE_TIME = 859;   // 8:59a; update if curr time is 9a or after
 
 static char const DELIMITER = '\"';
 
-// protected static int lines_read = 0;
-// protected static double time_to_read = 0;
 static int lines_read = 0;
 static int lines_ignored = 0;
 
@@ -59,17 +48,11 @@ static int lines_ignored = 0;
 }
 
 + (EventList *) read_csv : (bool) read_from_local_feeds {
-//    if (Constants.get_has_feed_been_read()) {
-//        return Constants.CSV_FEEDS_MASTER.clone();
-//    }
-//    Constants.set_has_feed_been_read();
-    
     if ([Constants get_has_feed_been_read]) {
         return ([Constants get_csv_feeds_master]);
     }
     [Constants set_has_feed_been_read];
     
-//    CSVReader *reader = [[CSVReader alloc] init];
     NSArray *event_strings;     // List<HashMap<String, String>>
     EventList *events = [[EventList alloc] init];
     
@@ -264,9 +247,7 @@ static int lines_ignored = 0;
     int temp;
     char curr_byte;
     
-//    NSMutableArray *curr_line = [NSMutableArray new];     // StringBuilder
     NSMutableString *curr_line = [NSMutableString new];     // StringBuilder
-//    NSArray *curr_line_arr;
     NSDictionary *result;                                   // HashMap<String, String>
     
     while ((temp = [input read]) != -1) {
@@ -278,9 +259,6 @@ static int lines_ignored = 0;
         
         // end of line reached in file; parse this event
         else {
-//            curr_line_arr = [self string_to_array : curr_line];
-//            result = [self split_line : curr_line_arr];
-            
             result = [self split_line : curr_line];
             
             if (![Utilities is_null : result]) {
@@ -329,23 +307,6 @@ static int lines_ignored = 0;
 //+ (bool) file_delete : (NSString *) filename {
 //    
 //    return false;
-//}
-
-// http://stackoverflow.com/questions/15890823/how-to-convert-nsstring-to-nsarray-with-characters-one-by-one-in-objective-c
-//+ (NSArray *) string_to_array : (NSString *) str {
-//    if ([Utilities is_null : str]) {
-//        // TODO - throw IAException
-//    }
-//    
-//    NSMutableArray *out = [NSMutableArray new];
-//    
-//    NSString *temp;
-//    for (int i = 0; i < str.length; i++) {
-//        temp = [str substringWithRange : NSMakeRange(i, 1)];
-//        [out addObject : [temp stringByReplacingPercentEscapesUsingEncoding : DEFAULT_STRING_ENCODING]];
-//    }
-//    
-//    return out;
 //}
 
 

@@ -18,9 +18,6 @@
 - (bool) set_building : (NSString *) building;
 - (bool) set_room : (NSString *) room;
 
-// and clone, compareTo, equals, hashCode, toString
-
-//- (id) copy;
 // http://stackoverflow.com/questions/1459598/how-to-copy-an-object-in-objective-c
 - (id) copyWithZone : (NSZone *) zone;
 
@@ -28,9 +25,6 @@
 - (NSComparisonResult) compare : (Location *) otherObject;
 
 // https://mikeash.com/pyblog/friday-qa-2010-06-18-implementing-equality-and-hashing.html
-//- (BOOL) isEqual : (id) other;
-
-//- (NSUInteger) hash;
 
 - (NSString *) toString;
 

@@ -18,7 +18,6 @@
 - (instancetype) initWithHashMapList : (NSArray *) strings;     // List<HashMap<String, String>>
 
 - (bool) add_event : (Event *) eo;
-//- (bool) add_eventlist : (EventList *) eolist;
 - (bool) add_hashmap_list : (NSArray *) strings;        // List<HashMap<String, String>>
 
 - (NSEnumerator *) get_enumerator;

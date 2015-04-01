@@ -30,18 +30,8 @@ static NSString *const COURSE_SCHEDULE_THIS_SEMESTER = @"master_course_schedule_
 static NSString *const COURSE_SCHEDULE_NEXT_SEMESTER = nil;     //"master_course_schedule_s15"
 static NSString *const DEFAULT_DB_EXT = @"db";
 
-    // protected static EventList CSV_FEEDS_MASTER = null;
-    // protected static EventList CSV_FEEDS_CLEANED = null;
-    // private static boolean has_feed_been_read;
-//static EventList *CSV_FEEDS_MASTER = nil; -> defined as private var in implementation
-//static EventList *CSV_FEEDS_CLEANED = nil; -> defined as private var in implementation
-//extern bool has_feed_been_read; -> defined as private var in implementation
+static NSString *const CSV_EXT = @"csv";
 
-    // protected static BuildingList BUILDING_CACHELIST_THIS_SEMESTER = null;
-    // protected static BuildingList BUILDING_CACHELIST_NEXT_SEMESTER = null;
-    // static bool const DISABLE_SEARCHES_NEXT_SEMESTER;
-//static BuildingList *BUILDING_CACHELIST_THIS_SEMESTER = nil; -> defined as private var in implementation
-//static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER = nil; -> defined as private var in implementation
 extern bool DISABLE_SEARCHES_NEXT_SEMESTER;
 
 static int const BUILDING_CODE_LENGTH = 3;
@@ -58,20 +48,16 @@ static int const FALL_START_MONTH = 8;
 static int const FALL_START_DAY = 27;
 static int const FALL_END_MONTH = 12;
 static int const FALL_END_DAY = 5;
-
-    // protected static final Date DAYBREAK = Utilities.get_date(1, 2, 2014, LAST_TIME_OF_NIGHT);
-    // protected static final Date NIGHTFALL = Utilities.get_date(1, 1, 2014, LAST_TIME_OF_DAY);
+\
 extern NSDate *DAYBREAK;
 extern NSDate *NIGHTFALL;
 
 static NSString *const EXIT = @"EXIT";
 
 static NSString *const ALL_DAY = @"all day";
-static NSString *const ATRIUM = @"Atrium";
-    // protected static final Map<String, Integer> CAMPUS_BUILDINGS;
+static NSString *const ATRIUM = @"Atrium";\
 extern NSDictionary *CAMPUS_BUILDINGS;
-
-    // protected static final Locale DEFAULT_LOCALE = Locale.US;
+\
 extern NSLocale *DEFAULT_LOCALE;
 
 static NSString *const CAPACITY = @"capacity";
@@ -82,10 +68,7 @@ static NSString *const SEARCH_ROOM = @"search_room";
 static NSString *const RANDOM = @"Random";
 
 static int const MAX_CAPACITY = 50;
-
-    // protected static final int[] DAYS_IN_MONTH;
-    // protected static final String[] DAYS_OF_WEEK_LONG;
-    // protected static final String[] DAYS_OF_WEEK_SHORT;
+\
 extern int const DAYS_IN_MONTH[];
 extern NSString *const DAYS_OF_WEEK_LONG[];
 extern NSString *const DAYS_OF_WEEK_SHORT[];
@@ -99,8 +82,7 @@ static int const FRIDAY = 5;
 static int const SATURDAY = 6;
 static int const SUNDAY = 7;
 static int const NUM_DAYS_IN_WEEK = 8;
-
-    // protected static final String[] DEPARTMENTS;
+\
 extern NSString *const DEPARTMENTS[];
 
 static int const DEFAULT_EVENT_DURATION = 90;   // minutes
@@ -120,17 +102,12 @@ static NSString *const START_DATE = @"start_date";
 static NSString *const END_DATE = @"end_date";
 static NSString *const EVENT_NAME = @"event_name";
 static NSString *const GDC = @"GDC";
-    // protected static final Location GDC_ATRIUM = new Location(GDC + " " + ATRIUM);
-    // protected static final Location GDC_GATESHENGE = new Location(GDC + " " + DEFAULT_GDC_LOCATION);
-    // protected static final String[] IGNORE_ROOMS;
 extern Location *GDC_ATRIUM;
 extern Location *GDC_GATESHENGE;
 extern NSString *const IGNORE_ROOMS[];
 extern int const IGNORE_ROOMS_LENGTH;
 static NSString *const LOCATION = @"location";
 
-    // protected static final String[] MONTHS_LONG;
-    // protected static final String[] MONTHS_SHORT;
 extern NSString *const MONTHS_LONG[];
 extern NSString *const MONTHS_SHORT[];
 
@@ -151,18 +128,10 @@ static int const LAST_TIME_OF_NIGHT = 730;
 static int const LAST_HOUR_OF_NIGHT = 7;
 static int const LAST_MINUTE_OF_NIGHT = 30;
 
-    // protected static final String UTCS_CSV_FEED_FORMAT = "EEE dd MMM yyyy HHmm";
-    // protected static final String US_DATE_24H_TIME_FORMAT = "MMM dd yyyy HHmm";
-    // protected static final String US_DATE_NO_TIME_FORMAT = "MMM dd yyyy";
-
 static NSString *const UTCS_CSV_FEED_FORMAT = @"EEE dd MMM yyyy HHmm";
 static NSString *const US_DATE_24H_TIME_FORMAT = @"MMM dd yyyy HHmm";
 static NSString *const US_DATE_NO_TIME_FORMAT = @"MMM dd yyyy";
 
-    // protected static final String[] VALID_GDC_ROOMS;
-    // protected static final String[] VALID_GDC_ROOMS_TYPES;
-    // protected static final int[] VALID_GDC_ROOMS_CAPACITIES;
-    // protected static final boolean[] VALID_GDC_ROOMS_POWERS;
 extern NSString *const VALID_GDC_ROOMS[];
 extern NSString *const VALID_GDC_ROOMS_TYPES[];
 extern int const VALID_GDC_ROOMS_CAPACITIES[];
@@ -175,8 +144,6 @@ static bool const INCLUDE_GDC_CONFERENCE_ROOMS = false;
 static bool const INCLUDE_GDC_LOBBY_ROOMS = false;
 static bool const INCLUDE_GDC_LOUNGE_ROOMS = false;
 static bool const SHORT_CIRCUIT_SEARCH_FOR_ROOM = false;
-
-// protected static final double DEFAULT_HASHMAP_LOAD_FACTOR = 0.75;
 
 static unsigned const UNIT_FLAGS = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
 
