@@ -33,6 +33,9 @@
 		AA992E951AC67E6000637C96 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E8E1AC67E6000637C96 /* NSDate+DateTools.m */; };
 		AA992E981AC7E07200637C96 /* InputReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E971AC7E07200637C96 /* InputReader.m */; };
 		AA992E9B1AC7E09400637C96 /* FileOutputWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E9A1AC7E09400637C96 /* FileOutputWriter.m */; };
+		AAC83DCC1ACE38B7002C7BFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC83DCB1ACE38B7002C7BFF /* Foundation.framework */; };
+		AAC83DDE1ACE39C1002C7BFF /* TCBlobDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC83DDB1ACE39C1002C7BFF /* TCBlobDownloader.m */; };
+		AAC83DDF1ACE39C1002C7BFF /* TCBlobDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC83DDD1ACE39C1002C7BFF /* TCBlobDownloadManager.m */; };
 		AAC99F2F1AC8B63500BBBF75 /* NSMutableString+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F2E1AC8B63500BBBF75 /* NSMutableString+Stack.m */; };
 		AAC99F321AC9072900BBBF75 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F311AC9072900BBBF75 /* QueryResult.m */; };
 		AAC99F351AC91ED200BBBF75 /* QueryRandomRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F341AC91ED200BBBF75 /* QueryRandomRoom.m */; };
@@ -117,6 +120,13 @@
 		AA992E971AC7E07200637C96 /* InputReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputReader.m; sourceTree = "<group>"; };
 		AA992E991AC7E08800637C96 /* FileOutputWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutputWriter.h; sourceTree = "<group>"; };
 		AA992E9A1AC7E09400637C96 /* FileOutputWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutputWriter.m; sourceTree = "<group>"; };
+		AAC83DCB1ACE38B7002C7BFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AAC83DD81ACE39C1002C7BFF /* TCBlobDownload-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCBlobDownload-Prefix.pch"; sourceTree = "<group>"; };
+		AAC83DD91ACE39C1002C7BFF /* TCBlobDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBlobDownload.h; sourceTree = "<group>"; };
+		AAC83DDA1ACE39C1002C7BFF /* TCBlobDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBlobDownloader.h; sourceTree = "<group>"; };
+		AAC83DDB1ACE39C1002C7BFF /* TCBlobDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBlobDownloader.m; sourceTree = "<group>"; };
+		AAC83DDC1ACE39C1002C7BFF /* TCBlobDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBlobDownloadManager.h; sourceTree = "<group>"; };
+		AAC83DDD1ACE39C1002C7BFF /* TCBlobDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBlobDownloadManager.m; sourceTree = "<group>"; };
 		AAC99F2D1AC8B62900BBBF75 /* NSMutableString+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Stack.h"; sourceTree = "<group>"; };
 		AAC99F2E1AC8B63500BBBF75 /* NSMutableString+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Stack.m"; sourceTree = "<group>"; };
 		AAC99F301AC9071C00BBBF75 /* QueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResult.h; sourceTree = "<group>"; };
@@ -155,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC83DCC1ACE38B7002C7BFF /* Foundation.framework in Frameworks */,
 				AAC99F5D1ACBA30B00BBBF75 /* SystemConfiguration.framework in Frameworks */,
 				AAC99F491ACA667300BBBF75 /* libsqlite3.dylib in Frameworks */,
 			);
@@ -173,6 +184,7 @@
 		AA992E2D1AC4E8DF00637C96 = {
 			isa = PBXGroup;
 			children = (
+				AAC83DCB1ACE38B7002C7BFF /* Foundation.framework */,
 				AAC99F5C1ACBA30B00BBBF75 /* SystemConfiguration.framework */,
 				AAC99F481ACA667300BBBF75 /* libsqlite3.dylib */,
 				AA992E381AC4E8DF00637C96 /* UT Study Spots */,
@@ -197,6 +209,7 @@
 				AAC99F671ACBB61700BBBF75 /* Controllers */,
 				AAC99F541ACBA2E800BBBF75 /* Reachability */,
 				AA992E681AC55AC400637C96 /* Model */,
+				AAC83DD71ACE39C1002C7BFF /* TCBlobDownload */,
 				AAC99F3D1ACA26F300BBBF75 /* Assets */,
 				AA992E7F1AC67E6000637C96 /* DateTools */,
 				AAC99F571ACBA2E800BBBF75 /* SQLiteManager */,
@@ -244,6 +257,8 @@
 		AA992E681AC55AC400637C96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AAC99F681ACBE1DC00BBBF75 /* UTCSVFeedDownloadManager.h */,
+				AAC99F691ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m */,
 				AA992E5F1AC4E90600637C96 /* Constants.h */,
 				AA992E601AC4E91800637C96 /* Constants.m */,
 				AA992E621AC4E92C00637C96 /* Utilities.h */,
@@ -276,8 +291,6 @@
 				AA992E9A1AC7E09400637C96 /* FileOutputWriter.m */,
 				AAC99F4E1ACA692900BBBF75 /* CourseScheduleDatabaseManager.h */,
 				AAC99F4F1ACA693700BBBF75 /* CourseScheduleDatabaseManager.m */,
-				AAC99F681ACBE1DC00BBBF75 /* UTCSVFeedDownloadManager.h */,
-				AAC99F691ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -302,6 +315,19 @@
 				AA992E8E1AC67E6000637C96 /* NSDate+DateTools.m */,
 			);
 			path = DateTools;
+			sourceTree = "<group>";
+		};
+		AAC83DD71ACE39C1002C7BFF /* TCBlobDownload */ = {
+			isa = PBXGroup;
+			children = (
+				AAC83DD81ACE39C1002C7BFF /* TCBlobDownload-Prefix.pch */,
+				AAC83DD91ACE39C1002C7BFF /* TCBlobDownload.h */,
+				AAC83DDA1ACE39C1002C7BFF /* TCBlobDownloader.h */,
+				AAC83DDB1ACE39C1002C7BFF /* TCBlobDownloader.m */,
+				AAC83DDC1ACE39C1002C7BFF /* TCBlobDownloadManager.h */,
+				AAC83DDD1ACE39C1002C7BFF /* TCBlobDownloadManager.m */,
+			);
+			path = TCBlobDownload;
 			sourceTree = "<group>";
 		};
 		AAC99F3D1ACA26F300BBBF75 /* Assets */ = {
@@ -460,6 +486,7 @@
 				AA992E741AC55C3800637C96 /* Room.m in Sources */,
 				AA992E421AC4E8DF00637C96 /* ViewController.m in Sources */,
 				AA992E931AC67E6000637C96 /* DTTimePeriodCollection.m in Sources */,
+				AAC83DDF1ACE39C1002C7BFF /* TCBlobDownloadManager.m in Sources */,
 				AA992E781AC55C6600637C96 /* Building.m in Sources */,
 				AA992E6B1AC55B0500637C96 /* CSVReader.m in Sources */,
 				AA992E3F1AC4E8DF00637C96 /* AppDelegate.m in Sources */,
@@ -467,6 +494,7 @@
 				AAC99F5A1ACBA2E800BBBF75 /* Reachability.m in Sources */,
 				AA992E9B1AC7E09400637C96 /* FileOutputWriter.m in Sources */,
 				AAC99F531ACB5F0E00BBBF75 /* NSString+Tools.m in Sources */,
+				AAC83DDE1ACE39C1002C7BFF /* TCBlobDownloader.m in Sources */,
 				AAC99F661ACBB60400BBBF75 /* LoadViewController.m in Sources */,
 				AA992E701AC55BCB00637C96 /* Event.m in Sources */,
 				AA992E7E1AC55CA200637C96 /* Query.m in Sources */,

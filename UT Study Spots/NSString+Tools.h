@@ -12,6 +12,12 @@
 
 /* Java-equivalent methods */
 
+- (NSString *) replaceAll : (NSString *) regex replace_with : (NSString *) replace_with;
+
+- (NSArray *) toCharArray;
+
+- (NSArray *) split : (NSString *) regex;
+
 - (bool) containsIgnoreCase : (NSString *) what;
 
 - (bool) equalsIgnoreCase : (NSString *) what;
@@ -20,9 +26,19 @@
 
 - (NSString *) reverse;
 
-/* Project-specific methods */
+- (NSString *) append : (NSString *) what;
 
-- (NSString *) regex_replace : (NSString *) regex replace_with : (NSString *) replace_with;
+- (NSString *) concat : (NSString *) what;
+
+- (int) charAt : (int) index;
+
+- (int) indexOf : (int) ch;
+
+- (bool) isEmpty;
+
+- (int) lastIndexOf : (int) ch;
+
+/* Project-specific methods */
 
 - (bool) is_gdc;
 
@@ -32,13 +48,13 @@
 
 - (NSString *) strip_filename_ext : (NSString **) ext;
 
-- (int) last_index_of : (char) what;
+- (int) last_index_of : (int) what;
 
 - (bool) is_valid_db_filename;
 
 - (bool) is_date_string;
 
-- (NSArray *) to_array;
+- (NSString *) url_encode;
 
 @end
 

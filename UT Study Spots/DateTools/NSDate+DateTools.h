@@ -57,11 +57,11 @@ NSLocalizedStringFromTableInBundle(key, @"DateTools", [NSBundle bundleWithPath:[
 - (NSInteger)yearForWeekOfYear;
 - (NSInteger)daysInMonth;
 - (NSInteger)dayOfYear;
--(NSInteger)daysInYear;
--(BOOL)isInLeapYear;
+- (NSInteger)daysInYear;
+- (BOOL)isInLeapYear;
 - (BOOL)isToday;
 - (BOOL)isTomorrow;
--(BOOL)isYesterday;
+- (BOOL)isYesterday;
 - (BOOL)isWeekend;
 
 #pragma mark - Date Components With Calendar

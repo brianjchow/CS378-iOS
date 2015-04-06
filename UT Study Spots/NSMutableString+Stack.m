@@ -12,11 +12,9 @@
 
 #import "NSString+Tools.h"
 
-//@interface NSMutableString ()
-//
-//@property (strong, nonatomic) NSMutableString *stack;
-//
-//@end
+/*
+        - for chars (primitives) ONLY
+ */
 
 @implementation NSMutableString (Stack)
 
@@ -32,15 +30,11 @@ NSMutableString *stack;
     return self;
 }
 
-//- (void) push : (char *) c {
-//    [stack appendFormat : @"%c", *c];
-//}
-
 - (void) push : (char) c {
     [stack appendFormat : @"%c", c];
 }
 
-- (char) pop {
+- (int) pop {
     NSUInteger length = stack.length;
     
     if (length <= 0) {
@@ -53,7 +47,7 @@ NSMutableString *stack;
     return out;
 }
 
-- (char) peek {
+- (int) peek {
     return ([stack characterAtIndex : stack.length - 1]);
 }
 

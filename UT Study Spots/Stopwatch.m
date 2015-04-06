@@ -22,6 +22,14 @@
 
 @implementation Stopwatch
 
+- (double) _start {
+    return self.start_time;
+}
+
+- (double) _stop {
+    return self.stop_time;
+}
+
 - (instancetype) init {
     self = [super init];
     

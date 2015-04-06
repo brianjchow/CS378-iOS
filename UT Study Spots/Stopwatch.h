@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 
 static double const NANOS_PER_SEC = 1000000000.0;
-static double const MICROS_PER_SEC = 1000000;
-static double const MILLIS_PER_SEC = 1000;
+static double const MICROS_PER_SEC = 1000000.0;
+static double const MILLIS_PER_SEC = 1000.0;
 
 @interface Stopwatch : NSObject
+
+- (double) _start;
+- (double) _stop;
 
 - (instancetype) init;
 

@@ -10,10 +10,9 @@
 
 @interface NSMutableString (Stack)
 
-//- (void) push : (char *) c;
 - (void) push : (char) c;
-- (char) pop;
-- (char) peek;
+- (int) pop;
+- (int) peek;
 - (bool) empty;
 - (NSUInteger) size;
 

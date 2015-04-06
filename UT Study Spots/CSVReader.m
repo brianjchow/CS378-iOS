@@ -23,11 +23,11 @@
 + (NSDictionary *) split_line : (NSString *) str;
 
 // helper methods to be used when downloading feeds/data
-+ (bool) file_exists : (NSString *) filename;
-+ (bool) file_is_current : (NSString *) filename;
-//+ (bool) delete_all_feeds;
-+ (bool) get_csv_feeds_write_success : (NSString *) pref_name;
-+ (bool) set_csv_feeds_write_success : (NSString *) filename success : (bool) success;
+//+ (bool) file_exists : (NSString *) filename;
+//+ (bool) file_is_current : (NSString *) filename;
+////+ (bool) delete_all_feeds;
+//+ (bool) get_csv_feeds_write_success : (NSString *) pref_name;
+//+ (bool) set_csv_feeds_write_success : (NSString *) filename success : (bool) success;
 
 // misc private methods
 - (instancetype) init;
@@ -137,8 +137,8 @@ static int lines_ignored = 0;
             
             // strip formatting
             temp_to_str = temp;
-            temp_to_str = [temp_to_str regex_replace : @"(  )+" replace_with : @" "];
-            temp_to_str = [temp_to_str regex_replace : @"(CST|CDT|registrar?( - )*|room?(: )*)?[():,]*" replace_with : @""];
+            temp_to_str = [temp_to_str replaceAll : @"(  )+" replace_with : @" "];
+            temp_to_str = [temp_to_str replaceAll : @"(CST|CDT|registrar?( - )*|room?(: )*)?[():,]*" replace_with : @""];
             
             if ([temp_to_str isEqualToString : @"Location"] || [temp_to_str isEqualToString : @"Title"]) {
                 if (_DEBUG) {
@@ -159,9 +159,9 @@ static int lines_ignored = 0;
                 // event time and date encountered
                 else if ([temp_to_str is_date_string]) {
                     if ([temp_to_str containsIgnoreCase : ALL_DAY]) {
-                        temp_to_str = [temp_to_str regex_replace : [NSString stringWithFormat : @"(%@)", ALL_DAY] replace_with : @"0001"];
+                        temp_to_str = [temp_to_str replaceAll : [NSString stringWithFormat : @"(%@)", ALL_DAY] replace_with : @"0001"];
                         NSString *copy = temp_to_str;
-                        copy = [copy regex_replace : @"0001" replace_with : @"2359"];
+                        copy = [copy replaceAll : @"0001" replace_with : @"2359"];
                         [tuple setValue : copy forKey : END_DATE];
                     }
                     [tuple setValue : temp_to_str forKey : START_DATE];

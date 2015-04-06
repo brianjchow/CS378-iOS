@@ -17,6 +17,7 @@
 #import "Query.h"
 #import "QueryRandomRoom.h"
 #import "QueryRoomSchedule.h"
+#import "UTCSVFeedDownloadManager.h"
 
 #import "DateTools.h"
 #import "NSString+Tools.h"
@@ -28,7 +29,7 @@
         - create NSString class extension for methods in Utilities
         - multiple categories for Query?
         - fix copyWithZone methods for all classes
-        - remove all refs to localise() -> was implemented due to misunderstanding
+        - figure out how to enforce UTF8 encoding
  */
 
 @interface ViewController ()
@@ -45,6 +46,13 @@
   
     [self test_constants_init_default];
     
+//    [self test_stopwatch];
+    
+    
+    
+    
+    
+    
 //    [self test_weekend_dates];
     
 //    [self qrr_basic_test];
@@ -54,6 +62,13 @@
     
 //    UIImage *panda_cycle_loader = [UIImage animatedImageNamed : @"frame_" duration : 1.0f];
 //    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage : [UIImage imageNamed : @"backgroundinitial"]];
+    
+//    NSString *google = @"http://www.google.com/trends/trendsReport?hl=en-US&cat=0-14&date=today%207-d&cmpt=q&content=1&export=1";
+//    google = [google stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    google = ALL_EVENTS_SCHEDULE;
+//    UTCSVFeedDownloadManager *downloader = [[UTCSVFeedDownloadManager alloc] initWithURLString : google filename : ALL_EVENTS_SCHEDULE_FILENAME];
+//
+//    [downloader download];
 }
 
 - (void) test_dates {
@@ -227,7 +242,7 @@
     sleep(1);
     [stopwatch stop];
     
-    NSLog(@"Elapsed time: %f seconds (should be ~1 second)", [stopwatch time]);
+    NSLog(@"Started: %f\tStopped: %f\nElapsed time: %f seconds (should be ~1 second)", stopwatch._start, stopwatch._stop, [stopwatch time]);
 }
 
 - (void)didReceiveMemoryWarning {

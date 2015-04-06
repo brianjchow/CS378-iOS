@@ -11,10 +11,14 @@
 #import "Constants.h"
 #import "Utilities.h"
 
+/*
+        THIS CLASS ASSUMES UTF8-ENCODED STRINGS
+ */
+
 @implementation NSString (Tools)
 
 // http://behindtechlines.com/2012/05/ios-cocoa-regular-expressions-to-find-replace-strings-matching-patterns/
-- (NSString *) regex_replace : (NSString *) regex replace_with : (NSString *) replace_with {
+- (NSString *) replaceAll : (NSString *) regex replace_with : (NSString *) replace_with {
     if ([Utilities is_null : self] || [Utilities is_null : regex] || [Utilities is_null : replace_with]) {
         // TODO - throw exception
     }
@@ -32,6 +36,30 @@
     NSString *out = [nsre_regex stringByReplacingMatchesInString : self options : 0 range : NSMakeRange(0, self.length) withTemplate : replace_with];
     
     return out;
+}
+
+// http://stackoverflow.com/questions/15890823/how-to-convert-nsstring-to-nsarray-with-characters-one-by-one-in-objective-c
+- (NSArray *) toCharArray {
+    if ([Utilities is_null : self]) {
+        // TODO - throw IAException
+    }
+    
+    NSMutableArray *out = [NSMutableArray new];
+    
+    NSString *temp;
+    for (int i = 0; i < self.length; i++) {
+        temp = [self substringWithRange : NSMakeRange(i, 1)];
+        [out addObject : [temp stringByReplacingPercentEscapesUsingEncoding : DEFAULT_STRING_ENCODING]];
+    }
+    
+    return out;
+}
+
+- (NSArray *) split : (NSString *) regex {
+    if ([Utilities is_null : regex]) {
+        // TODO - throw IAException
+    }
+    return ([self componentsSeparatedByString : regex]);
 }
 
 - (bool) containsIgnoreCase : (NSString *) what {
@@ -91,27 +119,72 @@
     return reversedString;
 }
 
-//- (NSUInteger) hash {
-//    if (!self || [self isEqual : [NSNull class]]) {
-//        // TODO - throw exception
-//    }
-//    
-//    int hash = 0;
-//    int h = hash;
-////    char *str_arr = [string getCString:c_buffer maxLength:c_buffer_length encoding:NSUTF8StringEncoding];
-//    const char *str_arr = [self UTF8String];
-//    
-//    if (h == 0 && self.length > 0) {
-//        const char *val = str_arr;
-//        
-//        for (int i = 0; i < self.length; i++) {
-//            h = 31 * h + val[i];
-//        }
-//        hash = h;
-//    }
-//    
-//    return (NSUInteger) h;
-//}
+- (NSString *) append : (NSString *) what {
+    if ([Utilities is_null : self] || [Utilities is_null : what]) {
+        // TODO - throw IAException
+    }
+    
+    return ([NSString stringWithFormat : @"%@%@", self, what]);
+}
+
+- (NSString *) concat : (NSString *) what {
+    return ([self append : what]);
+}
+
+// http://www.objc.io/issue-9/unicode.html
+- (int) charAt : (int) index {
+    if (index < 0 || index >= self.length) {
+        // TODO - throw IAException
+    }
+    
+    return ([self characterAtIndex : (NSUInteger) index]);
+}
+
+- (int) indexOf : (int) ch {
+    for (int i = 0; i < self.length; i++) {
+        if ([self charAt : i] == ch ) {
+            return i;
+        }
+    }
+    
+    return -1;
+}
+
+- (bool) isEmpty {
+    return (self.length == 0);
+}
+
+- (int) lastIndexOf : (int) ch {
+    for (int i = (int) self.length - 1; i >= 0; i--) {
+        if ([self charAt : i] == ch) {
+            return i;
+        }
+    }
+    
+    return -1;
+}
+
+- (NSUInteger) hash {
+    if (!self || [self isEqual : [NSNull class]]) {
+        // TODO - throw exception
+    }
+    
+    NSUInteger hash = 0;
+    NSUInteger h = hash;
+//    char *str_arr = [string getCString:c_buffer maxLength:c_buffer_length encoding:NSUTF8StringEncoding];
+    const char *str_arr = [self UTF8String];
+    
+    if (h == 0 && self.length > 0) {
+        const char *val = str_arr;
+        
+        for (int i = 0; i < self.length; i++) {
+            h = 31 * h + val[i];
+        }
+        hash = h;
+    }
+    
+    return h;
+}
 
 // **************
 
@@ -189,7 +262,7 @@
     return out;
 }
 
-- (int) last_index_of : (char) what {
+- (int) last_index_of : (int) what {
     for (int i = (int) self.length - 1; i >= 0; i--) {
         if ([self characterAtIndex : i] == what) {
             return i;
@@ -235,19 +308,12 @@
     return false;
 }
 
-// http://stackoverflow.com/questions/15890823/how-to-convert-nsstring-to-nsarray-with-characters-one-by-one-in-objective-c
-- (NSArray *) to_array {
+- (NSString *) url_encode {
     if ([Utilities is_null : self]) {
         // TODO - throw IAException
     }
     
-    NSMutableArray *out = [NSMutableArray new];
-    
-    NSString *temp;
-    for (int i = 0; i < self.length; i++) {
-        temp = [self substringWithRange : NSMakeRange(i, 1)];
-        [out addObject : [temp stringByReplacingPercentEscapesUsingEncoding : DEFAULT_STRING_ENCODING]];
-    }
+    NSString *out = [self stringByAddingPercentEscapesUsingEncoding:DEFAULT_STRING_ENCODING];       // NSUTF8StringEncoding
     
     return out;
 }
