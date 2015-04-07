@@ -10,10 +10,16 @@
 
 #import "Constants.h"
 
+#import "DateTools.h"
+
 //#import "QueryResult.h"
 @class QueryResult;
 
 @interface Query : NSObject <NSCopying>
+
+@property (strong, nonatomic, readonly) DTTimePeriod *date;
+@property (nonatomic, readonly) int duration;
+@property (strong, nonatomic, readonly) NSString *search_building;
 
 - (instancetype) init;
 - (instancetype) initWithStartDate : (NSDate *) date;

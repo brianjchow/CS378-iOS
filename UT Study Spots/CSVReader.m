@@ -99,6 +99,52 @@ static int lines_ignored = 0;
     return self;
 }
 
+// returns List<HashMap<String, String>>
++ (NSArray *) read_csv_from_file : (NSString *) filename {
+    if ([Utilities is_null : filename] || filename.length <= 0) {
+        // TODO - throw IAException
+    }
+    
+    NSMutableArray *schedules = [[NSMutableArray alloc] initWithCapacity : 100];
+    
+    NSString *file_path = [Utilities get_file_path : filename ext : CSV_EXT];
+    if ([Utilities is_null : file_path]) {
+        if (_DEBUG) {
+            NSLog(@"ERROR: could not find path for file \"%@\", CSVReader.read_csv_from_file()", filename);
+        }
+        return schedules;
+    }
+    
+    InputReader *input;
+    input = [[InputReader alloc] initWithFilePath : file_path];
+    
+    int curr_byte;
+    
+    NSMutableString *curr_line = [NSMutableString new];     // StringBuilder
+    NSDictionary *result;                                   // HashMap<String, String>
+    
+    while ((curr_byte = [input read]) != -1) {
+        
+        if (curr_byte != '\n') {
+            [curr_line appendFormat : @"%c", curr_byte];
+        }
+        
+        // end of line reached in file; parse this event
+        else {
+            result = [self split_line : curr_line];
+            
+            if (![Utilities is_null : result]) {
+                [schedules addObject : result];
+            }
+            
+            curr_line = [NSMutableString new];
+            lines_read++;
+        }
+    }
+    
+    return schedules;
+}
+
 // returns HashMap<String, String>; arg type is equivalent to StringBuilder (each cell is a char)
 + (NSDictionary *) split_line : (NSString *) str {
     if ([Utilities is_null : str]) {
@@ -110,7 +156,7 @@ static int lines_ignored = 0;
     
     NSMutableDictionary *tuple = [[NSMutableDictionary alloc] initWithCapacity : 3];
     bool delim_in_stack = false;
-//    str = [[str reverseObjectEnumerator] allObjects];
+    //    str = [[str reverseObjectEnumerator] allObjects];
     str = [str reverse];
     
     NSMutableString *stack = [[NSMutableString alloc] init];
@@ -123,9 +169,9 @@ static int lines_ignored = 0;
         curr_char = [str characterAtIndex : i];
         
         /*
-            Enough info collected from one segment of current event String; pop
-            everything off the Stack and process the resultant String according
-            to what info it contains.
+         Enough info collected from one segment of current event String; pop
+         everything off the Stack and process the resultant String according
+         to what info it contains.
          */
         if (curr_char == DELIMITER && delim_in_stack) {
             NSMutableString *temp = [NSMutableString new];
@@ -214,63 +260,15 @@ static int lines_ignored = 0;
     }
     
     if (_DEBUG) {
-//        NSLog(@"Now returning from processing line\n\tEvent name: %@\n\t\tStart date: %@\n\t\tEnd date: %@\n\t\tLocation: %@", [tuple objectForKey : EVENT_NAME], [tuple objectForKey : START_DATE], [tuple objectForKey : END_DATE], [tuple objectForKey : LOCATION]);
+        //        NSLog(@"Now returning from processing line\n\tEvent name: %@\n\t\tStart date: %@\n\t\tEnd date: %@\n\t\tLocation: %@", [tuple objectForKey : EVENT_NAME], [tuple objectForKey : START_DATE], [tuple objectForKey : END_DATE], [tuple objectForKey : LOCATION]);
         
-//        NSLog(@"\tEvent name: %@", [tuple objectForKey : EVENT_NAME]);
-//        NSLog(@"\tStart date: %@", [tuple objectForKey : START_DATE]);
-//        NSLog(@"\tEnd date: %@", [tuple objectForKey : END_DATE]);
-//        NSLog(@"\tLocation: %@", [tuple objectForKey : LOCATION]);
+        //        NSLog(@"\tEvent name: %@", [tuple objectForKey : EVENT_NAME]);
+        //        NSLog(@"\tStart date: %@", [tuple objectForKey : START_DATE]);
+        //        NSLog(@"\tEnd date: %@", [tuple objectForKey : END_DATE]);
+        //        NSLog(@"\tLocation: %@", [tuple objectForKey : LOCATION]);
     }
     
     return tuple;
-}
-
-// returns List<HashMap<String, String>>
-+ (NSArray *) read_csv_from_file : (NSString *) filename {
-    if ([Utilities is_null : filename] || filename.length <= 0) {
-        // TODO - throw IAException
-    }
-    
-    NSMutableArray *schedules = [[NSMutableArray alloc] initWithCapacity : 100];
-    
-    NSString *file_path = [Utilities get_file_path : filename ext : CSV_EXT];
-    if ([Utilities is_null : file_path]) {
-        if (_DEBUG) {
-            NSLog(@"ERROR: could not find path for file \"%@\", CSVReader.read_csv_from_file()", filename);
-        }
-        return schedules;
-    }
-    
-    InputReader *input;
-    input = [[InputReader alloc] initWithFilePath : file_path];
-    
-    int temp;
-    char curr_byte;
-    
-    NSMutableString *curr_line = [NSMutableString new];     // StringBuilder
-    NSDictionary *result;                                   // HashMap<String, String>
-    
-    while ((temp = [input read]) != -1) {
-        curr_byte = (char) temp;
-        
-        if (curr_byte != '\n') {
-            [curr_line appendFormat : @"%c", curr_byte];
-        }
-        
-        // end of line reached in file; parse this event
-        else {
-            result = [self split_line : curr_line];
-            
-            if (![Utilities is_null : result]) {
-                [schedules addObject : result];
-            }
-            
-            curr_line = [NSMutableString new];
-            lines_read++;
-        }
-    }
-    
-    return schedules;
 }
 
 //// returns List<HashMap<String, String>>

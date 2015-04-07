@@ -186,6 +186,15 @@
     return h;
 }
 
+// because i'm lazy
+- (bool) equals : (NSString *) what {
+    if ([Utilities is_null : what]) {
+        // TODO - throw iAException
+    }
+    
+    return ([self isEqualToString : what]);
+}
+
 // **************
 
 - (bool) is_gdc {

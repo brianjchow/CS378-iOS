@@ -30,7 +30,7 @@ NSMutableString *stack;
     return self;
 }
 
-- (void) push : (char) c {
+- (void) push : (int) c {
     [stack appendFormat : @"%c", c];
 }
 

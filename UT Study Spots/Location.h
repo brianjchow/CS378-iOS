@@ -15,8 +15,6 @@
 
 - (NSString *) get_building;
 - (NSString *) get_room;
-//- (bool) set_building : (NSString *) building;
-//- (bool) set_room : (NSString *) room;
 
 // http://stackoverflow.com/questions/1459598/how-to-copy-an-object-in-objective-c
 - (id) copyWithZone : (NSZone *) zone;

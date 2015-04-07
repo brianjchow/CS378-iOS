@@ -44,7 +44,7 @@
     
 //    [self test_csvreader_local];
   
-    [self test_constants_init_default];
+//    [self test_constants_init_default];
     
 //    [self test_stopwatch];
     
@@ -63,12 +63,12 @@
 //    UIImage *panda_cycle_loader = [UIImage animatedImageNamed : @"frame_" duration : 1.0f];
 //    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage : [UIImage imageNamed : @"backgroundinitial"]];
     
-//    NSString *google = @"http://www.google.com/trends/trendsReport?hl=en-US&cat=0-14&date=today%207-d&cmpt=q&content=1&export=1";
-//    google = [google stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    google = ALL_EVENTS_SCHEDULE;
-//    UTCSVFeedDownloadManager *downloader = [[UTCSVFeedDownloadManager alloc] initWithURLString : google filename : ALL_EVENTS_SCHEDULE_FILENAME];
-//
-//    [downloader download];
+    NSString *google = @"http://www.google.com/trends/trendsReport?hl=en-US&cat=0-14&date=today%207-d&cmpt=q&content=1&export=1";
+    google = [google stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    google = ALL_EVENTS_SCHEDULE;
+    UTCSVFeedDownloadManager *downloader = [[UTCSVFeedDownloadManager alloc] initWithURLString : google filename : ALL_EVENTS_SCHEDULE_FILENAME];
+
+    [downloader download];
 }
 
 - (void) test_dates {

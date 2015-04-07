@@ -10,7 +10,6 @@
 
 #import "Utilities.h"
 
-#import "DateTools.h"
 #import "NSString+Tools.h"
 
 /*
@@ -24,9 +23,9 @@
 
 @interface Query ()
 
-@property (strong, nonatomic) DTTimePeriod *date;
-@property (nonatomic) int duration;
-@property (strong, nonatomic) NSString *search_building;
+@property (strong, nonatomic, readwrite) DTTimePeriod *date;
+@property (nonatomic, readwrite) int duration;
+@property (strong, nonatomic, readwrite) NSString *search_building;
 
 - (NSString *) get_current_course_schedule : (SearchStatus *) search_status;
 - (int) get_this_day_of_week;

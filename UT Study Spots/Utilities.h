@@ -53,12 +53,6 @@
 + (NSDateComponents *) get_date_components : (unsigned) unit_flags date : (NSDate *) date;
 + (NSDateComponents *) get_date_components_with_calendar : (unsigned) unit_flags calendar : (NSCalendar *) calendar date : (NSDate *) date;
 
-// protected static String time_to_24h(String time);
-
-// protected static String pad_to_len_leading_zeroes(String str, int final_len);
-
-// protected static String time_to_12h(String time);
-
 @end
 
 

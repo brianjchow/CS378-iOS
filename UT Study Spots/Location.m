@@ -70,27 +70,11 @@
     return self.room;
 }
 
-//- (bool) set_building : (NSString *) building {
-//    if (!building) {
-//        // TODO - throw exception
-//    }
-//    
-//    self.building = building;
-//    return true;
-//}
-//
-//- (bool) set_room : (NSString *) room {
-//    if (!room) {
-//        // TODO - throw exception
-//    }
-//    
-//    self.room = room;
-//    return true;
-//}
-
 - (id) copy {
-    Location *out = [[Location alloc] initSeparated : [self.building copy] room : [self.room copy]];
-    return out;
+//    Location *out = [[Location alloc] initSeparated : [self.building copy] room : [self.room copy]];
+//    return out;
+    
+    return self;
 }
 
 // http://stackoverflow.com/questions/4089238/implementing-nscopying

@@ -115,17 +115,19 @@
 
 // overridden
 - (id) copy {
-    Building *copy = [[Building alloc] init : [self.name copy]];
-    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
+//    Building *copy = [[Building alloc] init : [self.name copy]];
+//    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
+//    
+//    NSString *curr_room_str;
+//    Room *curr_room;
+//    for (curr_room_str in [self.rooms allKeys]) {
+//        curr_room = [self.rooms objectForKey : curr_room_str];
+//        [copy.rooms setValue : [curr_room copy] forKey : [curr_room_str copy]];
+//    }
+//    
+//    return copy;
     
-    NSString *curr_room_str;
-    Room *curr_room;
-    for (curr_room_str in [self.rooms allKeys]) {
-        curr_room = [self.rooms objectForKey : curr_room_str];
-        [copy.rooms setValue : [curr_room copy] forKey : [curr_room_str copy]];
-    }
-    
-    return copy;
+    return self;
 }
 
 - (id) copyWithZone : (NSZone *) zone {

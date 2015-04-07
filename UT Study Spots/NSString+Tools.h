@@ -38,6 +38,8 @@
 
 - (int) lastIndexOf : (int) ch;
 
+- (bool) equals : (NSString *) what;
+
 /* Project-specific methods */
 
 - (bool) is_gdc;
@@ -55,6 +57,12 @@
 - (bool) is_date_string;
 
 - (NSString *) url_encode;
+
+// protected static String time_to_24h(String time);
+
+// protected static String pad_to_len_leading_zeroes(String str, int final_len);
+
+// protected static String time_to_12h(String time);
 
 @end
 
