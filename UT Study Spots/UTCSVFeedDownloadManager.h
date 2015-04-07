@@ -28,10 +28,11 @@ static NSString *const ALL_TODAYS_EVENTS_FILENAME = @"calendar_events_today_feed
 @property (strong, nonatomic, readonly) NSString *filename;
 @property (strong, nonatomic, readonly) NSURL *url;
 
-@property (strong, nonatomic) id <NSURLConnectionDataDelegate> delegate;
+@property (strong, nonatomic) id <NSURLConnectionDataDelegate> url_cxn_delegate;
 
 - (instancetype) initWithURLString : (NSString *) url_str filename : (NSString *) filename;
 //- (instancetype) initWithURL : (NSURL *) url filename : (NSString *) filename;
+//- (instancetype) init : (NSString *) filename;    // IMPLEMENT? RETURN NIL IF NOT VALID FILENAME?
 
 - (void) download;
 - (InputReader *) get_feed_reader;

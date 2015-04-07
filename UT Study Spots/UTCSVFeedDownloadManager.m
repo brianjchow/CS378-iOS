@@ -34,11 +34,14 @@
 
 @synthesize filename = _filename;
 @synthesize url = _url;
-@synthesize delegate;
+@synthesize url_cxn_delegate;
 
 - (instancetype) initWithURLString : (NSString *) url_str filename : (NSString *) filename {
-    if ([Utilities is_null : url_str] || url_str.length <= 0 || [Utilities is_null : filename] || filename.length <= 0) {
-        // TODO - throw IAException
+//    if ([Utilities is_null : url_str] || url_str.length <= 0 || [Utilities is_null : filename] || filename.length <= 0) {
+//        // TODO - throw IAException
+//    }
+    if (![UTCSVFeedDownloadManager is_valid_filename : filename]) {
+        return nil;
     }
     
     self = [super init];
@@ -47,7 +50,7 @@
         
         self.filename = filename;
         self.url = [NSURL URLWithString : [url_str url_encode]];
-        self.delegate = self;
+        self.url_cxn_delegate = self;
         
         self.didFinishSuccessfully = false;
         self.didStopWithError = false;
@@ -62,6 +65,10 @@
 //    NSString *filepath = [NSString stringWithFormat : @"%@/fux", [self get_documents_dir]];
 //    [manager setDefaultDownloadPath : filepath];
 //    [manager startDownload : self.downloader];
+    
+//    if ([UTCSVFeedDownloadManager feed_is_current : self.filename]) {
+//        // TODO - CALL DELEGATE METHOD HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    }
     
     if (_DEBUG) {
         NSLog(@"Download of file at \"%@\" launched", self.filename);
@@ -110,23 +117,55 @@
 /* *********** ************* */
 
 - (void) connectionDidFinishLoading : (NSURLConnection *) connection {
-    NSString *file_path = [NSString stringWithFormat : @"%@/%@", [UTCSVFeedDownloadManager get_documents_dir_path], self.filename];
-//    [self.buffer writeToFile : file_path atomically : YES];
     
-    NSString *data = [[NSString alloc] initWithData:self.buffer encoding:NSUTF8StringEncoding];
-    NSLog(@"In connectionDidFinishLoading\n%@", data);
+    __block BOOL success = NO;
     
-    BOOL success = [data writeToFile : file_path atomically : NO encoding : DEFAULT_STRING_ENCODING error : nil];
-    
-    NSString *csv = [[NSString alloc] initWithContentsOfFile : file_path usedEncoding : nil error : nil];
-    NSLog(@"%@", csv);
-    
-    if (!self.didStopWithError && success) {
-        self.didFinishSuccessfully = true;  // ??????????????????
+    if (self.buffer) {
+//        success = [self.buffer writeToFile : file_path atomically : YES];
+        
+        // http://stackoverflow.com/questions/679104/the-easiest-way-to-write-nsdata-to-a-file
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSString *file_path = [UTCSVFeedDownloadManager get_file_path : self.filename];
+            NSString *data = [[NSString alloc] initWithData : self.buffer encoding : DEFAULT_STRING_ENCODING];
+            
+            NSError *error = nil;
+            success = [data writeToFile : file_path atomically : YES encoding : DEFAULT_STRING_ENCODING error : &error];
+            
+            if (!self.didStopWithError && success && !error) {
+                self.didFinishSuccessfully = true;  // ??????????????????
+            }
+            else {
+                self.didFinishSuccessfully = false;
+                [UTCSVFeedDownloadManager delete_feed : self.filename];
+                // TODO - CALL DELEGATE METHOD HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                
+                if (_DEBUG && error) {
+                    NSLog(@"FAILED to finish loading filename \"%@\" with error \"%@\"", self.filename, error);
+                }
+            }
+            
+            [UTCSVFeedDownloadManager set_feed_write_success : self.filename success : self.didFinishSuccessfully];
+            
+            if (_DEBUG) {
+                NSLog(@"In connectionDidFinishLoading");
+                if (success && self.didFinishSuccessfully) {
+                    NSString *csv = [[NSString alloc] initWithContentsOfFile : file_path usedEncoding : nil error : nil];
+                    NSLog(@"%@", csv);
+                }
+                else {
+                    NSLog(@"FAILED to finish loading filename \"%@\" with error \"%@\"", self.filename, error);
+                }
+            }
+        });
     }
-    else {
-        self.didFinishSuccessfully = false;
-    }
+    
+//    NSString *data = [[NSString alloc] initWithData:self.buffer encoding:NSUTF8StringEncoding];
+//    
+//    BOOL success = [data writeToFile : file_path atomically : YES encoding : DEFAULT_STRING_ENCODING error : nil];
+//    
+//    NSString *csv = [[NSString alloc] initWithContentsOfFile : file_path usedEncoding : nil error : nil];
+//    NSLog(@"%@", csv);
+    
 }
 
 - (void) connection : (NSURLConnection *) connection didReceiveData : (NSData *) data {
@@ -141,10 +180,12 @@
 }
 
 - (void) connection : (NSURLConnection *) connection didFailWithError : (NSError *) error {
-    NSLog(@"Error downloading file from URL \"%@\"", self.url);
+    NSLog(@"Error downloading file \"%@\" with error \"%@\"", self.filename, error);
     
     self.didFinishSuccessfully = false;
     self.didStopWithError = true;
+    
+    [UTCSVFeedDownloadManager set_feed_write_success : self.filename success : false];
 }
 
 /* *********** ************* */
