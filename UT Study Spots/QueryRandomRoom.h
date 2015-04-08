@@ -18,4 +18,7 @@
 - (bool) set_option_capacity : (int) capacity;
 - (bool) set_option_power : (bool) power;
 
+@property (nonatomic, readonly, getter = get_option_capacity) int capacity;
+@property (nonatomic, readonly, getter = get_option_power) bool has_power;
+
 @end

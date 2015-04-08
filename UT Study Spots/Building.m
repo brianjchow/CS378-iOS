@@ -19,8 +19,8 @@
 - (instancetype) init : (NSString *) name;
 + (NSDictionary *) populate : (NSString *) building_code db_filename : (NSString *) db_filename;
 
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSDictionary *rooms;  // NSDictionary<String, Room>
+@property (strong, nonatomic, readwrite) NSString *name;
+@property (strong, nonatomic,) NSDictionary *rooms;  // NSDictionary<String, Room>
 
 @end
 

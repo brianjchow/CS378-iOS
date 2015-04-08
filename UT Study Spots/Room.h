@@ -37,5 +37,10 @@
 
 - (NSString *) toString;
 
+@property (strong, nonatomic, readonly, getter = get_location) Location *location;
+@property (strong, nonatomic, readonly, getter = get_type) NSString *type;
+@property (nonatomic, readonly, getter = get_capacity) int capacity;
+@property (nonatomic, readonly, getter = get_has_power) bool has_power;
+
 
 @end

@@ -24,12 +24,22 @@
 
 #import "Stopwatch.h"
 
+#import "ConnectionManager.h"
+
 /*
     TODO
-        - create NSString class extension for methods in Utilities
-        - multiple categories for Query?
-        - fix copyWithZone methods for all classes
-        - figure out how to enforce UTF8 encoding
+ 
+        CRITICAL
+            - CSVReader: fill out read_csv_from_all_downloaded_files(), read_csv_from_downloaded_file() stubs
+            - UTCSVFeedDownloadManager: fill out download_all() stub
+ 
+        OTHER
+            - create NSString class extension for methods in Utilities
+            - multiple categories for Query?
+            - fix copyWithZone methods for all classes
+            - figure out how to enforce UTF8 encoding
+            - get rid of EventList class in favour of EventSet?
+            - move Constants.init() to application(launchOptions) method
  */
 
 @interface ViewController ()
@@ -63,12 +73,33 @@
 //    UIImage *panda_cycle_loader = [UIImage animatedImageNamed : @"frame_" duration : 1.0f];
 //    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage : [UIImage imageNamed : @"backgroundinitial"]];
     
-    NSString *google = @"http://www.google.com/trends/trendsReport?hl=en-US&cat=0-14&date=today%207-d&cmpt=q&content=1&export=1";
-    google = [google stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    google = ALL_EVENTS_SCHEDULE;
-    UTCSVFeedDownloadManager *downloader = [[UTCSVFeedDownloadManager alloc] initWithURLString : google filename : ALL_EVENTS_SCHEDULE_FILENAME];
+//    NSString *google = @"http://www.google.com/trends/trendsReport?hl=en-US&cat=0-14&date=today%207-d&cmpt=q&content=1&export=1";
+//    google = [google stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    google = ALL_EVENTS_SCHEDULE;
+//    UTCSVFeedDownloadManager *downloader = [[UTCSVFeedDownloadManager alloc] initWithURLString : google filename : ALL_EVENTS_SCHEDULE_FILENAME];
 
-    [downloader download];
+//    [downloader download];
+    
+    if ([ConnectionManager is_reachable]) {
+        NSLog(@"Connection manager is reachable");
+    }
+    else {
+        NSLog(@"Connection manager is unreachable");
+    }
+    
+    if ([ConnectionManager has_wifi]) {
+        NSLog(@"Connection manager has wifi");
+    }
+    else {
+        NSLog(@"Connection manager does not have wifi");
+    }
+    
+    if ([ConnectionManager has_wwan]) {
+        NSLog(@"Connection manager has wwan");
+    }
+    else {
+        NSLog(@"Connection manager does not have wwan");
+    }
 }
 
 - (void) test_dates {

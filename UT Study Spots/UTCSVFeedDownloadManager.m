@@ -9,7 +9,14 @@
 #import "UTCSVFeedDownloadManager.h"
 
 #import "InputReader.h"
+#import "DateTools.h"
 #import "NSString+Tools.h"
+
+/*
+    Simulating WWAN
+        - http://stackoverflow.com/questions/1077701/iphone-connectivity-testing-how-do-i-force-it-to-lose-connection
+        - use network link conditioner
+ */
 
 /* *********** ************* */
 
@@ -20,6 +27,7 @@
 @property (strong, nonatomic, readwrite) NSString *filename;
 @property (strong, nonatomic, readwrite) NSURL *url;
 
+@property (assign, nonatomic) bool downloadIsInProgress;
 @property (assign, nonatomic) bool didFinishSuccessfully;
 @property (assign, nonatomic) bool didStopWithError;
 
@@ -52,6 +60,7 @@
         self.url = [NSURL URLWithString : [url_str url_encode]];
         self.url_cxn_delegate = self;
         
+        self.downloadIsInProgress = false;
         self.didFinishSuccessfully = false;
         self.didStopWithError = false;
         
@@ -60,42 +69,93 @@
     return self;
 }
 
++ (bool) download_all {
+    
+    
+    
+    return false;
+}
+
 - (void) download {
 //    TCBlobDownloadManager *manager = [TCBlobDownloadManager sharedInstance];
 //    NSString *filepath = [NSString stringWithFormat : @"%@/fux", [self get_documents_dir]];
 //    [manager setDefaultDownloadPath : filepath];
 //    [manager startDownload : self.downloader];
     
+    if (self.downloadIsInProgress) {
+        return;
+    }
+    self.downloadIsInProgress = true;
+    
 //    if ([UTCSVFeedDownloadManager feed_is_current : self.filename]) {
 //        // TODO - CALL DELEGATE METHOD HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    }
+//    else {
+//        if (_DEBUG) {
+//            NSLog(@"Download of file at \"%@\" launched", self.filename);
+//        }
+//        
+        self.didFinishSuccessfully = false;
+        self.didStopWithError = false;
+//        
+//        NSURLRequest *url_request = [NSURLRequest requestWithURL : self.url];
+//        [NSURLConnection connectionWithRequest : url_request delegate : self];
 //    }
     
     if (_DEBUG) {
         NSLog(@"Download of file at \"%@\" launched", self.filename);
     }
     
-    NSURLRequest *url_request = [NSURLRequest requestWithURL : self.url];
-    [NSURLConnection connectionWithRequest : url_request delegate : self];
+    // http://stackoverflow.com/questions/19822700/difference-between-dispatch-async-and-dispatch-sync-on-serial-queue
+//    const char *download_queue = "download_queue";
+//    dispatch_queue_t _serial_queue = dispatch_queue_create(download_queue, DISPATCH_QUEUE_SERIAL);
+//    
+//    dispatch_sync(_serial_queue, ^{
+//        NSURLRequest *url_request = [NSURLRequest requestWithURL : self.url];
+//        [NSURLConnection connectionWithRequest : url_request delegate : self];
+//        
+//        NSLog(@"HERE 2.0");
+//    });
+//    
+//    dispatch_sync(_serial_queue, ^{
+//        NSLog(@"HERE 2.1");
+//    });
 
+    // http://stackoverflow.com/questions/18459161/wait-till-the-delegate-methods-finish-executing-in-ios
+//    NSURLRequest *url_request = [NSURLRequest requestWithURL : self.url];
+//    url_request.timeoutInterval = TIMEOUT_INTERVAL;
+    
+    // http://stackoverflow.com/questions/15518316/will-nsurlconnection-sendasynchronousrequest-always-send-completion-block
+    // have three NSArrays, one per URL, and one method-global one? http://stackoverflow.com/a/5611499
+    NSURLRequest *url_request = [[NSURLRequest alloc] initWithURL : self.url
+                                                      cachePolicy : NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                  timeoutInterval : TIMEOUT_INTERVAL];
+    [NSURLConnection sendAsynchronousRequest : url_request
+                                       queue : [[NSOperationQueue alloc] init]
+     
+                           completionHandler : ^(NSURLResponse *response, NSData *data, NSError *error) {
+                               
+                           }];
+    
 }
 
 /* *********** ************* */
 
-- (InputReader *) get_feed_reader {
-    if (!self.didFinishSuccessfully || !self.didStopWithError) {
-        return nil;
-    }
-    
-    return ([UTCSVFeedDownloadManager get_feed_reader : self.filename]);
-}
-
-- (NSString *) get_feed_contents_as_string {
-    if (!self.didFinishSuccessfully || !self.didStopWithError) {
-        return nil;
-    }
-    
-    return ([UTCSVFeedDownloadManager get_feed_contents_as_string : self.filename]);
-}
+//- (InputReader *) get_feed_reader {
+//    if (!self.didFinishSuccessfully || !self.didStopWithError) {
+//        return nil;
+//    }
+//    
+//    return ([UTCSVFeedDownloadManager get_feed_reader : self.filename]);
+//}
+//
+//- (NSString *) get_feed_contents_as_string {
+//    if (!self.didFinishSuccessfully || !self.didStopWithError) {
+//        return nil;
+//    }
+//    
+//    return ([UTCSVFeedDownloadManager get_feed_contents_as_string : self.filename]);
+//}
 
 + (NSString *) get_documents_dir_path {
     
@@ -124,7 +184,8 @@
 //        success = [self.buffer writeToFile : file_path atomically : YES];
         
         // http://stackoverflow.com/questions/679104/the-easiest-way-to-write-nsdata-to-a-file
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        // dispatch as async in CSVDownloader
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             NSString *file_path = [UTCSVFeedDownloadManager get_file_path : self.filename];
             NSString *data = [[NSString alloc] initWithData : self.buffer encoding : DEFAULT_STRING_ENCODING];
             
@@ -156,7 +217,9 @@
                     NSLog(@"FAILED to finish loading filename \"%@\" with error \"%@\"", self.filename, error);
                 }
             }
-        });
+            
+            NSLog(@"HERE 0");
+//        });
     }
     
 //    NSString *data = [[NSString alloc] initWithData:self.buffer encoding:NSUTF8StringEncoding];
@@ -166,6 +229,9 @@
 //    NSString *csv = [[NSString alloc] initWithContentsOfFile : file_path usedEncoding : nil error : nil];
 //    NSLog(@"%@", csv);
     
+    NSLog(@"HERE 1");
+    
+    self.downloadIsInProgress = false;
 }
 
 - (void) connection : (NSURLConnection *) connection didReceiveData : (NSData *) data {
@@ -280,18 +346,60 @@
     return exists;
 }
 
-//+ (bool) feed_is_current : (NSString *) filename {
-//    if ([Utilities is_null : filename]) {
-//        // TODO - throw IAException
-//    }
-//    else if (![filename equals : ALL_EVENTS_SCHEDULE_FILENAME] &&
-//             ![filename equals : ALL_ROOMS_SCHEDULE_FILENAME] &&
-//             ![filename equals : ALL_TODAYS_EVENTS_FILENAME]) {
-//        return true;
-//    }
-//    
-//    return true;
-//}
++ (bool) feed_is_current : (NSString *) filename {
+    if ([Utilities is_null : filename]) {
+        // TODO - throw IAException
+    }
+    else if (![filename equals : ALL_EVENTS_SCHEDULE_FILENAME] &&
+             ![filename equals : ALL_ROOMS_SCHEDULE_FILENAME] &&
+             ![filename equals : ALL_TODAYS_EVENTS_FILENAME]) {
+        return true;
+    }
+    
+    NSString *file_path = [UTCSVFeedDownloadManager get_file_path : filename];
+    if (!file_path) {
+        return false;
+    }
+    
+    // http://stackoverflow.com/questions/9365355/get-last-file-modification-date-of-application-data-files
+    NSError *error = nil;
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath : file_path error : &error];
+    if (error || !attributes) {
+        return false;
+    }
+    
+    NSDate *now = [Utilities get_date : DAILY_UPDATE_HOUR minute : DAILY_UPDATE_MINUTE];
+    NSInteger curr_month = now.month;
+    NSInteger curr_day = now.day;
+    NSInteger curr_day_of_year = now.dayOfYear;
+    NSInteger curr_year = now.year;
+    
+    NSDate *last_modified = [attributes fileModificationDate];
+    
+    if (_DEBUG) {
+        NSLog(@"\nChecking if file \"%@\" is current\n\tLast modified: %@\n\tUpdate time: %@", filename, [last_modified toString], [now toString]);
+    }
+    
+    if (last_modified.dayOfYear == curr_day_of_year &&
+        last_modified.year == curr_year &&
+        [last_modified isLaterThan : now]) {
+        
+        return true;
+    }
+    
+    // disable this block if updates should always occur from 0000 to 0859
+    else if (last_modified.dayOfYear == curr_day_of_year - 1 &&
+             last_modified.year == curr_year &&
+             [now isLaterThan : now]) {
+        
+        NSDate *yesterday_update_time = [Utilities get_date : curr_month day : curr_day - 1 year : curr_year hour : DAILY_UPDATE_HOUR minute : DAILY_UPDATE_MINUTE];
+        if ([last_modified isLaterThan : yesterday_update_time]) {
+            return true;
+        }
+    }
+    
+    return false;
+}
 
 + (bool) get_feed_write_success : (NSString *) filename {
     if (![UTCSVFeedDownloadManager is_valid_filename : filename]) {

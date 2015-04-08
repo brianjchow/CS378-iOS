@@ -18,8 +18,8 @@
 @interface Query : NSObject <NSCopying>
 
 @property (strong, nonatomic, readonly) DTTimePeriod *date;
-@property (nonatomic, readonly) int duration;
-@property (strong, nonatomic, readonly) NSString *search_building;
+@property (nonatomic, readonly, getter = get_duration) int duration;
+@property (strong, nonatomic, readonly, getter = get_option_search_building) NSString *search_building;
 
 - (instancetype) init;
 - (instancetype) initWithStartDate : (NSDate *) date;

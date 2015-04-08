@@ -8,6 +8,9 @@
 
 #import "CSVReader.h"
 
+#import "ConnectionManager.h"
+#import "UTCSVFeedDownloadManager.h"
+
 #import "InputReader.h"
 #import "FileOutputWriter.h"
 
@@ -19,7 +22,7 @@
 @interface CSVReader ()
 
 + (NSArray *) read_csv_from_file : (NSString *) filename;
-+ (NSArray *) read_csv_from_url : (NSURL *) url;
+//+ (NSArray *) read_csv_from_url : (NSURL *) url;
 + (NSDictionary *) split_line : (NSString *) str;
 
 // helper methods to be used when downloading feeds/data
@@ -53,35 +56,48 @@ static int lines_ignored = 0;
     }
     [Constants set_has_feed_been_read];
     
-    NSArray *event_strings;     // List<HashMap<String, String>>
+//    NSArray *event_strings;     // List<HashMap<String, String>>
     EventList *events = [[EventList alloc] init];
     
     if (!read_from_local_feeds) {
-        if (!_DEBUG) NSLog(@"Now reading CSV feeds from UTCS servers...");
+        if (!_DEBUG) NSLog(@"CSVReader: now reading CSV feeds from UTCS servers...");
+        
+        if ([ConnectionManager has_wifi] || [ConnectionManager has_wwan]) {
+            bool success = [UTCSVFeedDownloadManager download_all];
+            
+            if (success) {
+                NSLog(@"CSVReader: successfully downloaded all CSV feeds from UTCS servers");
+                
+                events = [CSVReader read_csv_from_all_downloaded_files];
+            }
+            else {
+                NSLog(@"CSVReader: failed to download all CSV feeds; now reading from local files");
+                
+                events = [CSVReader read_csv_from_all_local_files];
+            }
+        }
+        else {
+            NSLog(@"CSVReader: failed to detect WiFi or WWAN signal; now reading from local files");
+            
+            events = [CSVReader read_csv_from_all_local_files];
+        }
         
     }
     else {
-        if (_DEBUG) NSLog(@"Now reading CSV feeds from local files...");
+        if (_DEBUG) NSLog(@"CSVReader: now reading CSV feeds from local files...");
         
-        event_strings = [self read_csv_from_file : @"calendar_events_today_feed_0412"];
-        [events add_hashmap_list : event_strings];
-        
-//        event_strings = [self read_csv_from_file : @"calendar_events_feed_0412"];
-//        [events add_hashmap_list : event_strings];
-//        
-//        event_strings = [self read_csv_from_file : @"calendar_rooms_feed_0412"];
-//        [events add_hashmap_list : event_strings];
+        events = [CSVReader read_csv_from_all_local_files];
     }
     
     if (_DEBUG) {
         if (read_from_local_feeds) {
-            NSLog(@"Read in %d lines from local CSV feeds", lines_read);
+            NSLog(@"CSVReader: read in %d lines from local CSV feeds", lines_read);
         }
         else {
-            NSLog(@"Read in %d lines from CSV feeds from UTCS servers", lines_read);
+            NSLog(@"CSVReader: read in %d lines from CSV feeds from UTCS servers", lines_read);
         }
         
-        NSLog(@"Corresponding EventList size: %lu (ignored %d malformed lines)", [events get_size], lines_ignored);
+        NSLog(@"CSVReader: corresponding EventList size: %lu (ignored %d malformed lines)", [events get_size], lines_ignored);
     }
     
     return events;
@@ -97,6 +113,35 @@ static int lines_ignored = 0;
 - (instancetype) init {
     self = [super init];
     return self;
+}
+
++ (EventList *) read_csv_from_all_downloaded_files {
+    EventList *out = [[EventList alloc] init];
+    
+    
+    
+    return out;
+}
+
++ (NSArray *) read_csv_from_downloaded_file : (NSString *) filename {
+    
+    return nil;
+}
+
++ (EventList *) read_csv_from_all_local_files {
+    EventList *out = [[EventList alloc] init];
+    NSArray *event_strings;
+    
+    event_strings = [self read_csv_from_file : @"calendar_events_today_feed_0412"];
+    [out add_hashmap_list : event_strings];
+    
+//        event_strings = [self read_csv_from_file : @"calendar_events_feed_0412"];
+//        [out add_hashmap_list : event_strings];
+//
+//        event_strings = [self read_csv_from_file : @"calendar_rooms_feed_0412"];
+//        [out add_hashmap_list : event_strings];
+    
+    return out;
 }
 
 // returns List<HashMap<String, String>>

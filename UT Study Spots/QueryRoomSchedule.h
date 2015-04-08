@@ -15,4 +15,6 @@
 - (NSString *) get_option_search_room;
 - (bool) set_option_search_room : (NSString *) room_num;
 
+@property (strong, nonatomic, readonly, getter = get_option_search_room) NSString *search_room;
+
 @end

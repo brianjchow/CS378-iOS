@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA46AAA11AD451E500408B5C /* calendar_events_today_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */; };
+		AA46AAA21AD451E500408B5C /* calendar_rooms_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */; };
+		AA46AAA31AD451E500408B5C /* calendar_events_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */; };
 		AA992E3C1AC4E8DF00637C96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E3B1AC4E8DF00637C96 /* main.m */; };
 		AA992E3F1AC4E8DF00637C96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E3E1AC4E8DF00637C96 /* AppDelegate.m */; };
 		AA992E421AC4E8DF00637C96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E411AC4E8DF00637C96 /* ViewController.m */; };
@@ -34,8 +37,6 @@
 		AA992E981AC7E07200637C96 /* InputReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E971AC7E07200637C96 /* InputReader.m */; };
 		AA992E9B1AC7E09400637C96 /* FileOutputWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E9A1AC7E09400637C96 /* FileOutputWriter.m */; };
 		AAC83DCC1ACE38B7002C7BFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC83DCB1ACE38B7002C7BFF /* Foundation.framework */; };
-		AAC83DDE1ACE39C1002C7BFF /* TCBlobDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC83DDB1ACE39C1002C7BFF /* TCBlobDownloader.m */; };
-		AAC83DDF1ACE39C1002C7BFF /* TCBlobDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC83DDD1ACE39C1002C7BFF /* TCBlobDownloadManager.m */; };
 		AAC99F2F1AC8B63500BBBF75 /* NSMutableString+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F2E1AC8B63500BBBF75 /* NSMutableString+Stack.m */; };
 		AAC99F321AC9072900BBBF75 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F311AC9072900BBBF75 /* QueryResult.m */; };
 		AAC99F351AC91ED200BBBF75 /* QueryRandomRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F341AC91ED200BBBF75 /* QueryRandomRoom.m */; };
@@ -68,6 +69,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_today_feed_0604.csv; sourceTree = "<group>"; };
+		AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_rooms_feed_0604.csv; sourceTree = "<group>"; };
+		AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_feed_0604.csv; sourceTree = "<group>"; };
 		AA992E361AC4E8DF00637C96 /* UT Study Spots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UT Study Spots.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA992E3A1AC4E8DF00637C96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA992E3B1AC4E8DF00637C96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -121,12 +125,6 @@
 		AA992E991AC7E08800637C96 /* FileOutputWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutputWriter.h; sourceTree = "<group>"; };
 		AA992E9A1AC7E09400637C96 /* FileOutputWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutputWriter.m; sourceTree = "<group>"; };
 		AAC83DCB1ACE38B7002C7BFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		AAC83DD81ACE39C1002C7BFF /* TCBlobDownload-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCBlobDownload-Prefix.pch"; sourceTree = "<group>"; };
-		AAC83DD91ACE39C1002C7BFF /* TCBlobDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBlobDownload.h; sourceTree = "<group>"; };
-		AAC83DDA1ACE39C1002C7BFF /* TCBlobDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBlobDownloader.h; sourceTree = "<group>"; };
-		AAC83DDB1ACE39C1002C7BFF /* TCBlobDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBlobDownloader.m; sourceTree = "<group>"; };
-		AAC83DDC1ACE39C1002C7BFF /* TCBlobDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCBlobDownloadManager.h; sourceTree = "<group>"; };
-		AAC83DDD1ACE39C1002C7BFF /* TCBlobDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCBlobDownloadManager.m; sourceTree = "<group>"; };
 		AAC99F2D1AC8B62900BBBF75 /* NSMutableString+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Stack.h"; sourceTree = "<group>"; };
 		AAC99F2E1AC8B63500BBBF75 /* NSMutableString+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Stack.m"; sourceTree = "<group>"; };
 		AAC99F301AC9071C00BBBF75 /* QueryResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryResult.h; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 				AAC99F671ACBB61700BBBF75 /* Controllers */,
 				AAC99F541ACBA2E800BBBF75 /* Reachability */,
 				AA992E681AC55AC400637C96 /* Model */,
-				AAC83DD71ACE39C1002C7BFF /* TCBlobDownload */,
 				AAC99F3D1ACA26F300BBBF75 /* Assets */,
 				AA992E7F1AC67E6000637C96 /* DateTools */,
 				AAC99F571ACBA2E800BBBF75 /* SQLiteManager */,
@@ -317,22 +314,12 @@
 			path = DateTools;
 			sourceTree = "<group>";
 		};
-		AAC83DD71ACE39C1002C7BFF /* TCBlobDownload */ = {
-			isa = PBXGroup;
-			children = (
-				AAC83DD81ACE39C1002C7BFF /* TCBlobDownload-Prefix.pch */,
-				AAC83DD91ACE39C1002C7BFF /* TCBlobDownload.h */,
-				AAC83DDA1ACE39C1002C7BFF /* TCBlobDownloader.h */,
-				AAC83DDB1ACE39C1002C7BFF /* TCBlobDownloader.m */,
-				AAC83DDC1ACE39C1002C7BFF /* TCBlobDownloadManager.h */,
-				AAC83DDD1ACE39C1002C7BFF /* TCBlobDownloadManager.m */,
-			);
-			path = TCBlobDownload;
-			sourceTree = "<group>";
-		};
 		AAC99F3D1ACA26F300BBBF75 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */,
+				AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */,
+				AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */,
 				AAC99F3E1ACA26F300BBBF75 /* calendar_events_feed_0412.csv */,
 				AAC99F3F1ACA26F300BBBF75 /* calendar_events_today_feed_0412.csv */,
 				AAC99F401ACA26F300BBBF75 /* calendar_rooms_feed_0412.csv */,
@@ -454,8 +441,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA992E451AC4E8DF00637C96 /* Main.storyboard in Resources */,
+				AA46AAA31AD451E500408B5C /* calendar_events_feed_0604.csv in Resources */,
 				AA992E4A1AC4E8DF00637C96 /* LaunchScreen.xib in Resources */,
 				AAC99F441ACA26F300BBBF75 /* calendar_events_today_feed_0412.csv in Resources */,
+				AA46AAA11AD451E500408B5C /* calendar_events_today_feed_0604.csv in Resources */,
+				AA46AAA21AD451E500408B5C /* calendar_rooms_feed_0604.csv in Resources */,
 				AAC99F461ACA26F300BBBF75 /* master_course_schedule_f14.db in Resources */,
 				AAC99F431ACA26F300BBBF75 /* calendar_events_feed_0412.csv in Resources */,
 				AAC99F471ACA26F300BBBF75 /* master_course_schedule_s15.db in Resources */,
@@ -486,7 +476,6 @@
 				AA992E741AC55C3800637C96 /* Room.m in Sources */,
 				AA992E421AC4E8DF00637C96 /* ViewController.m in Sources */,
 				AA992E931AC67E6000637C96 /* DTTimePeriodCollection.m in Sources */,
-				AAC83DDF1ACE39C1002C7BFF /* TCBlobDownloadManager.m in Sources */,
 				AA992E781AC55C6600637C96 /* Building.m in Sources */,
 				AA992E6B1AC55B0500637C96 /* CSVReader.m in Sources */,
 				AA992E3F1AC4E8DF00637C96 /* AppDelegate.m in Sources */,
@@ -494,7 +483,6 @@
 				AAC99F5A1ACBA2E800BBBF75 /* Reachability.m in Sources */,
 				AA992E9B1AC7E09400637C96 /* FileOutputWriter.m in Sources */,
 				AAC99F531ACB5F0E00BBBF75 /* NSString+Tools.m in Sources */,
-				AAC83DDE1ACE39C1002C7BFF /* TCBlobDownloader.m in Sources */,
 				AAC99F661ACBB60400BBBF75 /* LoadViewController.m in Sources */,
 				AA992E701AC55BCB00637C96 /* Event.m in Sources */,
 				AA992E7E1AC55CA200637C96 /* Query.m in Sources */,

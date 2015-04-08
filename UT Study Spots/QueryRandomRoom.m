@@ -51,8 +51,8 @@
 
 - (bool) is_truncated_gdc_room : (NSString *) room;
 
-@property (nonatomic) int capacity;
-@property (nonatomic) bool has_power;
+@property (nonatomic, readwrite) int capacity;
+@property (nonatomic, readwrite) bool has_power;
 
 @end
 

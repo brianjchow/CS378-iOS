@@ -52,7 +52,7 @@
 
 - (bool) needs_truncation_gdc_room : (NSString *) room;
 
-@property (strong, nonatomic) NSString *search_room;
+@property (strong, nonatomic, readwrite) NSString *search_room;
 
 @end
 

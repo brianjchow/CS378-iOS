@@ -22,6 +22,10 @@ static NSString *const ALL_EVENTS_SCHEDULE_FILENAME = @"calendar_events_feed.csv
 static NSString *const ALL_ROOMS_SCHEDULE_FILENAME = @"calendar_rooms_feed.csv";
 static NSString *const ALL_TODAYS_EVENTS_FILENAME = @"calendar_events_today_feed.csv";
 
+static const int TIMEOUT_INTERVAL = 20;
+static const NSUInteger DAILY_UPDATE_TIME = 859;   // 8:59a; update if curr time is 9a or after
+static const NSUInteger DAILY_UPDATE_HOUR = 8;
+static const NSUInteger DAILY_UPDATE_MINUTE = 59;
 
 @interface UTCSVFeedDownloadManager : NSObject <NSURLConnectionDataDelegate>
 
@@ -34,12 +38,18 @@ static NSString *const ALL_TODAYS_EVENTS_FILENAME = @"calendar_events_today_feed
 //- (instancetype) initWithURL : (NSURL *) url filename : (NSString *) filename;
 //- (instancetype) init : (NSString *) filename;    // IMPLEMENT? RETURN NIL IF NOT VALID FILENAME?
 
-- (void) download;
-- (InputReader *) get_feed_reader;
-- (NSString *) get_feed_contents_as_string;
+//- (void) download;
+//- (InputReader *) get_feed_reader;
+//- (NSString *) get_feed_contents_as_string;
+
++ (bool) is_valid_filename : (NSString *) filename;
+
++ (bool) download_all;
 
 + (InputReader *) get_feed_reader : (NSString *) filename;
 + (NSString *) get_feed_contents_as_string : (NSString *) filename;
+
++ (NSString *) get_file_path : (NSString *) filename;
 
 + (void) delete_all_feeds;
 + (bool) delete_feed : (NSString *) filename;

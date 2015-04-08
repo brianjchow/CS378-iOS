@@ -12,11 +12,11 @@
 
 @interface QueryResult ()
 
-@property (nonatomic) SearchType search_type;
-@property (nonatomic) SearchStatus search_status;
+@property (nonatomic, readwrite) SearchType search_type;
+@property (nonatomic, readwrite) SearchStatus search_status;
 
-@property (strong, nonatomic) NSString *building_name;
-@property (strong, nonatomic) NSArray *results;  // NSArray<String>
+@property (strong, nonatomic, readwrite) NSString *building_name;
+@property (strong, nonatomic, readwrite) NSArray *results;  // NSArray<String>
 
 @end
 

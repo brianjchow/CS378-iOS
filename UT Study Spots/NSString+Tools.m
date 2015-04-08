@@ -164,27 +164,27 @@
     return -1;
 }
 
-- (NSUInteger) hash {
-    if (!self || [self isEqual : [NSNull class]]) {
-        // TODO - throw exception
-    }
-    
-    NSUInteger hash = 0;
-    NSUInteger h = hash;
-//    char *str_arr = [string getCString:c_buffer maxLength:c_buffer_length encoding:NSUTF8StringEncoding];
-    const char *str_arr = [self UTF8String];
-    
-    if (h == 0 && self.length > 0) {
-        const char *val = str_arr;
-        
-        for (int i = 0; i < self.length; i++) {
-            h = 31 * h + val[i];
-        }
-        hash = h;
-    }
-    
-    return h;
-}
+//- (NSUInteger) hash {
+//    if (!self || [self isEqual : [NSNull class]]) {
+//        // TODO - throw exception
+//    }
+//    
+//    NSUInteger hash = 0;
+//    NSUInteger h = hash;
+////    char *str_arr = [string getCString:c_buffer maxLength:c_buffer_length encoding:NSUTF8StringEncoding];
+//    const char *str_arr = [self UTF8String];
+//    
+//    if (h == 0 && self.length > 0) {
+//        const char *val = str_arr;
+//        
+//        for (int i = 0; i < self.length; i++) {
+//            h = 31 * h + val[i];
+//        }
+//        hash = h;
+//    }
+//    
+//    return h;
+//}
 
 // because i'm lazy
 - (bool) equals : (NSString *) what {

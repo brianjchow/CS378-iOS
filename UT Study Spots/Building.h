@@ -27,5 +27,7 @@
 
 - (NSString *) toString;
 
+@property (strong, nonatomic, readonly, getter = get_name) NSString *name;
+
 
 @end

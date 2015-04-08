@@ -14,9 +14,9 @@
 
 @interface Event ()
 
-@property (strong, nonatomic) NSString *event_name;
+@property (strong, nonatomic, readwrite) NSString *event_name;
 @property (strong, nonatomic) DTTimePeriod *date;
-@property (strong, nonatomic) Location *location;
+@property (strong, nonatomic, readwrite) Location *location;
 
 @end
 

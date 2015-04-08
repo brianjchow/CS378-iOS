@@ -16,10 +16,10 @@ static NSString *const TAB = @"    ";
 
 @interface Room ()
 
-@property (strong, nonatomic) Location *location;
-@property (strong, nonatomic) NSString *type;
-@property (nonatomic) int capacity;
-@property (nonatomic) bool has_power;
+@property (strong, nonatomic, readwrite) Location *location;
+@property (strong, nonatomic, readwrite) NSString *type;
+@property (nonatomic, readwrite) int capacity;
+@property (nonatomic, readwrite) bool has_power;
 
 // NSMutableDictionary<NSNumber, NSMutableSet<Event>>
 @property (strong, nonatomic) NSMutableDictionary *course_schedule;
