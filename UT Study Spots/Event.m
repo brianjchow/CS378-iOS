@@ -149,6 +149,10 @@
     [formatter setDateFormat : UTCS_CSV_FEED_FORMAT];
     
     NSDate *out = [formatter dateFromString : date_time];
+    
+    if (!out) {
+        NSLog(@"SON OF A BITCH");
+    }
 
     return out;
 }

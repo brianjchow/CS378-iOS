@@ -30,11 +30,11 @@ NSMutableString *stack;
     return self;
 }
 
-- (void) push : (int) c {
+- (void) push : (char) c {
     [stack appendFormat : @"%c", c];
 }
 
-- (int) pop {
+- (char) pop {
     NSUInteger length = stack.length;
     
     if (length <= 0) {
@@ -47,7 +47,7 @@ NSMutableString *stack;
     return out;
 }
 
-- (int) peek {
+- (char) peek {
     return ([stack characterAtIndex : stack.length - 1]);
 }
 

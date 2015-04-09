@@ -26,11 +26,11 @@
 - (NSString *) get_search_status_string;
 - (SearchType) get_search_type;
 
-@property (nonatomic, readonly, getter = get_search_type) SearchType search_type;
-@property (nonatomic, readonly, getter = get_search_status) SearchStatus search_status;
+@property (nonatomic, readonly) SearchType search_type;
+@property (nonatomic, readonly) SearchStatus search_status;
 
-@property (strong, nonatomic, readonly, getter = get_building_name) NSString *building_name;
-@property (strong, nonatomic, readonly, getter = get_results) NSArray *results;  // NSArray<String>
+@property (strong, nonatomic, readonly) NSString *building_name;
+@property (strong, nonatomic, readonly) NSArray *results;  // NSArray<String>
 
 @end
 

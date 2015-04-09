@@ -71,24 +71,24 @@
 }
 
 - (id) copy {
-//    Location *out = [[Location alloc] initSeparated : [self.building copy] room : [self.room copy]];
-//    return out;
+    Location *out = [[Location alloc] initSeparated : [self.building copy] room : [self.room copy]];
+    return out;
     
-    return self;
+//    return self;
 }
 
 // http://stackoverflow.com/questions/4089238/implementing-nscopying
 - (id) copyWithZone : (NSZone *) zone {
-//    Location *out = [[[self class] allocWithZone : zone] init];
-//    
-//    if (out) {
-//        out.building = [self.building copyWithZone : zone];
-//        out.room = [self.room copyWithZone : zone];
-//    }
-//    
-//    return out;
+    Location *out = [[[self class] allocWithZone : zone] init];
     
-    return self;
+    if (out) {
+        out.building = [self.building copyWithZone : zone];
+        out.room = [self.room copyWithZone : zone];
+    }
+    
+    return out;
+    
+//    return self;
 }
 
 - (NSComparisonResult) compare : (Location *) otherObject {

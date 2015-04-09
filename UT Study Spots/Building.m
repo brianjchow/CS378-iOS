@@ -115,35 +115,35 @@
 
 // overridden
 - (id) copy {
-//    Building *copy = [[Building alloc] init : [self.name copy]];
-//    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
-//    
-//    NSString *curr_room_str;
-//    Room *curr_room;
-//    for (curr_room_str in [self.rooms allKeys]) {
-//        curr_room = [self.rooms objectForKey : curr_room_str];
-//        [copy.rooms setValue : [curr_room copy] forKey : [curr_room_str copy]];
-//    }
-//    
-//    return copy;
+    Building *copy = [[Building alloc] init : [self.name copy]];
+    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
     
-    return self;
+    NSString *curr_room_str;
+    Room *curr_room;
+    for (curr_room_str in [self.rooms allKeys]) {
+        curr_room = [self.rooms objectForKey : curr_room_str];
+        [copy.rooms setValue : [curr_room copy] forKey : [curr_room_str copy]];
+    }
+    
+    return copy;
+    
+//    return self;
 }
 
 - (id) copyWithZone : (NSZone *) zone {
-//    Building *copy = [[[self class] allocWithZone : zone] init : [self.name copy]];
-//    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
-//    
-//    NSString *curr_room_str;
-//    Room *curr_room;
-//    for (curr_room_str in [self.rooms allKeys]) {
-//        curr_room = [self.rooms objectForKey : curr_room_str];
-//        [copy.rooms setValue : [curr_room copyWithZone : zone] forKey : [curr_room_str copyWithZone : zone]];
-//    }
-//    
-//    return copy;
+    Building *copy = [[[self class] allocWithZone : zone] init : [self.name copy]];
+    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
     
-    return self;
+    NSString *curr_room_str;
+    Room *curr_room;
+    for (curr_room_str in [self.rooms allKeys]) {
+        curr_room = [self.rooms objectForKey : curr_room_str];
+        [copy.rooms setValue : [curr_room copyWithZone : zone] forKey : [curr_room_str copyWithZone : zone]];
+    }
+    
+    return copy;
+    
+//    return self;
 }
 
 - (NSComparisonResult) compare : (Building *) otherObject {

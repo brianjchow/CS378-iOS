@@ -80,26 +80,31 @@
 
 //    [downloader download];
     
-    if ([ConnectionManager is_reachable]) {
-        NSLog(@"Connection manager is reachable");
-    }
-    else {
-        NSLog(@"Connection manager is unreachable");
-    }
+//    if ([ConnectionManager is_reachable]) {
+//        NSLog(@"Connection manager is reachable");
+//    }
+//    else {
+//        NSLog(@"Connection manager is unreachable");
+//    }
+//    
+//    if ([ConnectionManager has_wifi]) {
+//        NSLog(@"Connection manager has wifi");
+//    }
+//    else {
+//        NSLog(@"Connection manager does not have wifi");
+//    }
+//    
+//    if ([ConnectionManager has_wwan]) {
+//        NSLog(@"Connection manager has wwan");
+//    }
+//    else {
+//        NSLog(@"Connection manager does not have wwan");
+//    }
     
-    if ([ConnectionManager has_wifi]) {
-        NSLog(@"Connection manager has wifi");
-    }
-    else {
-        NSLog(@"Connection manager does not have wifi");
-    }
+//    bool dl_success = [UTCSVFeedDownloadManager download_all];
+//    NSLog(@"All 3 CSV dl success: %@", BOOL_STRS[dl_success]);
     
-    if ([ConnectionManager has_wwan]) {
-        NSLog(@"Connection manager has wwan");
-    }
-    else {
-        NSLog(@"Connection manager does not have wwan");
-    }
+    [UTCSVFeedDownloadManager download_all];
 }
 
 - (void) test_dates {

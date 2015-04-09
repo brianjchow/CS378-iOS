@@ -57,7 +57,7 @@
     self = [super init];
     
     if (self) {
-        self.reachability = [Reachability reachabilityWithHostName : @"cs.utexas.edu"];
+        self.reachability = [Reachability reachabilityWithHostName : @"google.com"];
         
         [self.reachability startNotifier];
     }

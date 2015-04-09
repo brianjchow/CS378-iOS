@@ -26,6 +26,8 @@ Location *GDC_GATESHENGE;
 
 @implementation Constants
 
+NSString *const TAG = @"Constants";
+
 static EventList *CSV_FEEDS_MASTER;
 static EventList *CSV_FEEDS_CLEANED;
 static bool has_feed_been_read;
@@ -93,9 +95,16 @@ static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER;
     
     [self init_shared_prefs];
     
-    CSV_FEEDS_MASTER = [CSVReader read_csv : read_from_local_feeds];
+    CSV_FEEDS_MASTER = [CSVReader read_csv : _DEBUG_USING_LOCAL_CSV_FEEDS];
     if (!CSV_FEEDS_MASTER) {
         // TODO - throw ISException
+        
+        NSLog(@"%@: crap", TAG);
+    }
+    else {
+//        if (_DEBUG) {
+//            NSLog(@"%@:\n%@", TAG, [CSV_FEEDS_MASTER toString]);
+//        }
     }
     
     CSV_FEEDS_CLEANED = [self get_events_cleaned];

@@ -34,7 +34,9 @@ static const NSUInteger DAILY_UPDATE_MINUTE = 59;
 
 @property (strong, nonatomic) id <NSURLConnectionDataDelegate> url_cxn_delegate;
 
-- (instancetype) initWithURLString : (NSString *) url_str filename : (NSString *) filename;
+@property (assign, nonatomic, readonly) bool downloadIsInProgress;
+
+//- (instancetype) initWithURLString : (NSString *) url_str filename : (NSString *) filename;
 //- (instancetype) initWithURL : (NSURL *) url filename : (NSString *) filename;
 //- (instancetype) init : (NSString *) filename;    // IMPLEMENT? RETURN NIL IF NOT VALID FILENAME?
 
@@ -42,16 +44,17 @@ static const NSUInteger DAILY_UPDATE_MINUTE = 59;
 //- (InputReader *) get_feed_reader;
 //- (NSString *) get_feed_contents_as_string;
 
-+ (bool) is_valid_filename : (NSString *) filename;
++ (UTCSVFeedDownloadManager *) csv_dl_manager;
++ (void) download_all;
 
-+ (bool) download_all;
++ (bool) is_valid_filename : (NSString *) filename;
 
 + (InputReader *) get_feed_reader : (NSString *) filename;
 + (NSString *) get_feed_contents_as_string : (NSString *) filename;
 
 + (NSString *) get_file_path : (NSString *) filename;
 
-+ (void) delete_all_feeds;
++ (bool) delete_all_feeds;
 + (bool) delete_feed : (NSString *) filename;
 
 + (bool) feed_exists : (NSString *) filename;

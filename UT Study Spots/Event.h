@@ -32,8 +32,8 @@
 
 - (NSString *) toString;
 
-@property (strong, nonatomic, readonly, getter = get_event_name) NSString *event_name;
-@property (strong, nonatomic, readonly, getter = get_location) Location *location;
+@property (strong, nonatomic, readonly) NSString *event_name;
+@property (strong, nonatomic, readonly) Location *location;
 
 
 @end
