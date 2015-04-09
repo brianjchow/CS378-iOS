@@ -54,7 +54,7 @@
     
 //    [self test_csvreader_local];
   
-//    [self test_constants_init_default];
+    [self test_constants_init_default];
     
 //    [self test_stopwatch];
     
@@ -104,7 +104,7 @@
 //    bool dl_success = [UTCSVFeedDownloadManager download_all];
 //    NSLog(@"All 3 CSV dl success: %@", BOOL_STRS[dl_success]);
     
-    [UTCSVFeedDownloadManager download_all];
+//    [UTCSVFeedDownloadManager download_all];
 }
 
 - (void) test_dates {

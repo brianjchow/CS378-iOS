@@ -61,9 +61,9 @@ static int lines_ignored = 0;
     EventList *events = [[EventList alloc] init];
     
     if (!read_from_local_feeds) {
-        if (!_DEBUG) NSLog(@"CSVReader: now reading CSV feeds from UTCS servers...");
+        if (!_DEBUG) { NSLog(@"CSVReader: now reading CSV feeds from UTCS servers..."); }
         
-        if ([ConnectionManager has_wifi] || [ConnectionManager has_wwan]) {
+//        if ([ConnectionManager has_wifi] || [ConnectionManager has_wwan]) {
 ////            bool success = [UTCSVFeedDownloadManager download_all];
             [UTCSVFeedDownloadManager download_all];
             
@@ -83,17 +83,19 @@ static int lines_ignored = 0;
             while (manager.downloadIsInProgress) {
                 // do nothing
                 // this blocks for a max of UTCSVFeedDownloadManager.TIMEOUT_DURATION
+                
+                
             }
-            
+        
             NSLog(@"CSVReader: finished downloading CSV feeds from UTCS servers. Now attempting to read from Documents dir...");
             
             events = [CSVReader read_csv_from_all_downloaded_files];
-        }
-        else {
-            NSLog(@"CSVReader: failed to detect WiFi or WWAN signal; now reading from local files (wifi: %@ - wwan: %@)", BOOL_STRS[[ConnectionManager has_wifi]], BOOL_STRS[[ConnectionManager has_wwan]]);
-            
-            events = [CSVReader read_csv_from_all_local_files];
-        }
+//        }
+//        else {
+//            NSLog(@"CSVReader: failed to detect WiFi or WWAN signal; now reading from local files (wifi: %@ - wwan: %@)", BOOL_STRS[[ConnectionManager has_wifi]], BOOL_STRS[[ConnectionManager has_wwan]]);
+//            
+//            events = [CSVReader read_csv_from_all_local_files];
+//        }
         
     }
     else {

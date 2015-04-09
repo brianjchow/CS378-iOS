@@ -85,6 +85,7 @@
     __block UTCSVFeedDownloadManager *manager = [UTCSVFeedDownloadManager csv_dl_manager];
     
     if (manager.downloadIsInProgress) {
+        NSLog(@"Download is already in progress!");
         return false;
     }
     manager.downloadIsInProgress = true;
