@@ -78,6 +78,25 @@
     return self.search_type;
 }
 
+- (id) copy {
+    return self;
+}
+
+- (id) copyWithZone : (NSZone *) zone {
+    return self;
+}
+
+- (NSString *) toString {
+    NSMutableString *out = [NSMutableString new];
+    
+    [out appendFormat : @"Search type: %lu\n", self.search_type];
+    [out appendFormat : @"Search status: %lu\n", self.search_status];
+    [out appendFormat : @"Building: %@\n", self.building_name];
+    [out appendFormat : @"%@\n", self.results];
+    
+    return out;
+}
+
 @end
 
 

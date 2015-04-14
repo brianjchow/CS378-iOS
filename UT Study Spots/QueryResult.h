@@ -11,7 +11,13 @@
 #import "Query.h"
 #import "Constants.h"
 
-@interface QueryResult : NSObject
+@interface QueryResult : NSObject <NSCopying>
+
+@property (nonatomic, readonly) SearchType search_type;
+@property (nonatomic, readonly) SearchStatus search_status;
+
+@property (strong, nonatomic, readonly) NSString *building_name;
+@property (strong, nonatomic, readonly) NSArray *results;  // NSArray<String>
 
 - (instancetype) init : (SearchType) search_type
         search_status : (SearchStatus) search_status
@@ -26,11 +32,7 @@
 - (NSString *) get_search_status_string;
 - (SearchType) get_search_type;
 
-@property (nonatomic, readonly) SearchType search_type;
-@property (nonatomic, readonly) SearchStatus search_status;
-
-@property (strong, nonatomic, readonly) NSString *building_name;
-@property (strong, nonatomic, readonly) NSArray *results;  // NSArray<String>
+- (NSString *) toString;
 
 @end
 

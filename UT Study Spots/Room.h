@@ -15,6 +15,13 @@
 
 @interface Room : NSObject <NSCopying>
 
+@property (strong, nonatomic, readonly) Location *location;
+@property (strong, nonatomic, readonly) NSString *type;
+@property (nonatomic, readonly, getter = capacity) int capacity;
+@property (nonatomic, readonly, getter = power) bool has_power;
+
+@property (strong, nonatomic, readonly) NSMutableDictionary *course_schedule;
+
 - (instancetype) initWithLocation : (Location *) location;
 - (instancetype) init : (Location *) location type : (NSString *) type capacity : (int) capacity has_power : (bool) has_power;
 
@@ -36,11 +43,6 @@
 // isEqual and hash overridden
 
 - (NSString *) toString;
-
-@property (strong, nonatomic, readonly) Location *location;
-@property (strong, nonatomic, readonly) NSString *type;
-@property (nonatomic, readonly) int capacity;
-@property (nonatomic, readonly) bool has_power;
 
 
 @end

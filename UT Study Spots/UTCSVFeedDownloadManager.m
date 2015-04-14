@@ -8,7 +8,6 @@
 
 #import "UTCSVFeedDownloadManager.h"
 
-#import "InputReader.h"
 #import "DateTools.h"
 #import "NSString+Tools.h"
 
@@ -25,46 +24,27 @@
 
 /* *********** ************* */
 
+static NSString *const ALL_EVENTS_SCHEDULE = @"https://apps.cs.utexas.edu/calendar/touch/feed";
+static NSString *const ALL_ROOMS_SCHEDULE = @"https://apps.cs.utexas.edu/calendar/touch/all/feed";
+static NSString *const ALL_TODAYS_EVENTS = @"https://apps.cs.utexas.edu/calendar/touch/today/feed";
+
+static const int TIMEOUT_INTERVAL = 20;     // seconds
+
+// 8:59a; update if curr time is 9a or after
+static const NSUInteger DAILY_UPDATE_HOUR = 8;
+static const NSUInteger DAILY_UPDATE_MINUTE = 59;
+
 @interface UTCSVFeedDownloadManager ()
-
-//@property (strong, nonatomic) DownloadHandler *handler;
-
-@property (strong, nonatomic, readwrite) NSString *filename;
-@property (strong, nonatomic, readwrite) NSURL *url;
-
-@property (strong, nonatomic) NSURLConnection *all_events_cxn;
-@property (strong, nonatomic) NSURLConnection *all_rooms_cxn;
-@property (strong, nonatomic) NSURLConnection *todays_events_cxn;
-
-@property (strong, nonatomic) NSMutableData *all_events_buf;
-@property (strong, nonatomic) NSMutableData *all_rooms_buf;
-@property (strong, nonatomic) NSMutableData *todays_events_buf;
 
 @property (assign, nonatomic) bool allEventsDidFinishDownloading;
 @property (assign, nonatomic) bool allRoomsDidFinishDownloading;
 @property (assign, nonatomic) bool todaysEventsDidFinishDownloading;
 
-@property (assign, nonatomic) bool allEventsDidFinishSuccessfully;
-@property (assign, nonatomic) bool allEventsDidFailWithError;
-@property (assign, nonatomic) bool allRoomsDidFinishSuccessfully;
-@property (assign, nonatomic) bool allRoomsDidFailWithError;
-@property (assign, nonatomic) bool todaysEventsDidFinishSuccessfully;
-@property (assign, nonatomic) bool todaysEventsDidFailWithError;
-
 @property (assign, nonatomic, readwrite) bool downloadIsInProgress;
-@property (assign, nonatomic) bool didFinishSuccessfully;
-@property (assign, nonatomic) bool didStopWithError;
-
-@property (strong, nonatomic) NSMutableURLRequest *url_request;
-@property (strong, nonatomic) NSURLConnection *connection;
-@property (strong, nonatomic) NSMutableData *buffer;
-@property (strong, nonatomic) NSFileHandle *file_handle;
 
 @end
 
 @implementation UTCSVFeedDownloadManager
-
-@synthesize url_cxn_delegate;
 
 + (UTCSVFeedDownloadManager *) csv_dl_manager {
     static UTCSVFeedDownloadManager *_csv_dl_manager = nil;
@@ -94,20 +74,9 @@
     manager.allRoomsDidFinishDownloading = false;
     manager.todaysEventsDidFinishDownloading = false;
     
-//    manager.allEventsDidFinishSuccessfully = false;
-//    manager.allEventsDidFailWithError = false;
-//    manager.allRoomsDidFinishSuccessfully = false;
-//    manager.allRoomsDidFailWithError = false;
-//    manager.todaysEventsDidFinishSuccessfully = false;
-//    manager.todaysEventsDidFailWithError = false;
-    
-    NSURL *all_events_url = [[NSURL alloc] initWithString : [ALL_EVENTS_SCHEDULE url_encode]];
-    NSURL *all_rooms_url = [[NSURL alloc] initWithString : [ALL_ROOMS_SCHEDULE url_encode]];
-    NSURL *todays_events_url = [[NSURL alloc] initWithString : [ALL_TODAYS_EVENTS url_encode]];
-    
-//    NSURLRequest *all_events_url_request = [NSURLRequest requestWithURL : all_events_url];
-//    NSURLRequest *all_rooms_url_request = [NSURLRequest requestWithURL : all_rooms_url];
-//    NSURLRequest *todays_events_url_request = [NSURLRequest requestWithURL : todays_events_url];
+    NSURL *all_events_url = [ALL_EVENTS_SCHEDULE to_url];
+    NSURL *all_rooms_url = [ALL_ROOMS_SCHEDULE to_url];
+    NSURL *todays_events_url = [ALL_TODAYS_EVENTS to_url];
     
     __block NSURLRequest *all_events_url_request = [[NSURLRequest alloc] initWithURL : all_events_url
                                                       cachePolicy : NSURLRequestReloadIgnoringLocalAndRemoteCacheData
@@ -126,19 +95,7 @@
     
     __block bool SUCCESS = true;
     dispatch_sync(_serial_queue, ^{
-        
-        manager.all_events_cxn = [[NSURLConnection alloc] initWithRequest : all_events_url_request
-                                                                 delegate : nil
-                                                         startImmediately : NO];    // use delegate : self  if desired
-        
-        manager.all_rooms_cxn = [[NSURLConnection alloc] initWithRequest : all_rooms_url_request
-                                                                delegate : nil
-                                                        startImmediately : NO];    // use delegate : self  if desired
-        
-        manager.todays_events_cxn = [[NSURLConnection alloc] initWithRequest : todays_events_url_request
-                                                                    delegate : nil
-                                                            startImmediately : NO];    // use delegate : self  if desired
-        
+
         NSOperationQueue *dl_queue = [[NSOperationQueue alloc] init];
         
         [NSURLConnection sendAsynchronousRequest : all_events_url_request
@@ -294,23 +251,23 @@
     if ([filename equals : ALL_EVENTS_SCHEDULE_FILENAME]) {
         manager.allEventsDidFinishDownloading = true;
         
-//        if (_DEBUG) {
-//            NSLog(@"\nDownloaded all events CSV feed:\n\n%@\n", [UTCSVFeedDownloadManager get_feed_contents_as_string : filename]);
-//        }
+        if (_DEBUG_CSV_FEEDS_VERBOSE) {
+            NSLog(@"\nDownloaded all events CSV feed:\n\n%@\n", [UTCSVFeedDownloadManager get_feed_contents_as_string : filename]);
+        }
     }
     else if ([filename equals : ALL_ROOMS_SCHEDULE_FILENAME]) {
         manager.allRoomsDidFinishDownloading = true;
         
-//        if (_DEBUG) {
-//            NSLog(@"\nDownloaded all events CSV feed:\n\n%@\n", [UTCSVFeedDownloadManager get_feed_contents_as_string : filename]);
-//        }
+        if (_DEBUG_CSV_FEEDS_VERBOSE) {
+            NSLog(@"\nDownloaded all events CSV feed:\n\n%@\n", [UTCSVFeedDownloadManager get_feed_contents_as_string : filename]);
+        }
     }
     else {
         manager.todaysEventsDidFinishDownloading = true;
         
-//        if (_DEBUG) {
-//            NSLog(@"\nDownloaded all events CSV feed:\n\n%@\n", [UTCSVFeedDownloadManager get_feed_contents_as_string : filename]);
-//        }
+        if (_DEBUG_CSV_FEEDS_VERBOSE) {
+            NSLog(@"\nDownloaded all events CSV feed:\n\n%@\n", [UTCSVFeedDownloadManager get_feed_contents_as_string : filename]);
+        }
     }
     
     // parse feeds into global EventList
@@ -328,225 +285,6 @@
     return curr_success;
 }
 
-- (void) connectionDidFinishLoading : (NSURLConnection *) connection {
-    
-    UTCSVFeedDownloadManager *manager = [UTCSVFeedDownloadManager csv_dl_manager];
-    
-    if ([connection isEqual : manager.all_events_cxn]) {
-        if (_DEBUG) {
-            NSLog(@"connectionDidFinishLoading() for all_events_cxn");
-        }
-        
-        if (!manager.allEventsDidFailWithError) {
-            manager.allEventsDidFinishSuccessfully = true;
-        }
-        else {
-            manager.allEventsDidFinishSuccessfully = false;
-        }
-    }
-    else if ([connection isEqual : manager.all_rooms_cxn]) {
-        if (_DEBUG) {
-            NSLog(@"connectionDidFinishLoading() for all_rooms_cxn");
-        }
-        
-        if (!manager.allRoomsDidFailWithError) {
-            manager.allRoomsDidFinishSuccessfully = true;
-        }
-        else {
-            manager.allRoomsDidFinishSuccessfully = false;
-        }
-    }
-    else {
-        if (_DEBUG) {
-            NSLog(@"connectionDidFinishLoading() for todays_events_cxn");
-        }
-        
-        if (!manager.todaysEventsDidFailWithError) {
-            manager.todaysEventsDidFinishSuccessfully = true;
-        }
-        else {
-            manager.todaysEventsDidFinishSuccessfully = false;
-        }
-    }
-    
-    if ((manager.allEventsDidFailWithError || manager.allEventsDidFinishSuccessfully) &&
-        (manager.allRoomsDidFailWithError || manager.allRoomsDidFinishSuccessfully) &&
-        (manager.todaysEventsDidFailWithError || manager.todaysEventsDidFinishSuccessfully)) {
-        
-        manager.downloadIsInProgress = false;
-    }
-    
-//    __block BOOL success = NO;
-//
-//    if (self.buffer) {
-//        //        success = [self.buffer writeToFile : file_path atomically : YES];
-//
-//        // http://stackoverflow.com/questions/679104/the-easiest-way-to-write-nsdata-to-a-file
-//        // dispatch as async in CSVDownloader
-//        //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-//        NSString *file_path = [UTCSVFeedDownloadManager get_file_path : self.filename];
-//        NSString *data = [[NSString alloc] initWithData : self.buffer encoding : DEFAULT_STRING_ENCODING];
-//
-//        NSError *error = nil;
-//        success = [data writeToFile : file_path atomically : YES encoding : DEFAULT_STRING_ENCODING error : &error];
-//
-//        if (!self.didStopWithError && success && !error) {
-//            self.didFinishSuccessfully = true;  // ??????????????????
-//        }
-//        else {
-//            self.didFinishSuccessfully = false;
-//            [UTCSVFeedDownloadManager delete_feed : self.filename];
-//            // TODO - CALL DELEGATE METHOD HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//
-//            if (_DEBUG && error) {
-//                NSLog(@"FAILED to finish loading filename \"%@\" with error \"%@\"", self.filename, error);
-//            }
-//        }
-//        
-//        [UTCSVFeedDownloadManager set_feed_write_success : self.filename success : self.didFinishSuccessfully];
-//        
-//        if (_DEBUG) {
-//            NSLog(@"In connectionDidFinishLoading");
-//            if (success && self.didFinishSuccessfully) {
-//                NSString *csv = [[NSString alloc] initWithContentsOfFile : file_path usedEncoding : nil error : nil];
-//                NSLog(@"%@", csv);
-//            }
-//            else {
-//                NSLog(@"FAILED to finish loading filename \"%@\" with error \"%@\"", self.filename, error);
-//            }
-//        }
-//        
-//        NSLog(@"HERE 0");
-//        //        });
-//    }
-//    
-//    //    NSString *data = [[NSString alloc] initWithData:self.buffer encoding:NSUTF8StringEncoding];
-//    //
-//    //    BOOL success = [data writeToFile : file_path atomically : YES encoding : DEFAULT_STRING_ENCODING error : nil];
-//    //
-//    //    NSString *csv = [[NSString alloc] initWithContentsOfFile : file_path usedEncoding : nil error : nil];
-//    //    NSLog(@"%@", csv);
-//    
-//    NSLog(@"HERE 1");
-//    
-//    self.downloadIsInProgress = false;
-}
-
-//- (void) connection : (NSURLConnection *) connection didReceiveData : (NSData *) data {
-//    UTCSVFeedDownloadManager *manager = [UTCSVFeedDownloadManager csv_dl_manager];
-//    
-//    if ([connection isEqual : manager.all_events_cxn]) {
-//        if (_DEBUG) {
-//            NSLog(@"Received data for all_events_cxn");
-//        }
-//        
-//        if (manager.all_events_buf) {
-//            [manager.all_events_buf appendData : data];
-//        }
-//        else {
-//            manager.all_events_buf = [[NSMutableData alloc] initWithData : data];
-//        }
-//    }
-//    else if ([connection isEqual : manager.all_rooms_cxn]) {
-//        if (_DEBUG) {
-//            NSLog(@"Received data for all_rooms_cxn");
-//        }
-//        
-//        if (manager.all_rooms_buf) {
-//            [manager.all_rooms_buf appendData : data];
-//        }
-//        else {
-//            manager.all_rooms_buf = [[NSMutableData alloc] initWithData : data];
-//        }
-//    }
-//    else {
-//        if (_DEBUG) {
-//            NSLog(@"Received data for todays_events_cxn");
-//        }
-//        
-//        if (manager.todays_events_buf) {
-//            [manager.todays_events_buf appendData : data];
-//        }
-//        else {
-//            manager.todays_events_buf = [[NSMutableData alloc] initWithData : data];
-//        }
-//    }
-//    
-//    NSLog(@"Exiting connection.didReceiveData()");
-//}
-
-- (void) connection : (NSURLConnection *) connection didFailWithError : (NSError *) error {
-    UTCSVFeedDownloadManager *manager = [UTCSVFeedDownloadManager csv_dl_manager];
-    
-    if ([connection isEqual : manager.all_events_cxn]) {
-        if (_DEBUG) {
-            NSLog(@"Error downloading with connection %@ (err: %@)", connection, [error localizedDescription]);
-        }
-        
-        manager.allEventsDidFinishSuccessfully = false;
-        manager.allEventsDidFailWithError = true;
-        [connection cancel];
-    }
-    else if ([connection isEqual : manager.all_rooms_cxn]) {
-        if (_DEBUG) {
-            NSLog(@"Error downloading with connection %@ (err: %@)", connection, [error localizedDescription]);
-        }
-        
-        manager.allRoomsDidFinishSuccessfully = false;
-        manager.allRoomsDidFailWithError = true;
-        [connection cancel];
-    }
-    else {
-        if (_DEBUG) {
-            NSLog(@"Error downloading with connection %@ (err: %@)", connection, [error localizedDescription]);
-        }
-        
-        manager.todaysEventsDidFinishSuccessfully = false;
-        manager.todaysEventsDidFailWithError = true;
-        [connection cancel];
-    }
-
-    
-//    if ([connection isEqual : manager.all_events_cxn]) {
-//        if (_DEBUG) {
-//            NSLog(@"Error downloading with connection %@ (err: %@)", connection, [error localizedDescription]);
-//        }
-//        
-//        manager.allEventsDidFinishSuccessfully = false;
-//        manager.allEventsDidFailWithError = true;
-//        [connection cancel];
-//    }
-//    else if ([connection isEqual : manager.all_rooms_cxn]) {
-//        if (_DEBUG) {
-//            NSLog(@"Error downloading with connection %@ (err: %@)", connection, [error localizedDescription]);
-//        }
-//        
-//        manager.allRoomsDidFinishSuccessfully = false;
-//        manager.allRoomsDidFailWithError = true;
-//        [connection cancel];
-//    }
-//    else {
-//        if (_DEBUG) {
-//            NSLog(@"Error downloading with connection %@ (err: %@)", connection, [error localizedDescription]);
-//        }
-//        
-//        manager.todaysEventsDidFinishSuccessfully = false;
-//        manager.todaysEventsDidFailWithError = true;
-//        [connection cancel];
-//    }
-    
-    // clear buffers, set flags, etc in connectionDidFinishLoading
-    
-//    NSLog(@"Error downloading file \"%@\" with error \"%@\"", self.filename, error);
-//    
-//    self.didFinishSuccessfully = false;
-//    self.didStopWithError = true;
-//    
-//    [UTCSVFeedDownloadManager set_feed_write_success : self.filename success : false];
-}
-
-
-
 /* *********** ************* */
 
 + (NSString *) get_documents_dir_path {
@@ -557,10 +295,6 @@
     return basePath;
 }
 
-- (NSString *) get_file_path {
-    return ([UTCSVFeedDownloadManager get_file_path : self.filename]);
-}
-
 + (NSString *) get_file_path : (NSString *) filename {
     NSString *out = [NSString stringWithFormat : @"%@/%@", [UTCSVFeedDownloadManager get_documents_dir_path], filename];
     return out;
@@ -569,7 +303,6 @@
 /* *********** ************* */
 
 // - (BOOL)setAttributes:(NSDictionary *)attributes ofItemAtPath:(NSString *)path error:(NSError **)error
-
 
 /* *********** ************* */
 

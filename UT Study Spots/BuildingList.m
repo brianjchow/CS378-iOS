@@ -19,7 +19,7 @@
 
 @interface BuildingList ()
 
-@property (strong, nonatomic) NSMutableDictionary *buildings;  // NSMutableDictionary<String, Building> / TreeMap<String, Building>
+@property (strong, nonatomic, readwrite) NSMutableDictionary *buildings;  // NSMutableDictionary<String, Building> / TreeMap<String, Building>
 
 @end
 

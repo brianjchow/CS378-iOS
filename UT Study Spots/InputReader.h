@@ -10,7 +10,7 @@
 
 @interface InputReader : NSObject
 
-- (instancetype) initWithFileNameAndExt : (NSString *) filename ext : (NSString *) ext;
+//- (instancetype) initWithFileNameAndExt : (NSString *) filename ext : (NSString *) ext;
 - (instancetype) initWithFilePath : (NSString *) file_path;
 
 - (int) read;

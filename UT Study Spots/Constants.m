@@ -81,11 +81,7 @@ static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER;
     has_feed_been_read = true;
 }
 
-+ (void) init_default {
-    [self init : _DEBUG];
-}
-
-+ (void) init : (bool) read_from_local_feeds {
++ (void) init {
     if (!COURSE_SCHEDULE_THIS_SEMESTER) {
         // TODO - throw ISException
     }
@@ -95,7 +91,7 @@ static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER;
     
     [self init_shared_prefs];
     
-    CSV_FEEDS_MASTER = [CSVReader read_csv : _DEBUG_USING_LOCAL_CSV_FEEDS];
+    CSV_FEEDS_MASTER = [CSVReader read_csv];
     if (!CSV_FEEDS_MASTER) {
         // TODO - throw ISException
         
@@ -110,7 +106,12 @@ static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER;
     CSV_FEEDS_CLEANED = [self get_events_cleaned];
     
     if (_DEBUG) {
-        NSLog(@"Now finished reading CSV feeds\n\tSize of CSV_FEEDS_MASTER: %lu\n\tSize of CSV_FEEDS_CLEANED: %lu\n%@", [CSV_FEEDS_MASTER get_size], [CSV_FEEDS_CLEANED get_size], [CSV_FEEDS_CLEANED toString]);
+        if (_DEBUG_CSV_FEEDS_VERBOSE) {
+            NSLog(@"Now finished reading CSV feeds\n\tSize of CSV_FEEDS_MASTER: %lu\n\tSize of CSV_FEEDS_CLEANED: %lu\n%@", [CSV_FEEDS_MASTER get_size], [CSV_FEEDS_CLEANED get_size], [CSV_FEEDS_CLEANED toString]);
+        }
+        else {
+            NSLog(@"Now finished reading CSV feeds\n\tSize of CSV_FEEDS_MASTER: %lu\n\tSize of CSV_FEEDS_CLEANED: %lu\n", [CSV_FEEDS_MASTER get_size], [CSV_FEEDS_CLEANED get_size]);
+        }
         NSLog(@"Now creating initial BuildingLists...");
     }
     

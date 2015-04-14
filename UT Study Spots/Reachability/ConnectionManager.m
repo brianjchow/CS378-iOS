@@ -14,6 +14,8 @@
 
 @interface ConnectionManager ()
 
+@property (strong, nonatomic, readwrite) Reachability *reachability;
+
 @end
 
 @implementation ConnectionManager

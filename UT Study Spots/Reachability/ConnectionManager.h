@@ -13,7 +13,7 @@
 
 @interface ConnectionManager : NSObject
 
-@property (strong, nonatomic) Reachability *reachability;
+@property (strong, nonatomic, readonly) Reachability *reachability;
 
 + (ConnectionManager *) cxn_manager;
 

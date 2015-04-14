@@ -9,13 +9,12 @@
 #import "Event.h"
 
 #import "Utilities.h"
-#import "DateTools.h"
 #import "NSString+Tools.h"
 
 @interface Event ()
 
 @property (strong, nonatomic, readwrite) NSString *event_name;
-@property (strong, nonatomic) DTTimePeriod *date;
+@property (strong, nonatomic, readwrite) DTTimePeriod *date;
 @property (strong, nonatomic, readwrite) Location *location;
 
 @end

@@ -58,6 +58,8 @@
 
 - (NSString *) url_encode;
 
+- (NSURL *) to_url;
+
 // protected static String time_to_24h(String time);
 
 // protected static String pad_to_len_leading_zeroes(String str, int final_len);

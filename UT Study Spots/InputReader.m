@@ -25,25 +25,25 @@
 //static NSString *const CHAR_ENCODING = @"UTF-8";
 //static int const BUF_SIZE = 8192;
 
-- (instancetype) initWithFileNameAndExt : (NSString *) filename ext : (NSString *) ext {
-    if ([Utilities is_null : filename] || filename.length <= 0 ||
-        [Utilities is_null : ext] || ext.length <= 0) {
-        // TODO - throw IAException
-    }
-    
-    self = [super init];
-    
-    if (self) {
-        NSString *file_path = [Utilities get_file_path : filename ext : ext];
-        if ([Utilities is_null : file_path]) {
-            return nil;
-        }
-        
-        self = [self initWithFilePath : file_path];
-    }
-    
-    return self;
-}
+//- (instancetype) initWithFileNameAndExt : (NSString *) filename ext : (NSString *) ext {
+//    if ([Utilities is_null : filename] || filename.length <= 0 ||
+//        [Utilities is_null : ext] || ext.length <= 0) {
+//        // TODO - throw IAException
+//    }
+//    
+//    self = [super init];
+//    
+//    if (self) {
+//        NSString *file_path = [Utilities get_file_path : filename ext : ext];
+//        if ([Utilities is_null : file_path]) {
+//            return nil;
+//        }
+//        
+//        self = [self initWithFilePath : file_path];
+//    }
+//    
+//    return self;
+//}
 
 - (instancetype) initWithFilePath : (NSString *) file_path {
     if ([Utilities is_null : file_path] || file_path.length <= 0) {

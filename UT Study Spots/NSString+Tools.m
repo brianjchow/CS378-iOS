@@ -322,8 +322,17 @@
         // TODO - throw IAException
     }
     
-    NSString *out = [self stringByAddingPercentEscapesUsingEncoding:DEFAULT_STRING_ENCODING];       // NSUTF8StringEncoding
+    NSString *out = [self stringByAddingPercentEscapesUsingEncoding : DEFAULT_STRING_ENCODING];       // NSUTF8StringEncoding
     
+    return out;
+}
+
+- (NSURL *) to_url {
+    if ([Utilities is_null : self]) {
+        // TODO - throw IAException
+    }
+    
+    NSURL *out = [[NSURL alloc] initWithString : [self url_encode]];
     return out;
 }
 

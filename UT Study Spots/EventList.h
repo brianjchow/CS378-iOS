@@ -13,6 +13,8 @@
 
 @interface EventList : NSObject <NSCopying>
 
+@property (strong, nonatomic, readonly) NSMutableArray *list;
+
 - (instancetype) init;
 - (instancetype) initWithSize : (NSUInteger) size;
 - (instancetype) initWithHashMapList : (NSArray *) strings;     // List<HashMap<String, String>>

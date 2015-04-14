@@ -22,7 +22,7 @@ static NSString *const TAB = @"    ";
 @property (nonatomic, readwrite) bool has_power;
 
 // NSMutableDictionary<NSNumber, NSMutableSet<Event>>
-@property (strong, nonatomic) NSMutableDictionary *course_schedule;
+@property (strong, nonatomic, readwrite) NSMutableDictionary *course_schedule;
 
 @end
 
@@ -287,7 +287,7 @@ static NSString *const TAB = @"    ";
     
     [out appendFormat : @"Room:\t%@\n", [self.location toString]];
     [out appendFormat : @"Type:\t%@\n", self.type];
-    [out appendFormat : @"Size:\t%d\n", self.capacity];
+    [out appendFormat : @"Size:\t\t%d\n", self.capacity];
     [out appendFormat : @"Power:\t%@\n", BOOL_STRS[self.has_power]];
     [out appendFormat : @"Schedule:\n%@%d weekly class(es)\n", TAB, [self get_num_events]];
     

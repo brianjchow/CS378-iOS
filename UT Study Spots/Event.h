@@ -11,7 +11,13 @@
 #import "Location.h"
 #import "Constants.h"
 
+#import "DateTools.h"
+
 @interface Event : NSObject <NSCopying>
+
+@property (strong, nonatomic, readonly) NSString *event_name;
+@property (strong, nonatomic, readonly) DTTimePeriod *date;
+@property (strong, nonatomic, readonly) Location *location;
 
 - (instancetype) initWithStrings : (NSString *) event_name start_date : (NSString *) start_date end_date : (NSString *) end_date location : (NSString *) location;
 - (instancetype) initWithDatesNoLocation : (NSString *) event_name start_date : (NSDate *) date end_date : (NSDate *) end_date location : (NSString *) location;
@@ -31,9 +37,6 @@
 // isEqual and hash overridden
 
 - (NSString *) toString;
-
-@property (strong, nonatomic, readonly) NSString *event_name;
-@property (strong, nonatomic, readonly) Location *location;
 
 
 @end

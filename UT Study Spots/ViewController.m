@@ -54,7 +54,7 @@
     
 //    [self test_csvreader_local];
   
-    [self test_constants_init_default];
+    [self test_constants_init];
     
 //    [self test_stopwatch];
     
@@ -186,16 +186,16 @@
 }
 
 - (void) test_csvreader_local {
-    EventList *events = [CSVReader read_csv_default];
+    EventList *events = [CSVReader read_csv];
     NSLog(@"EventList:\n%@", [events toString]);
     NSLog(@"EventList size: %lu", [events get_size]);
 }
 
-- (void) test_constants_init_default {
+- (void) test_constants_init {
     Stopwatch *stopwatch = [Stopwatch new];
     
     [stopwatch start];
-    [Constants init_default];
+    [Constants init];
     [stopwatch stop];
     
     NSLog(@"Took %f seconds to complete initialisation", [stopwatch time]);

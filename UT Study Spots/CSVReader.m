@@ -12,7 +12,6 @@
 #import "UTCSVFeedDownloadManager.h"
 
 #import "InputReader.h"
-#import "FileOutputWriter.h"
 
 #import "Utilities.h"
 #import "Constants.h"
@@ -21,16 +20,12 @@
 
 @interface CSVReader ()
 
++ (EventList *) read_csv_from_all_downloaded_files;
++ (NSArray *) read_csv_from_downloaded_file : (NSString *) filename;
++ (EventList *) read_csv_from_all_local_files;
 + (NSArray *) read_csv_from_file : (NSString *) filename;
-//+ (NSArray *) read_csv_from_url : (NSURL *) url;
++ (NSArray *) read_csv_with_file_path : (NSString *) file_path;
 + (NSDictionary *) split_line : (NSString *) str;
-
-// helper methods to be used when downloading feeds/data
-//+ (bool) file_exists : (NSString *) filename;
-//+ (bool) file_is_current : (NSString *) filename;
-////+ (bool) delete_all_feeds;
-//+ (bool) get_csv_feeds_write_success : (NSString *) pref_name;
-//+ (bool) set_csv_feeds_write_success : (NSString *) filename success : (bool) success;
 
 // misc private methods
 - (instancetype) init;
@@ -39,83 +34,50 @@
 
 @implementation CSVReader
 
-//static int const DAILY_UPDATE_TIME = 859;   // 8:59a; update if curr time is 9a or after
+static NSString *const LOCAL_CSV_VERSION_DATE = @"0604";
 
 static char const DELIMITER = '\"';
 
 static int lines_read = 0;
 static int lines_ignored = 0;
 
-+ (EventList *) read_csv_default {
-    return ([self read_csv : _DEBUG_USING_LOCAL_CSV_FEEDS]);
-}
-
-+ (EventList *) read_csv : (bool) read_from_local_feeds {
++ (EventList *) read_csv {
     if ([Constants get_has_feed_been_read]) {
         if (_DEBUG) NSLog(@"CSVReader: sequential attempt to read CSV feeds detected");
         return ([Constants get_csv_feeds_master]);
     }
     [Constants set_has_feed_been_read];
     
-//    NSArray *event_strings;     // List<HashMap<String, String>>
     EventList *events = [[EventList alloc] init];
     
-    if (!read_from_local_feeds) {
+    if (!_DEBUG_USING_LOCAL_CSV_FEEDS) {
         if (!_DEBUG) { NSLog(@"CSVReader: now reading CSV feeds from UTCS servers..."); }
         
-//        if ([ConnectionManager has_wifi] || [ConnectionManager has_wwan]) {
-////            bool success = [UTCSVFeedDownloadManager download_all];
             [UTCSVFeedDownloadManager download_all];
+
+        // timeouts; http://stackoverflow.com/a/11616144
+        UTCSVFeedDownloadManager *manager = [UTCSVFeedDownloadManager csv_dl_manager];
+        while (manager.downloadIsInProgress) {
+            // do nothing
+            // this blocks for a max of UTCSVFeedDownloadManager.TIMEOUT_DURATION
             
-////            if (success) {
-//            if ([Constants get_csv_feeds_cleaned]) {
-//                NSLog(@"CSVReader: successfully downloaded all CSV feeds from UTCS servers");
-//                
-//                events = [CSVReader read_csv_from_all_downloaded_files];
-//            }
-//            else {
-//                NSLog(@"CSVReader: failed to download all CSV feeds or all feeds empty; now reading from local files");
-//                
-//                events = [CSVReader read_csv_from_all_local_files];
-//            }
+            // TODO - change to some timeout listener/delegate of some sort
+        }
+    
+        NSLog(@"CSVReader: finished downloading CSV feeds from UTCS servers. Now attempting to read from Documents dir...");
             
-            UTCSVFeedDownloadManager *manager = [UTCSVFeedDownloadManager csv_dl_manager];
-            while (manager.downloadIsInProgress) {
-                // do nothing
-                // this blocks for a max of UTCSVFeedDownloadManager.TIMEOUT_DURATION
-                
-                
-            }
-        
-            NSLog(@"CSVReader: finished downloading CSV feeds from UTCS servers. Now attempting to read from Documents dir...");
-            
-            events = [CSVReader read_csv_from_all_downloaded_files];
-//        }
-//        else {
-//            NSLog(@"CSVReader: failed to detect WiFi or WWAN signal; now reading from local files (wifi: %@ - wwan: %@)", BOOL_STRS[[ConnectionManager has_wifi]], BOOL_STRS[[ConnectionManager has_wwan]]);
-//            
-//            events = [CSVReader read_csv_from_all_local_files];
-//        }
-        
+        events = [CSVReader read_csv_from_all_downloaded_files];
     }
     else {
         if (_DEBUG) NSLog(@"CSVReader: now reading CSV feeds from local files...");
         
         events = [CSVReader read_csv_from_all_local_files];
-        
-//        event_strings = [self read_csv_from_file : @"calendar_events_today_feed_0412"];
-//        [events add_hashmap_list : event_strings];
-//        
-//        event_strings = [self read_csv_from_file : @"calendar_events_feed_0412"];
-//        [events add_hashmap_list : event_strings];
-//        
-//        event_strings = [self read_csv_from_file : @"calendar_rooms_feed_0412"];
-//        [events add_hashmap_list : event_strings];
     }
     
     if (_DEBUG) {
-        if (read_from_local_feeds) {
+        if (_DEBUG_USING_LOCAL_CSV_FEEDS) {
             NSLog(@"CSVReader: read in %d lines from local CSV feeds", lines_read);
+//            NSLog(@"\n%@", events);
         }
         else {
             NSLog(@"CSVReader: read in %d lines from CSV feeds from UTCS servers", lines_read);
@@ -160,7 +122,7 @@ static int lines_ignored = 0;
     
     NSString *file_path = [UTCSVFeedDownloadManager get_file_path : filename];
     if ([Utilities is_null : file_path]) {
-        if (_DEBUG) {
+        if (_DEBUG_CSV_READER) {
             NSLog(@"ERROR: could not find path for file \"%@\", CSVReader.read_csv_from_downloaded_file()", filename);
         }
         return [NSArray new];
@@ -174,16 +136,16 @@ static int lines_ignored = 0;
     EventList *out = [[EventList alloc] init];
     NSArray *event_strings;
     
-    event_strings = [self read_csv_from_file : @"calendar_events_today_feed_0412"];
+    event_strings = [self read_csv_from_file : [NSString stringWithFormat : @"calendar_events_today_feed_%@", LOCAL_CSV_VERSION_DATE]];
     [out add_hashmap_list : event_strings];
     
-    event_strings = [self read_csv_from_file : @"calendar_events_feed_0412"];
+    event_strings = [self read_csv_from_file : [NSString stringWithFormat : @"calendar_events_feed_%@", LOCAL_CSV_VERSION_DATE]];
     [out add_hashmap_list : event_strings];
 
-    event_strings = [self read_csv_from_file : @"calendar_rooms_feed_0412"];
+    event_strings = [self read_csv_from_file : [NSString stringWithFormat : @"calendar_rooms_feed_%@", LOCAL_CSV_VERSION_DATE]];
     [out add_hashmap_list : event_strings];
     
-//    NSLog(@"CSVReader: finished reading from local files:\n%@", [out toString]);
+    if (_DEBUG_CSV_READER) NSLog(@"CSVReader: finished reading from local files:\n%@", [out toString]);
     
     return out;
 }
@@ -229,48 +191,15 @@ static int lines_ignored = 0;
         // TODO - throw IAException
     }
     
-//    NSMutableArray *schedules = [[NSMutableArray alloc] initWithCapacity : 100];
-    
     NSString *file_path = [Utilities get_file_path : filename ext : CSV_EXT];
     if ([Utilities is_null : file_path]) {
-        if (_DEBUG) {
+        if (_DEBUG_CSV_READER) {
             NSLog(@"ERROR: could not find path for file \"%@\", CSVReader.read_csv_from_file()", filename);
         }
         return [NSArray new];
     }
     
     return ([self read_csv_with_file_path : file_path]);
-    
-//    InputReader *input;
-//    input = [[InputReader alloc] initWithFilePath : file_path];
-//    
-//    int temp;
-//    char curr_byte;
-//    
-//    NSMutableString *curr_line = [NSMutableString new];     // StringBuilder
-//    NSDictionary *result;                                   // HashMap<String, String>
-//    
-//    while ((temp = [input read]) != -1) {
-//        curr_byte = (char) temp;
-//
-//        if (curr_byte != '\n') {
-//            [curr_line appendFormat : @"%c", curr_byte];
-//        }
-//        
-//        // end of line reached in file; parse this event
-//        else {
-//            result = [self split_line : curr_line];
-//            
-//            if (![Utilities is_null : result]) {
-//                [schedules addObject : result];
-//            }
-//            
-//            curr_line = [NSMutableString new];
-//            lines_read++;
-//        }
-//    }
-//    
-//    return schedules;
 }
 
 // returns HashMap<String, String>; arg type is equivalent to StringBuilder (each cell is a char)
@@ -287,8 +216,7 @@ static int lines_ignored = 0;
     
     NSMutableDictionary *tuple = [[NSMutableDictionary alloc] initWithCapacity : 3];
     bool delim_in_stack = false;
-//    str = [[str reverseObjectEnumerator] allObjects];
-    str = [str reverse];
+//    str = [str reverse];
     
     NSMutableString *stack = [[NSMutableString alloc] init];
     
@@ -296,7 +224,7 @@ static int lines_ignored = 0;
     char curr_char;
     NSString *temp_to_str = nil;
     
-    for (int i = 0; i < length; i++) {
+    for (int i = (int) length - 1; i >= 0; i--) {
         curr_char = [str characterAtIndex : i];
         
         /*
@@ -318,7 +246,7 @@ static int lines_ignored = 0;
             temp_to_str = [temp_to_str replaceAll : @"(CST|CDT|registrar?( - )*|room?(: )*)?[():,]*" replace_with : @""];
             
             if ([temp_to_str isEqualToString : @"Location"] || [temp_to_str isEqualToString : @"Title"]) {
-                if (_DEBUG) {
+                if (_DEBUG_CSV_READER) {
                     NSLog(@"Reading CSV feed; invalid line token detected:1 (%@)", temp_to_str);
                 }
                 lines_ignored++;
@@ -394,53 +322,17 @@ static int lines_ignored = 0;
         [tuple setValue : [NSString stringWithFormat : @"%@ %@", GDC, DEFAULT_GDC_LOCATION] forKey : LOCATION];
     }
     
-    if (_DEBUG) {
-//                NSLog(@"Now returning from processing line\n\tEvent name: %@\n\t\tStart date: %@\n\t\tEnd date: %@\n\t\tLocation: %@", [tuple objectForKey : EVENT_NAME], [tuple objectForKey : START_DATE], [tuple objectForKey : END_DATE], [tuple objectForKey : LOCATION]);
-//        
-//                NSLog(@"\tEvent name: %@", [tuple objectForKey : EVENT_NAME]);
-//                NSLog(@"\tStart date: %@", [tuple objectForKey : START_DATE]);
-//                NSLog(@"\tEnd date: %@", [tuple objectForKey : END_DATE]);
-//                NSLog(@"\tLocation: %@", [tuple objectForKey : LOCATION]);
+    if (_DEBUG_CSV_READER) {
+        NSLog(@"Now returning from processing line\n\tEvent name: %@\n\t\tStart date: %@\n\t\tEnd date: %@\n\t\tLocation: %@", [tuple objectForKey : EVENT_NAME], [tuple objectForKey : START_DATE], [tuple objectForKey : END_DATE], [tuple objectForKey : LOCATION]);
+        
+        NSLog(@"\tEvent name: %@", [tuple objectForKey : EVENT_NAME]);
+        NSLog(@"\tStart date: %@", [tuple objectForKey : START_DATE]);
+        NSLog(@"\tEnd date: %@", [tuple objectForKey : END_DATE]);
+        NSLog(@"\tLocation: %@", [tuple objectForKey : LOCATION]);
     }
     
     return tuple;
 }
-
-//// returns List<HashMap<String, String>>
-//+ (NSArray *) read_csv_from_url : (NSURL *) url {
-//    
-//    return nil;
-//}
-//
-//// only use when downloading feeds
-//+ (bool) file_exists : (NSString *) filename {
-//    
-//    return false;
-//}
-//
-//// only use when downloading feeds
-//+ (bool) file_is_current : (NSString *) filename {
-//    
-//    return false;
-//}
-//
-//// only use when downloading feeds
-//+ (bool) get_csv_feeds_write_success : (NSString *) pref_name {
-//    
-//    return false;
-//}
-//
-//// only use when downloading feeds
-//+ (bool) set_csv_feeds_write_success : (NSString *) filename success : (bool) success {
-//    
-//    return false;
-//}
-//
-//// only use when downloading feeds
-//+ (bool) file_delete : (NSString *) filename {
-//    
-//    return false;
-//}
 
 
 

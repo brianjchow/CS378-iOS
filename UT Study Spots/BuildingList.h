@@ -13,6 +13,8 @@
 
 @interface BuildingList : NSObject
 
+@property (strong, nonatomic, readonly) NSMutableDictionary *buildings;
+
 - (instancetype) init;
 
 - (bool) contains_building : (NSString *) name;

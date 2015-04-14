@@ -14,14 +14,14 @@
 #import "NSString+Tools.h"
 
 @interface Location ()
-    @property (strong, nonatomic) NSString *building;
-    @property (strong, nonatomic) NSString *room;
+    @property (strong, nonatomic, readwrite) NSString *building;
+    @property (strong, nonatomic, readwrite) NSString *room;
 @end
 
 @implementation Location
 
 - (instancetype) initFullyQualified : (NSString *) building_room {
-    if (!building_room) {
+    if ([Utilities is_null : building_room]) {
         // TODO - throw exception
     }
     
@@ -45,10 +45,8 @@
 }
 
 - (instancetype) initSeparated : (NSString *) building room : (NSString *) room {
-    if (!building || [building isEqual : [NSNull class]]) {
+    if ([Utilities is_null : building] || [Utilities is_null : room]) {
         building = GDC;
-    }
-    if (!room || [room isEqual : [NSNull class]]) {
         room = DEFAULT_GDC_LOCATION;
     }
     
@@ -71,24 +69,12 @@
 }
 
 - (id) copy {
-    Location *out = [[Location alloc] initSeparated : [self.building copy] room : [self.room copy]];
-    return out;
-    
-//    return self;
+    return self;
 }
 
 // http://stackoverflow.com/questions/4089238/implementing-nscopying
 - (id) copyWithZone : (NSZone *) zone {
-    Location *out = [[[self class] allocWithZone : zone] init];
-    
-    if (out) {
-        out.building = [self.building copyWithZone : zone];
-        out.room = [self.room copyWithZone : zone];
-    }
-    
-    return out;
-    
-//    return self;
+    return self;
 }
 
 - (NSComparisonResult) compare : (Location *) otherObject {

@@ -12,7 +12,7 @@
 
 @interface EventList ()
 
-@property (strong, nonatomic) NSMutableArray *list;     // of Events
+@property (strong, nonatomic, readwrite) NSMutableArray *list;     // of Events
 
 @end
 

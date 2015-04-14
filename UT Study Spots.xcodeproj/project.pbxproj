@@ -35,7 +35,6 @@
 		AA992E941AC67E6000637C96 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E8C1AC67E6000637C96 /* DTTimePeriodGroup.m */; };
 		AA992E951AC67E6000637C96 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E8E1AC67E6000637C96 /* NSDate+DateTools.m */; };
 		AA992E981AC7E07200637C96 /* InputReader.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E971AC7E07200637C96 /* InputReader.m */; };
-		AA992E9B1AC7E09400637C96 /* FileOutputWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E9A1AC7E09400637C96 /* FileOutputWriter.m */; };
 		AAC83DCC1ACE38B7002C7BFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC83DCB1ACE38B7002C7BFF /* Foundation.framework */; };
 		AAC99F2F1AC8B63500BBBF75 /* NSMutableString+Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F2E1AC8B63500BBBF75 /* NSMutableString+Stack.m */; };
 		AAC99F321AC9072900BBBF75 /* QueryResult.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F311AC9072900BBBF75 /* QueryResult.m */; };
@@ -122,8 +121,6 @@
 		AA992E8E1AC67E6000637C96 /* NSDate+DateTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateTools.m"; sourceTree = "<group>"; };
 		AA992E961AC7E06600637C96 /* InputReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputReader.h; sourceTree = "<group>"; };
 		AA992E971AC7E07200637C96 /* InputReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputReader.m; sourceTree = "<group>"; };
-		AA992E991AC7E08800637C96 /* FileOutputWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOutputWriter.h; sourceTree = "<group>"; };
-		AA992E9A1AC7E09400637C96 /* FileOutputWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOutputWriter.m; sourceTree = "<group>"; };
 		AAC83DCB1ACE38B7002C7BFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AAC99F2D1AC8B62900BBBF75 /* NSMutableString+Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Stack.h"; sourceTree = "<group>"; };
 		AAC99F2E1AC8B63500BBBF75 /* NSMutableString+Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Stack.m"; sourceTree = "<group>"; };
@@ -179,13 +176,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA992E2D1AC4E8DF00637C96 = {
+		AA39EEF91ADB0580002DD6A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				AAC83DCB1ACE38B7002C7BFF /* Foundation.framework */,
 				AAC99F5C1ACBA30B00BBBF75 /* SystemConfiguration.framework */,
 				AAC99F481ACA667300BBBF75 /* libsqlite3.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA992E2D1AC4E8DF00637C96 = {
+			isa = PBXGroup;
+			children = (
 				AA992E381AC4E8DF00637C96 /* UT Study Spots */,
+				AA39EEF91ADB0580002DD6A3 /* Frameworks */,
 				AA992E521AC4E8DF00637C96 /* UT Study SpotsTests */,
 				AA992E371AC4E8DF00637C96 /* Products */,
 			);
@@ -284,8 +289,6 @@
 				AAC99F311AC9072900BBBF75 /* QueryResult.m */,
 				AA992E961AC7E06600637C96 /* InputReader.h */,
 				AA992E971AC7E07200637C96 /* InputReader.m */,
-				AA992E991AC7E08800637C96 /* FileOutputWriter.h */,
-				AA992E9A1AC7E09400637C96 /* FileOutputWriter.m */,
 				AAC99F4E1ACA692900BBBF75 /* CourseScheduleDatabaseManager.h */,
 				AAC99F4F1ACA693700BBBF75 /* CourseScheduleDatabaseManager.m */,
 			);
@@ -481,7 +484,6 @@
 				AA992E3F1AC4E8DF00637C96 /* AppDelegate.m in Sources */,
 				AAC99F631ACBA60500BBBF75 /* Stopwatch.m in Sources */,
 				AAC99F5A1ACBA2E800BBBF75 /* Reachability.m in Sources */,
-				AA992E9B1AC7E09400637C96 /* FileOutputWriter.m in Sources */,
 				AAC99F531ACB5F0E00BBBF75 /* NSString+Tools.m in Sources */,
 				AAC99F661ACBB60400BBBF75 /* LoadViewController.m in Sources */,
 				AA992E701AC55BCB00637C96 /* Event.m in Sources */,

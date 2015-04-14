@@ -13,6 +13,8 @@
 
 @interface Building : NSObject <NSCopying>
 
+@property (strong, nonatomic, readonly) NSString *name;
+
 + (Building *) get_instance : (NSString *) building_code db_filename : (NSString *) db_filename;
 
 - (bool) contains_room : (NSString *) room_num;
@@ -26,8 +28,6 @@
 - (NSComparisonResult) compare : (Building *) otherObject;
 
 - (NSString *) toString;
-
-@property (strong, nonatomic, readonly) NSString *name;
 
 
 @end

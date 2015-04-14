@@ -13,12 +13,12 @@
 
 @interface QueryRandomRoom : Query
 
+@property (nonatomic, readonly) int capacity;
+@property (nonatomic, readonly) bool has_power;
+
 - (int) get_option_capacity;
 - (bool) get_option_power;
 - (bool) set_option_capacity : (int) capacity;
 - (bool) set_option_power : (bool) power;
-
-@property (nonatomic, readonly) int capacity;
-@property (nonatomic, readonly) bool has_power;
 
 @end

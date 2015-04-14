@@ -10,6 +10,9 @@
 
 @interface Location : NSObject <NSCopying>
 
+@property (strong, nonatomic, readonly) NSString *building;
+@property (strong, nonatomic, readonly) NSString *room;
+
 - (instancetype) initFullyQualified : (NSString *) building_room;
 - (instancetype) initSeparated : (NSString *) building room : (NSString *) room;
 

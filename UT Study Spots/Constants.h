@@ -20,7 +20,9 @@
 /* Project-wide constants */
 
 static bool const _DEBUG = true;
-static bool const _DEBUG_USING_LOCAL_CSV_FEEDS = false;
+static bool const _DEBUG_USING_LOCAL_CSV_FEEDS = true;
+static bool const _DEBUG_CSV_FEEDS_VERBOSE = false;
+static bool const _DEBUG_CSV_READER = false;
 
 static NSString *const CSV_FEEDS_WRITE_SUCCESS = @"CSV_FEEDS_WRITE_SUCCESS";
 static NSString *const CSV_FEED_ALL_EVENTS_WRITE_SUCCESS = @"CSV_FEED_ALL_EVENTS_WRITE_SUCCESS";
@@ -275,8 +277,7 @@ typedef NS_ENUM(NSUInteger, HTTPResponseCode) {
 + (bool) get_has_feed_been_read;
 + (void) set_has_feed_been_read;
 
-+ (void) init_default;
-+ (void) init : (bool) read_from_local_feeds;
++ (void) init;
 
 + (EventList *) get_csv_feeds_master;
 + (EventList *) get_csv_feeds_cleaned;
