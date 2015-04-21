@@ -59,6 +59,17 @@
 @implementation QueryRoomSchedule
 
 // overridden
+- (instancetype) init {
+    self = [super init];
+    
+    if (self) {
+        self.search_room = RANDOM;
+    }
+    
+    return self;
+}
+
+// overridden
 - (instancetype) initWithStartDate : (NSDate *) date {
     self = [super initWithStartDate : date];
     

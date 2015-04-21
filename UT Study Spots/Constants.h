@@ -60,6 +60,7 @@ static NSString *const EXIT = @"EXIT";
 static NSString *const ALL_DAY = @"all day";
 static NSString *const ATRIUM = @"Atrium";\
 extern NSDictionary *CAMPUS_BUILDINGS;
+extern NSArray *CAMPUS_BUILDINGS_FULLY_QUALIFIED;
 \
 extern NSLocale *DEFAULT_LOCALE;
 

@@ -114,6 +114,7 @@ static NSString *const END_TIME = @"end_time";
         end_date = [Utilities get_date_with_time : end_time];
         
 //        NSLog(@"\n\tCurr row: %@", curr_row);
+//        NSLog(@"\n\tRoom num: %@", room_num);
 //        NSLog(@"\n\tRoom num: %@\n\tCapacity: %ld\n\tName: %@\n\tMeets: %@\n\tStart: %ld\n\tEnd: %ld", room_num, capacity, name, meeting_days, start_time, end_time);
 //        NSLog(@"\n\tStart date: %@\n\tEnd date: %@", start_date, end_date);
 //        NSLog(@"Room number: %@ (%lu) (%d) (%@)", room_num, room_num.length, [room_num isKindOfClass : [NSString class]], [[room_num class] description]);

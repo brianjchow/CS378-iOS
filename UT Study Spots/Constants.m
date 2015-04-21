@@ -269,6 +269,17 @@ static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER;
     return out;
 }
 
++ (NSArray *) init_campus_buildings_fully_qualified {
+    NSArray *out = [[NSArray alloc] initWithObjects :
+                    @"ACA - Academic Annex",
+                    @"AHG - Anna Hiss Gymnasium",
+                    @"ART - Art Building and Museum",
+                    
+                    nil
+    ];
+    return out;
+}
+
 
 
 

@@ -79,6 +79,7 @@
         if (blts) {
             [blts put_building : building_code building : out];
         }
+        
     }
     
     return out;
@@ -90,6 +91,8 @@
     keyset = [keyset sortedArrayUsingSelector : @selector(localizedCaseInsensitiveCompare : )];
     
     NSOrderedSet *out = [[NSOrderedSet alloc] initWithArray : keyset];
+    
+//    NSLog(@"%@", out);
     
     return out;
 }

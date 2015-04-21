@@ -59,6 +59,18 @@
 @implementation QueryRandomRoom
 
 // overridden
+- (instancetype) init {
+    self = [super init];
+    
+    if (self) {
+        self.capacity = 0;
+        self.has_power = false;
+    }
+    
+    return self;
+}
+
+// overridden
 - (instancetype) initWithStartDate : (NSDate *) date {
     self = [super initWithStartDate : date];
     
