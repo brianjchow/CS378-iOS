@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7046873F-C71E-4FDD-81E7-BA0AD9F9C410</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Pods</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>31EA115DEACEE16CA11BE24D81560BB0DFECE2F3</key>
+		<string>https://github.com/brianjchow/CS378-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Pods/Pods.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>31EA115DEACEE16CA11BE24D81560BB0DFECE2F3</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/brianjchow/CS378-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>31EA115DEACEE16CA11BE24D81560BB0DFECE2F3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>31EA115DEACEE16CA11BE24D81560BB0DFECE2F3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>UT%20Study%20Spots%20(with%20Views)</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0849B7A80910F58753B3F88C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1230FF08FD03CA1D7BC74B /* libPods.a */; };
 		0D04E7041AD742C000890EE9 /* LeftDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D04E7031AD742C000890EE9 /* LeftDrawerTableViewController.m */; };
 		0D3C46541AD78EB5007B9552 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D3C46531AD78EB5007B9552 /* Main.storyboard */; };
 		0D3C46571AD7B292007B9552 /* FindRoomNowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C46561AD7B292007B9552 /* FindRoomNowViewController.m */; };
@@ -14,6 +15,7 @@
 		0D3C465D1AD7B2C1007B9552 /* FindRoomRandomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C465C1AD7B2C1007B9552 /* FindRoomRandomViewController.m */; };
 		0D3C46601AD7B2E4007B9552 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C465F1AD7B2E4007B9552 /* ScheduleViewController.m */; };
 		0D3C46691AD8F821007B9552 /* LeftDrawerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C46681AD8F821007B9552 /* LeftDrawerTableViewCell.m */; };
+		325C4112A1BBC28939B8F544 /* libPods-UT Study SpotsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F67D807D0FFAC2A9E06944 /* libPods-UT Study SpotsTests.a */; };
 		78C25D5B5567235091E322CB /* libPods-UT Study Spots.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C5AA1D1A9D4C4D77EEEC80 /* libPods-UT Study Spots.a */; };
 		AA46AAA11AD451E500408B5C /* calendar_events_today_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */; };
 		AA46AAA21AD451E500408B5C /* calendar_rooms_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */; };
@@ -62,6 +64,7 @@
 		AAC99F631ACBA60500BBBF75 /* Stopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F621ACBA60500BBBF75 /* Stopwatch.m */; };
 		AAC99F661ACBB60400BBBF75 /* LoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F651ACBB60400BBBF75 /* LoadViewController.m */; };
 		AAC99F6A1ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC99F691ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m */; };
+		C609455EB38ACB3AE39489C4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1230FF08FD03CA1D7BC74B /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,9 +91,13 @@
 		0D3C465F1AD7B2E4007B9552 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		0D3C46671AD8F821007B9552 /* LeftDrawerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftDrawerTableViewCell.h; sourceTree = "<group>"; };
 		0D3C46681AD8F821007B9552 /* LeftDrawerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftDrawerTableViewCell.m; sourceTree = "<group>"; };
+		1B1230FF08FD03CA1D7BC74B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B50F2171F741010A37BAD2D /* Pods-UT Study Spots.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UT Study Spots.release.xcconfig"; path = "Pods/Target Support Files/Pods-UT Study Spots/Pods-UT Study Spots.release.xcconfig"; sourceTree = "<group>"; };
 		24C5AA1D1A9D4C4D77EEEC80 /* libPods-UT Study Spots.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UT Study Spots.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA79545CE94CB6793AC0926 /* Pods-UT Study Spots.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UT Study Spots.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UT Study Spots/Pods-UT Study Spots.debug.xcconfig"; sourceTree = "<group>"; };
+		53F67D807D0FFAC2A9E06944 /* libPods-UT Study SpotsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UT Study SpotsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B68AC9A2FD1F7E577CA26C9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6CD1023EC0B55F412BF71AB0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_today_feed_0604.csv; sourceTree = "<group>"; };
 		AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_rooms_feed_0604.csv; sourceTree = "<group>"; };
 		AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_feed_0604.csv; sourceTree = "<group>"; };
@@ -175,6 +182,9 @@
 		AAC99F651ACBB60400BBBF75 /* LoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadViewController.m; sourceTree = "<group>"; };
 		AAC99F681ACBE1DC00BBBF75 /* UTCSVFeedDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTCSVFeedDownloadManager.h; sourceTree = "<group>"; };
 		AAC99F691ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTCSVFeedDownloadManager.m; sourceTree = "<group>"; };
+		AADFC8431AE5CF2E0029F206 /* libPods-UT Study Spots-ActionSheetPicker-3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-UT Study Spots-ActionSheetPicker-3.0.a"; path = "Pods/../build/Debug-iphoneos/libPods-UT Study Spots-ActionSheetPicker-3.0.a"; sourceTree = "<group>"; };
+		AADFC8451AE5D6A20029F206 /* libPods-ActionSheetPicker-3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ActionSheetPicker-3.0.a"; path = "Pods/../build/Debug-iphoneos/libPods-ActionSheetPicker-3.0.a"; sourceTree = "<group>"; };
+		AADFC8471AE5D6A70029F206 /* libPods-JVFloatingDrawer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-JVFloatingDrawer.a"; path = "Pods/../build/Debug-iphoneos/libPods-JVFloatingDrawer.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +196,7 @@
 				AAC99F5D1ACBA30B00BBBF75 /* SystemConfiguration.framework in Frameworks */,
 				AAC99F491ACA667300BBBF75 /* libsqlite3.dylib in Frameworks */,
 				78C25D5B5567235091E322CB /* libPods-UT Study Spots.a in Frameworks */,
+				0849B7A80910F58753B3F88C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +204,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325C4112A1BBC28939B8F544 /* libPods-UT Study SpotsTests.a in Frameworks */,
+				C609455EB38ACB3AE39489C4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +217,8 @@
 			children = (
 				3DA79545CE94CB6793AC0926 /* Pods-UT Study Spots.debug.xcconfig */,
 				1B50F2171F741010A37BAD2D /* Pods-UT Study Spots.release.xcconfig */,
+				6CD1023EC0B55F412BF71AB0 /* Pods.debug.xcconfig */,
+				6B68AC9A2FD1F7E577CA26C9 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -211,10 +226,15 @@
 		7D8E4958AC1D3EADB5AA351F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AADFC8471AE5D6A70029F206 /* libPods-JVFloatingDrawer.a */,
+				AADFC8451AE5D6A20029F206 /* libPods-ActionSheetPicker-3.0.a */,
+				AADFC8431AE5CF2E0029F206 /* libPods-UT Study Spots-ActionSheetPicker-3.0.a */,
 				AAC99F481ACA667300BBBF75 /* libsqlite3.dylib */,
 				AAC83DCB1ACE38B7002C7BFF /* Foundation.framework */,
 				AAC99F5C1ACBA30B00BBBF75 /* SystemConfiguration.framework */,
 				24C5AA1D1A9D4C4D77EEEC80 /* libPods-UT Study Spots.a */,
+				53F67D807D0FFAC2A9E06944 /* libPods-UT Study SpotsTests.a */,
+				1B1230FF08FD03CA1D7BC74B /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -242,14 +262,14 @@
 		AA992E381AC4E8DF00637C96 /* UT Study Spots */ = {
 			isa = PBXGroup;
 			children = (
+				0D3C46531AD78EB5007B9552 /* Main.storyboard */,
+				AA992E481AC4E8DF00637C96 /* LaunchScreen.xib */,
 				AA992E3D1AC4E8DF00637C96 /* AppDelegate.h */,
 				AA992E3E1AC4E8DF00637C96 /* AppDelegate.m */,
 				AAC99F3D1ACA26F300BBBF75 /* Assets */,
 				AAC99F671ACBB61700BBBF75 /* Controllers */,
 				AA992E7F1AC67E6000637C96 /* DateTools */,
 				AA992E461AC4E8DF00637C96 /* Images.xcassets */,
-				AA992E481AC4E8DF00637C96 /* LaunchScreen.xib */,
-				0D3C46531AD78EB5007B9552 /* Main.storyboard */,
 				AA992E681AC55AC400637C96 /* Model */,
 				AAC99F541ACBA2E800BBBF75 /* Reachability */,
 				AAC99F571ACBA2E800BBBF75 /* SQLiteManager */,
@@ -435,9 +455,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA992E5C1AC4E8DF00637C96 /* Build configuration list for PBXNativeTarget "UT Study SpotsTests" */;
 			buildPhases = (
+				7DB3523A56B4D8A3AA04CE26 /* Check Pods Manifest.lock */,
 				AA992E4B1AC4E8DF00637C96 /* Sources */,
 				AA992E4C1AC4E8DF00637C96 /* Frameworks */,
 				AA992E4D1AC4E8DF00637C96 /* Resources */,
+				CEA2CDE8E209D67CBEEDF726 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -528,7 +550,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UT Study Spots/Pods-UT Study Spots-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DB3523A56B4D8A3AA04CE26 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CEA2CDE8E209D67CBEEDF726 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FCA33CDAB5611240381E948F /* Check Pods Manifest.lock */ = {
@@ -704,9 +756,12 @@
 		};
 		AA992E5A1AC4E8DF00637C96 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DA79545CE94CB6793AC0926 /* Pods-UT Study Spots.debug.xcconfig */;
+			baseConfigurationReference = 6CD1023EC0B55F412BF71AB0 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "UT Study Spots/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -714,14 +769,18 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/BuildHeaders\"/**";
 			};
 			name = Debug;
 		};
 		AA992E5B1AC4E8DF00637C96 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B50F2171F741010A37BAD2D /* Pods-UT Study Spots.release.xcconfig */;
+			baseConfigurationReference = 6B68AC9A2FD1F7E577CA26C9 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "UT Study Spots/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -729,11 +788,13 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/BuildHeaders\"/**";
 			};
 			name = Release;
 		};
 		AA992E5D1AC4E8DF00637C96 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CD1023EC0B55F412BF71AB0 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -753,6 +814,7 @@
 		};
 		AA992E5E1AC4E8DF00637C96 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B68AC9A2FD1F7E577CA26C9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

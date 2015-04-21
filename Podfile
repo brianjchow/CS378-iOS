@@ -2,11 +2,16 @@
 # platform :ios, '6.0'
 platform :ios, '7.0'
 
-target 'UT Study Spots' do
-  pod 'JVFloatingDrawer'
-end
+#target 'UT Study Spots' do
+#  pod 'JVFloatingDrawer'
+#  pod 'ActionSheetPicker-3.0'
+#end
 
-target 'UT Study SpotsTests' do
+#target 'UT Study SpotsTests' do
+#  pod 'JVFloatingDrawer'
+#  pod 'ActionSheetPicker-3.0'
+#end
 
-end
-
+link_with 'UT Study Spots', 'UT Study SpotsTests'
+pod 'JVFloatingDrawer'
+pod 'ActionSheetPicker-3.0'
