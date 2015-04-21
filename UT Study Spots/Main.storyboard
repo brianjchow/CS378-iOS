@@ -285,7 +285,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Building" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="18g-iT-qwG">
-                                                    <rect key="frame" x="8" y="7" width="359" height="30"/>
+                                                    <rect key="frame" x="22" y="7" width="333" height="30"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
@@ -295,10 +295,10 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="18g-iT-qwG" secondAttribute="trailing" constant="11" id="8cT-KL-eYi"/>
-                                                <constraint firstItem="18g-iT-qwG" firstAttribute="leading" secondItem="2bX-Vz-ZSw" secondAttribute="leadingMargin" constant="12" id="KWZ-3I-eV3"/>
+                                                <constraint firstAttribute="trailing" secondItem="18g-iT-qwG" secondAttribute="trailing" constant="20" id="8cT-KL-eYi"/>
+                                                <constraint firstItem="18g-iT-qwG" firstAttribute="leading" secondItem="2bX-Vz-ZSw" secondAttribute="leading" constant="20" id="KWZ-3I-eV3"/>
                                                 <constraint firstAttribute="centerY" secondItem="18g-iT-qwG" secondAttribute="centerY" constant="-0.5" id="QdM-TT-5Ru"/>
-                                                <constraint firstItem="18g-iT-qwG" firstAttribute="centerX" secondItem="2bX-Vz-ZSw" secondAttribute="centerX" id="uIa-wP-BBe"/>
+                                                <constraint firstItem="18g-iT-qwG" firstAttribute="centerXWithinMargins" secondItem="2bX-Vz-ZSw" secondAttribute="centerXWithinMargins" id="uIa-wP-BBe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -355,7 +355,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Get Room Schedule" id="mVg-Zc-7ab">
-                        <barButtonItem key="rightBarButtonItem" image="399-list1" id="qSy-xd-P71">
+                        <barButtonItem key="leftBarButtonItem" image="399-list1" id="qSy-xd-P71">
                             <connections>
                                 <action selector="actionToggleLeftDrawer:" destination="yht-DI-4ix" id="OJZ-vZ-JvE"/>
                             </connections>

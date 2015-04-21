@@ -43,7 +43,9 @@
     self.query = [[QueryRoomSchedule alloc] init];
     [self update_rooms_arr];
     
-    self.campus_buildings = [self sort : [CAMPUS_BUILDINGS allKeys]];
+    self.campus_buildings = [self sort : CAMPUS_BUILDINGS_FULLY_QUALIFIED];
+    
+//    NSLog(@"\n\n%@\n\n", self.campus_buildings);
     
 }
 
@@ -128,7 +130,14 @@
     };
     
     NSString *search_building = [self.query get_option_search_building];
-    NSUInteger index = [self.campus_buildings indexOfObject : search_building];
+    
+    NSUInteger index = 0;
+    for (int i = 0; i < [self.campus_buildings count]; i++) {
+        if ([self.campus_buildings[i] containsIgnoreCase : search_building]) {
+            index = i;
+            break;
+        }
+    }
     
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Select a Building"
                                                                                 rows : self.campus_buildings

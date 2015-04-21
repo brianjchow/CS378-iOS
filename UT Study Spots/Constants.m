@@ -20,6 +20,7 @@ bool DISABLE_SEARCHES_NEXT_SEMESTER;
 NSDate *DAYBREAK;
 NSDate *NIGHTFALL;
 NSDictionary *CAMPUS_BUILDINGS;
+NSArray *CAMPUS_BUILDINGS_FULLY_QUALIFIED;
 NSLocale *DEFAULT_LOCALE;
 Location *GDC_ATRIUM;
 Location *GDC_GATESHENGE;
@@ -62,6 +63,7 @@ static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER;
         NIGHTFALL = [Utilities get_date : 1 day : 1 year : 2015 hour : LAST_HOUR_OF_NIGHT minute : LAST_MINUTE_OF_NIGHT];
         
         CAMPUS_BUILDINGS = [self init_campus_buildings];
+        CAMPUS_BUILDINGS_FULLY_QUALIFIED = [self init_campus_buildings_fully_qualified];
         
         DEFAULT_LOCALE = [[NSLocale alloc] initWithLocaleIdentifier : @"en_US"];
         
@@ -274,9 +276,88 @@ static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER;
                     @"ACA - Academic Annex",
                     @"AHG - Anna Hiss Gymnasium",
                     @"ART - Art Building and Museum",
-                    
+                    @"ATT - AT&T Conference Centre",
+                    @"BAT - Batts Hall",
+                    @"BEL - Belmont Hall",
+                    @"BEN - Benedict Hall",
+                    @"BIO - Biological Laboratories",
+                    @"BMC - Biomedical Engineering Bldg",
+                    @"BMC - Belo Centre for New Media",
+                    @"BRB - Rapoport Building",
+                    @"BTL - Battle Hall",
+                    @"BUR - Burdine Hall",
+                    @"CAL - Calhoun Hall",
+                    @"CBA - McCombs School of Business",
+                    @"CCJ - Connally Centre for Justice",
+                    @"CLA - Liberal Arts Building",
+                    @"CMA - Communication Centre Bldg A",
+                    @"CMB - Communication Centre Bldg B",
+                    @"CRD - Carothers Dormitory",
+                    @"DFA - Doty Fine Arts Bldg",
+                    @"ECJ - Ernest Cockrell Jr. Hall",
+                    @"ENS - Engr-Science Bldg",
+                    @"EPS - Schoch Building",
+                    @"ETC - Engr Teaching Centre II",
+                    @"FAC - Flawn Academic Centre",
+                    @"FDH - Dobie House",
+                    @"FNT - Faulkner Nanosc Tech Bldg",
+                    @"GAR - Garrison Hall",
+                    @"GDC - geeks 'n nerds yo",
+                    @"GEA - Gearing Hall",
+                    @"GEB - Gebauer Building",
+                    @"GOL - Goldsmith Hall",
+                    @"GRE - Gregory Gymnasium",
+                    @"GSB - Grad School of Business Bldg",
+                    @"HRC - Harry Ransom Centre",
+                    @"HRH - Rainey Hall",
+                    @"INT - International Office",
+                    @"JES - Jestre Centre",
+                    @"JGB - Jackson Geosci Bldg (GEO)",
+                    @"JON - Jones Hall",
+                    @"LTH _ Lab Theatre Building",
+                    @"MAI - Main Building",
+                    @"MBB - Moffett Molecular Bio Bldg",
+                    @"MEZ - Mezes Hall",
+                    @"MRH - Music Bldg/Recital Hall",
+                    @"NEZ - North End Zone",
+                    @"NHB - Hackerman Building",
+                    @"NMS - Neural Molecular Sci Bldg",
+                    @"NOA - North Office Bldg A",
+                    @"NUR - Nursing School",
+                    @"PAC - Performing Arts Centre",
+                    @"PAI - Painter Hall",
+                    @"PAR - Parlin Hall",
+                    @"PAT - Patterson Labs Bldg",
+                    @"PCL - where dreams go to die",
+                    @"PHR - Pharmacy Building",
+                    @"POB - O'Donnel Jr. Building",
+                    @"RLM - Robert Lee Moore Hall",
+                    @"RSC - Recreational Sports Centre",
+                    @"SAC - Student Activity Centre",
+                    @"SEA - Seay Building",
+                    @"SRH - Richardson Hall",
+                    @"SSB - Student Services Bldg",
+                    @"SSW - School of Social Work Bldg",
+                    @"STD - wear protection",
+                    @"SUT - Sutton Hall",
+                    @"SZB - Sanchez Building",
+                    @"TNH - Townes Hall",
+                    @"TSC - Texas Swimming Centre",
+                    @"UTA - UT Admin Building",
+                    @"UTC - University Teaching Centre",
+                    @"WAG - Waggener Hall",
+                    @"WCH - Hogg Building",
+                    @"WEL - Welch Hall",
+                    @"WIN - Winship Drama Bldg",
+                    @"WMB - West Mall Office Bldg",
+                    @"WRW - Woolrich Labs",
                     nil
     ];
+    
+//    NSMutableArray *ret = [[NSMutableArray alloc] initWithCapacity : [out count] - 1];
+//    for (int i = 0; i < [out count] - 1; i++) {
+//        ret[i] = out[i];
+//    }
     return out;
 }
 
