@@ -4,12 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-UT Study Spots-JVFloatingDrawer.xcscheme</key>
+		<key>Pods-ActionSheetPicker-3.0.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-UT Study Spots.xcscheme</key>
+		<key>Pods-JVFloatingDrawer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3A24C21D903584CB4BE8BC1D</key>
+		<key>2F236C7662FF323871FCE722</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93DEFA30EAB2E9991C8E8F4B</key>
+		<key>4648650DCF374420EC012CF9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77FB9525E06721CA42C32B53</key>
 		<dict>
 			<key>primary</key>
 			<true/>

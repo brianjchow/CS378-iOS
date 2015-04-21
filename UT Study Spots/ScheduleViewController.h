@@ -9,11 +9,14 @@
 
 @interface ScheduleViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *buildingTextField;
+@property (weak, nonatomic) IBOutlet UIButton *buildingButton;
 
-@property (weak, nonatomic) IBOutlet UITextField *roomTextField;
+@property (weak, nonatomic) IBOutlet UIButton *roomButton;
+@property (weak, nonatomic) IBOutlet UIButton *dateButton;
 
-@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+
+
+
 
 - (IBAction)selectBuilding:(id)sender;
 - (IBAction)selectRoom:(id)sender;

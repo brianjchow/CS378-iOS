@@ -8,7 +8,12 @@
 #import "FindRoomNowViewController.h"
 #import "AppDelegate.h"
 
+#import "QueryRandomRoom.h"
+#import "Utilities.h"
+
 @interface FindRoomNowViewController ()
+
+@property (strong, nonatomic) QueryRandomRoom *query;
 
 @end
 
@@ -17,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.query = [[QueryRandomRoom alloc] initWithStartDate:[Utilities get_date]];
+    
 }
 
 - (void)didReceiveMemoryWarning {

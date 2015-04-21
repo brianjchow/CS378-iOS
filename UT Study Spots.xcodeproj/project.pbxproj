@@ -15,7 +15,6 @@
 		0D3C465D1AD7B2C1007B9552 /* FindRoomRandomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C465C1AD7B2C1007B9552 /* FindRoomRandomViewController.m */; };
 		0D3C46601AD7B2E4007B9552 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C465F1AD7B2E4007B9552 /* ScheduleViewController.m */; };
 		0D3C46691AD8F821007B9552 /* LeftDrawerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C46681AD8F821007B9552 /* LeftDrawerTableViewCell.m */; };
-		325C4112A1BBC28939B8F544 /* libPods-UT Study SpotsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53F67D807D0FFAC2A9E06944 /* libPods-UT Study SpotsTests.a */; };
 		78C25D5B5567235091E322CB /* libPods-UT Study Spots.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C5AA1D1A9D4C4D77EEEC80 /* libPods-UT Study Spots.a */; };
 		AA46AAA11AD451E500408B5C /* calendar_events_today_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */; };
 		AA46AAA21AD451E500408B5C /* calendar_rooms_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */; };
@@ -204,7 +203,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				325C4112A1BBC28939B8F544 /* libPods-UT Study SpotsTests.a in Frameworks */,
 				C609455EB38ACB3AE39489C4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

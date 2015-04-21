@@ -18,6 +18,7 @@
 #import "QueryRoomSchedule.h"
 #import "QueryResult.h"
 #import "Utilities.h"
+#import <QuartzCore/QuartzCore.h>
 
 // http://stackoverflow.com/questions/12002905/ios-build-fails-with-cocoapods-cannot-find-header-files
 
@@ -40,12 +41,36 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    //Set up ui
+    [self setUpButtons];
+    
+    
     self.query = [[QueryRoomSchedule alloc] init];
     [self update_rooms_arr];
     
     self.campus_buildings = [self sort : CAMPUS_BUILDINGS_FULLY_QUALIFIED];
     
+    
 //    NSLog(@"\n\n%@\n\n", self.campus_buildings);
+    
+}
+
+- (void) setUpButtons {
+//    [self.buildingButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
+    [self.buildingButton.layer setCornerRadius:5.0f];
+    self.buildingButton.layer.borderWidth = 1;
+    [self.buildingButton.layer setBorderColor:[UIColor colorWithRed:34.0f/255.0f green:207.0f/255.0f blue:200.0f/255.0f alpha:1].CGColor];
+    
+    
+//    [self.roomButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
+    [self.roomButton.layer setCornerRadius:5.0f];
+    self.roomButton.layer.borderWidth = 1;
+    [self.roomButton.layer setBorderColor:[UIColor colorWithRed:34.0f/255.0f green:207.0f/255.0f blue:200.0f/255.0f alpha:1].CGColor];
+    
+//    [self.dateButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
+    [self.dateButton.layer setCornerRadius:5.0f];
+    self.dateButton.layer.borderWidth = 1;
+    [self.dateButton.layer setBorderColor:[UIColor colorWithRed:34.0f/255.0f green:207.0f/255.0f blue:200.0f/255.0f alpha:1].CGColor];
     
 }
 
@@ -122,6 +147,13 @@
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         NSLog(@"Picked building %@", self.campus_buildings[selectedIndex]);
         
+        [self.buildingButton setTitle:self.campus_buildings[selectedIndex]
+                             forState:UIControlStateNormal];
+        self.buildingButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [self.buildingButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
+        [self.buildingButton sizeToFit];
+        
+        
         [self.query set_option_search_building : self.campus_buildings[selectedIndex]];
         [self update_rooms_arr];
     };
@@ -153,6 +185,14 @@
 - (IBAction)selectRoom:(UIControl *)sender {
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         NSLog(@"Picked room %@", self.rooms[selectedIndex]);
+        
+        
+        [self.roomButton setTitle:self.rooms[selectedIndex]
+                             forState:UIControlStateNormal];
+        self.roomButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [self.roomButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
+        [self.roomButton sizeToFit];
+        
         
         [self.query set_option_search_room : self.rooms[selectedIndex]];
     };

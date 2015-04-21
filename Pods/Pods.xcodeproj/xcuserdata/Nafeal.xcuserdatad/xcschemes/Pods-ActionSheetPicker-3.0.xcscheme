@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A24C21D903584CB4BE8BC1D"
-               BuildableName = "libPods-UT Study Spots-JVFloatingDrawer.a"
-               BlueprintName = "Pods-UT Study Spots-JVFloatingDrawer"
+               BlueprintIdentifier = "4648650DCF374420EC012CF9"
+               BuildableName = "libPods-ActionSheetPicker-3.0.a"
+               BlueprintName = "Pods-ActionSheetPicker-3.0"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
