@@ -78,6 +78,19 @@
     [button sizeToFit];
 }
 
+- (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
+    //Locality for Desired Format of Date
+    NSLocale *localityForTimeFormat = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    //Determines what dates should be formatted as
+    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"EdMMMYYY" options:0 locale:localityForTimeFormat];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:formatString];
+    
+    [self didSelectButton:self.dateButton withTitle:[dateFormatter stringFromDate:selectedDate]];
+    
+
+}
 
 - (void) update_rooms_arr {
     NSString *no_rooms_found = @"No rooms found.";
@@ -196,5 +209,58 @@
 };
 
 - (IBAction)selectDate:(UIControl *)sender {
+    //By default max and min = current date
+    NSDate *minimumDate = [Utilities get_date];
+    NSDate *maximumDate = [Utilities get_date];
+    NSDate *currentDate = [Utilities get_date];
+    NSInteger year = currentDate.year;
+    
+    //Decide which semester we  currently are in
+    if([Utilities date_is_during_spring:currentDate]) {
+        minimumDate = [Utilities get_date : SPRING_START_MONTH
+                                   day : SPRING_START_DAY
+                                  year : year
+                                  hour : 0
+                                minute : 0];
+        
+        maximumDate = [Utilities get_date : SPRING_END_MONTH
+                                 day : SPRING_END_DAY
+                                year : year
+                                hour : 0
+                              minute : 0];
+    } else if ([Utilities date_is_during_fall:currentDate]){
+        minimumDate = [Utilities get_date : FALL_START_MONTH
+                                      day : FALL_START_DAY
+                                     year : year
+                                     hour : 0
+                                   minute : 0];
+        
+        maximumDate = [Utilities get_date : FALL_END_MONTH
+                                      day : FALL_END_DAY
+                                     year : year
+                                     hour : 0
+                                   minute : 0];
+        
+    } else if ([Utilities date_is_during_summer:currentDate]) {
+        minimumDate = [Utilities get_date : SUMMER_START_MONTH
+                                      day : SUMMER_START_DAY
+                                     year : year
+                                     hour : 0
+                                   minute : 0];
+        
+        maximumDate = [Utilities get_date : SUMMER_END_MONTH
+                                      day : SUMMER_END_DAY
+                                     year : year
+                                     hour : 0
+                                   minute : 0];
+        
+    }
+    
+    NSLog(@"START DATE: %@, END DATE: %@", minimumDate.description, maximumDate.description);
+    
+    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Choose Date" datePickerMode:UIDatePickerModeDate selectedDate:[Utilities get_date] minimumDate:minimumDate maximumDate:maximumDate target:self action:@selector(dateWasSelected:element:) origin:sender];
+    
+    datePicker.tapDismissAction = TapActionCancel;
+    [datePicker showActionSheetPicker];
 }
 @end
