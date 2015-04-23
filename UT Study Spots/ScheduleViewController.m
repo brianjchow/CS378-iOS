@@ -42,37 +42,42 @@
     // Do any additional setup after loading the view.
     
     //Set up ui
-    [self setUpButtons];
-    
+    [self setUpButtonUI:self.buildingButton];
+    [self setUpButtonUI:self.roomButton];
+    [self setUpButtonUI:self.dateButton];
     
     self.query = [[QueryRoomSchedule alloc] init];
     [self update_rooms_arr];
     
     self.campus_buildings = [self sort : CAMPUS_BUILDINGS_FULLY_QUALIFIED];
     
-    
 //    NSLog(@"\n\n%@\n\n", self.campus_buildings);
     
 }
 
-- (void) setUpButtons {
-//    [self.buildingButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
-    [self.buildingButton.layer setCornerRadius:5.0f];
-    self.buildingButton.layer.borderWidth = 1;
-    [self.buildingButton.layer setBorderColor:[UIColor colorWithRed:34.0f/255.0f green:207.0f/255.0f blue:200.0f/255.0f alpha:1].CGColor];
+
+
+
+- (void) setUpButtonUI:(UIButton *) button {
     
-    
-//    [self.roomButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
-    [self.roomButton.layer setCornerRadius:5.0f];
-    self.roomButton.layer.borderWidth = 1;
-    [self.roomButton.layer setBorderColor:[UIColor colorWithRed:34.0f/255.0f green:207.0f/255.0f blue:200.0f/255.0f alpha:1].CGColor];
-    
-//    [self.dateButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
-    [self.dateButton.layer setCornerRadius:5.0f];
-    self.dateButton.layer.borderWidth = 1;
-    [self.dateButton.layer setBorderColor:[UIColor colorWithRed:34.0f/255.0f green:207.0f/255.0f blue:200.0f/255.0f alpha:1].CGColor];
+    [button.layer setCornerRadius:5.0f];
+    button.layer.borderWidth = 1;
+    [button.layer setBorderColor:[UIColor colorWithRed:34.0f/255.0f green:128.0f/255.0f blue:207.0f/255.0f alpha:1].CGColor];
     
 }
+
+- (void) didSelectButton:(UIButton *) button withTitle:(NSString *) title {
+    [button setTitle:title forState:UIControlStateNormal];
+    
+    if(button.contentHorizontalAlignment != UIControlContentHorizontalAlignmentLeft){
+        NSLog(@"Changing alignment to left alignment");
+        [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    }
+    
+    [button setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
+    [button sizeToFit];
+}
+
 
 - (void) update_rooms_arr {
     NSString *no_rooms_found = @"No rooms found.";
@@ -122,15 +127,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Actions
 
@@ -147,12 +143,7 @@
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         NSLog(@"Picked building %@", self.campus_buildings[selectedIndex]);
         
-        [self.buildingButton setTitle:self.campus_buildings[selectedIndex]
-                             forState:UIControlStateNormal];
-        self.buildingButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [self.buildingButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
-        [self.buildingButton sizeToFit];
-        
+        [self didSelectButton:self.buildingButton withTitle:self.campus_buildings[selectedIndex]];
         
         [self.query set_option_search_building : self.campus_buildings[selectedIndex]];
         [self update_rooms_arr];
@@ -186,14 +177,7 @@
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         NSLog(@"Picked room %@", self.rooms[selectedIndex]);
         
-        
-        [self.roomButton setTitle:self.rooms[selectedIndex]
-                             forState:UIControlStateNormal];
-        self.roomButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [self.roomButton setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
-        [self.roomButton sizeToFit];
-        
-        
+        [self didSelectButton:self.roomButton withTitle:self.rooms[selectedIndex]];
         [self.query set_option_search_room : self.rooms[selectedIndex]];
     };
     ActionStringCancelBlock cancelBlock = ^(ActionSheetStringPicker *picker) {
