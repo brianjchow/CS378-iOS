@@ -23,8 +23,8 @@
 
 //Centers
 @property (nonatomic, strong) UIViewController *findRoomNowViewController;
-@property (nonatomic, strong) UIViewController *findRoomLaterViewController;
-@property (nonatomic, strong) UIViewController *findRoomRandomViewController;
+//@property (nonatomic, strong) UIViewController *findRoomLaterViewController;
+//@property (nonatomic, strong) UIViewController *findRoomRandomViewController;
 @property (nonatomic, strong) UIViewController *scheduleViewController;
 
 

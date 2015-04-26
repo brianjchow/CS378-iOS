@@ -205,6 +205,7 @@
         // TODO - throw IAException
     }
     
+    building_code = [building_code substring : 0 stop : 3];
     building_code = [building_code uppercaseString];
     self.search_building = building_code;
 

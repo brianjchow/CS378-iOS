@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -16,144 +16,12 @@
                         <color key="barTintColor" red="0.13333333333333333" green="0.50196078431372548" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ZGX-Xh-PXO" kind="relationship" relationship="rootViewController" id="oGe-cW-hkX"/>
+                        <segue destination="GOT-u7-YOo" kind="relationship" relationship="rootViewController" id="HAf-OI-ZCy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WzP-0g-J1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1468.5" y="112.5"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="vKL-R4-Whj">
-            <objects>
-                <navigationController storyboardIdentifier="FindRoomLaterViewControllerStoryboardID" id="g5g-cg-ae5" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d5x-zt-5A9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.81176470588235294" green="0.13333333333333333" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="g37-nB-Qqs" kind="relationship" relationship="rootViewController" id="S69-H1-RK0"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mNJ-cJ-JDP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1017.5" y="112.5"/>
-        </scene>
-        <!--Find Room Now View Controller-->
-        <scene sceneID="Own-ga-feb">
-            <objects>
-                <viewController id="ZGX-Xh-PXO" customClass="FindRoomNowViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9yL-Z0-VUA"/>
-                        <viewControllerLayoutGuide type="bottom" id="HaT-ek-4Lk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="K13-an-M2P">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Find Room Now" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="18v-Ph-Niu">
-                                <rect key="frame" x="125" y="319" width="125" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="wuM-GG-YHo">
-                        <barButtonItem key="leftBarButtonItem" image="399-list1" id="afn-4j-Fop">
-                            <connections>
-                                <action selector="actionToggleLeftDrawer:" destination="ZGX-Xh-PXO" id="QTB-Np-cGW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rrD-KP-9vZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1468.5" y="896.5"/>
-        </scene>
-        <!--Find Room Later View Controller-->
-        <scene sceneID="HZr-Gf-g6h">
-            <objects>
-                <viewController id="g37-nB-Qqs" customClass="FindRoomLaterViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CJI-z3-wcf"/>
-                        <viewControllerLayoutGuide type="bottom" id="nWd-Eo-PkM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vj3-3P-DOE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Find Room Later" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YSR-Of-jEv">
-                                <rect key="frame" x="125" y="319" width="129" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="BZK-Js-RXq">
-                        <barButtonItem key="leftBarButtonItem" image="399-list1" id="QgI-Og-Bka">
-                            <connections>
-                                <action selector="actionToggleLeftDrawer:" destination="g37-nB-Qqs" id="8Bl-6x-qxO"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1xX-Pt-LX3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1017.5" y="896.5"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="FIk-Ky-07O">
-            <objects>
-                <navigationController storyboardIdentifier="FindRoomRandomViewControllerStoryboardID" id="iHO-VL-fc8" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dIU-Ie-xR6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.50196078431372548" green="0.81176470588235294" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Is5-b3-6sx" kind="relationship" relationship="rootViewController" id="5At-rk-Nhx"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="udH-Di-0n2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-572.5" y="112.5"/>
-        </scene>
-        <!--Find Room Random View Controller-->
-        <scene sceneID="T2t-0n-hck">
-            <objects>
-                <viewController id="Is5-b3-6sx" customClass="FindRoomRandomViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="raD-gI-SQJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="9Oc-qn-Abr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IvN-BV-XZa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Find Random Room" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ONQ-W9-9MT">
-                                <rect key="frame" x="112" y="319" width="150" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="D6n-HT-cU4">
-                        <barButtonItem key="leftBarButtonItem" image="399-list1" id="UF0-Ln-KXk">
-                            <connections>
-                                <action selector="actionToggleLeftDrawer:" destination="Is5-b3-6sx" id="gMT-9j-BhQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Srh-Eh-2Zc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-572.5" y="896.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="d1n-DO-XA1">
@@ -174,7 +42,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vuf-S8-hXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-118.5" y="112.5"/>
+            <point key="canvasLocation" x="-1030.5" y="112.5"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="dvT-4a-3u4">
@@ -201,7 +69,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sEB-ON-3U6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="343.5" y="896.5"/>
+            <point key="canvasLocation" x="-588.5" y="896.5"/>
         </scene>
         <!--Left Drawer Table View Controller-->
         <scene sceneID="SaR-Gt-euC">
@@ -279,6 +147,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="B7b-mc-Jt4">
+                            <rect key="frame" x="0.0" y="256" width="375" height="352"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <sections>
                             <tableViewSection headerTitle="Search options" id="al2-Vv-to3">
                                 <cells>
@@ -359,7 +231,139 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOw-Rt-eh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-118.5" y="896.5"/>
+            <point key="canvasLocation" x="-1030.5" y="896.5"/>
+        </scene>
+        <!--Find Room-->
+        <scene sceneID="LEN-2w-4p0">
+            <objects>
+                <tableViewController id="GOT-u7-YOo" customClass="FindRoomNowViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="xbb-FZ-lKT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="bau-uV-bk9">
+                            <rect key="frame" x="0.0" y="344" width="375" height="264"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <sections>
+                            <tableViewSection headerTitle="Search options" id="vqN-hZ-kJF">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Pkj-eD-xUj">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pkj-eD-xUj" id="8B6-0h-oy9">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecx-Se-35F">
+                                                    <rect key="frame" x="8" y="7" width="359" height="30"/>
+                                                    <state key="normal" title="Choose Building">
+                                                        <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="selectBuilding:" destination="GOT-u7-YOo" eventType="touchDown" id="B0H-n5-4TE"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ae6-5S-oXL">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ae6-5S-oXL" id="ZkX-gg-f6L">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NZm-6q-HvQ">
+                                                    <rect key="frame" x="8" y="7" width="359" height="30"/>
+                                                    <state key="normal" title="Choose Date">
+                                                        <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="selectDate:" destination="GOT-u7-YOo" eventType="touchDown" id="pa4-Ub-wqe"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Sk8-fO-cLM">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sk8-fO-cLM" id="baz-Vq-adX">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAC-yZ-bpJ">
+                                                    <rect key="frame" x="8" y="7" width="359" height="30"/>
+                                                    <state key="normal" title="Choose Time">
+                                                        <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="selectTime:" destination="GOT-u7-YOo" eventType="touchDown" id="hu4-rE-ed2"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FQV-ok-YZ5">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FQV-ok-YZ5" id="bp6-A8-8hq">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVn-ni-6RT">
+                                                    <rect key="frame" x="8" y="7" width="359" height="30"/>
+                                                    <state key="normal" title="Choose Duration">
+                                                        <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="selectDuration:" destination="GOT-u7-YOo" eventType="touchDown" id="d5E-oT-lw0"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Sbz-Qg-Unt">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sbz-Qg-Unt" id="BUE-sH-5Gn">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33y-YH-vvs">
+                                                    <rect key="frame" x="8" y="7" width="359" height="30"/>
+                                                    <state key="normal" title="Is you need power for erryone?">
+                                                        <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="selectPower:" destination="GOT-u7-YOo" eventType="touchDown" id="lZ8-BC-OYo"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="GOT-u7-YOo" id="eL4-oe-Nsp"/>
+                            <outlet property="delegate" destination="GOT-u7-YOo" id="3X3-Qj-6cW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Find Room" id="19m-ds-ui4">
+                        <barButtonItem key="leftBarButtonItem" image="399-list1" id="Yq7-JK-GMK">
+                            <connections>
+                                <action selector="actionToggleLeftDrawer:" destination="GOT-u7-YOo" id="tuO-Q2-IBz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="buildingButton" destination="ecx-Se-35F" id="Uep-WJ-6KA"/>
+                        <outlet property="dateButton" destination="NZm-6q-HvQ" id="1aI-xO-anh"/>
+                        <outlet property="durationButton" destination="uVn-ni-6RT" id="6gU-q2-bGK"/>
+                        <outlet property="powerButton" destination="33y-YH-vvs" id="Djf-M6-Kgq"/>
+                        <outlet property="timeButton" destination="NAC-yZ-bpJ" id="C4U-xH-7ko"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T4C-h6-67u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1468.5" y="896.5"/>
         </scene>
     </scenes>
     <resources>

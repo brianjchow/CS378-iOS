@@ -235,7 +235,13 @@
         // TODO - throw IAException
     }
     
-    return [CourseScheduleDatabaseManager get_courses : building_code db_filename : db_filename];
+    NSDictionary *out = [CourseScheduleDatabaseManager get_courses : building_code db_filename : db_filename];
+    
+//    NSLog(@"\n\n\n%@\n\n\n", out);
+    
+    return out;
+    
+//    return [CourseScheduleDatabaseManager get_courses : building_code db_filename : db_filename];
 }
 
 - (NSArray *) get_values {

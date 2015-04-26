@@ -13,6 +13,7 @@
 
 #import "Building.h"
 #import "Constants.h"
+#import "NSArray+Tools.h"
 #import "NSString+Tools.h"
 #import "Query.h"
 #import "QueryRoomSchedule.h"
@@ -33,10 +34,6 @@
 
 @implementation ScheduleViewController
 
-- (NSArray *) sort : (NSArray *) array {
-    return ([array sortedArrayUsingSelector : @selector(localizedCaseInsensitiveCompare : )]);
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -49,21 +46,17 @@
     self.query = [[QueryRoomSchedule alloc] init];
     [self update_rooms_arr];
     
-    self.campus_buildings = [self sort : CAMPUS_BUILDINGS_FULLY_QUALIFIED];
+    self.campus_buildings = [CAMPUS_BUILDINGS_FULLY_QUALIFIED sort_ascending];
     
 //    NSLog(@"\n\n%@\n\n", self.campus_buildings);
     
 }
-
-
-
 
 - (void) setUpButtonUI:(UIButton *) button {
     
     [button.layer setCornerRadius:5.0f];
     button.layer.borderWidth = 1;
     [button.layer setBorderColor:[UIColor colorWithRed:34.0f/255.0f green:128.0f/255.0f blue:207.0f/255.0f alpha:1].CGColor];
-    
 }
 
 - (void) didSelectButton:(UIButton *) button withTitle:(NSString *) title {
@@ -88,8 +81,6 @@
     [dateFormatter setDateFormat:formatString];
     
     [self didSelectButton:self.dateButton withTitle:[dateFormatter stringFromDate:selectedDate]];
-    
-
 }
 
 - (void) update_rooms_arr {
@@ -109,7 +100,7 @@
             self.rooms = @[ no_rooms_found];
         }
         else {
-            self.rooms = [self sort : [roomset array]];
+            self.rooms = [[roomset array] sort_ascending];
             
             if ([search_building_str is_gdc]) {
                 
@@ -205,6 +196,7 @@
 
 - (IBAction)selectBuilding:(UIControl *)sender {
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        
         NSLog(@"Picked building %@", self.campus_buildings[selectedIndex]);
         
         [self didSelectButton:self.buildingButton withTitle:self.campus_buildings[selectedIndex]];
@@ -242,6 +234,9 @@
         NSLog(@"Picked room %@", self.rooms[selectedIndex]);
         
         [self didSelectButton:self.roomButton withTitle:self.rooms[selectedIndex]];
+        
+        NSLog(@"Picked room %@", selectedValue);
+        
         [self.query set_option_search_room : self.rooms[selectedIndex]];
     };
     ActionStringCancelBlock cancelBlock = ^(ActionSheetStringPicker *picker) {
@@ -262,7 +257,7 @@
 - (IBAction)selectDate:(UIControl *)sender {
     NSArray *currentMaxMinDateArray = [self getSemesterBoundsBasedOnCurrentDate];
     
-    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Choose Date" datePickerMode:UIDatePickerModeDate selectedDate:currentMaxMinDateArray[0] minimumDate:currentMaxMinDateArray[1] maximumDate:currentMaxMinDateArray[2] target:self action:@selector(dateWasSelected:element:) origin:sender];
+    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Select Date" datePickerMode:UIDatePickerModeDate selectedDate:currentMaxMinDateArray[0] minimumDate:currentMaxMinDateArray[1] maximumDate:currentMaxMinDateArray[2] target:self action:@selector(dateWasSelected:element:) origin:sender];
     
     datePicker.tapDismissAction = TapActionCancel;
     [datePicker showActionSheetPicker];

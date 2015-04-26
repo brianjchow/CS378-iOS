@@ -11,14 +11,13 @@
 		0D04E7041AD742C000890EE9 /* LeftDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D04E7031AD742C000890EE9 /* LeftDrawerTableViewController.m */; };
 		0D3C46541AD78EB5007B9552 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D3C46531AD78EB5007B9552 /* Main.storyboard */; };
 		0D3C46571AD7B292007B9552 /* FindRoomNowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C46561AD7B292007B9552 /* FindRoomNowViewController.m */; };
-		0D3C465A1AD7B2AC007B9552 /* FindRoomLaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C46591AD7B2AC007B9552 /* FindRoomLaterViewController.m */; };
-		0D3C465D1AD7B2C1007B9552 /* FindRoomRandomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C465C1AD7B2C1007B9552 /* FindRoomRandomViewController.m */; };
 		0D3C46601AD7B2E4007B9552 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C465F1AD7B2E4007B9552 /* ScheduleViewController.m */; };
 		0D3C46691AD8F821007B9552 /* LeftDrawerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C46681AD8F821007B9552 /* LeftDrawerTableViewCell.m */; };
 		78C25D5B5567235091E322CB /* libPods-UT Study Spots.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C5AA1D1A9D4C4D77EEEC80 /* libPods-UT Study Spots.a */; };
 		AA46AAA11AD451E500408B5C /* calendar_events_today_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */; };
 		AA46AAA21AD451E500408B5C /* calendar_rooms_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */; };
 		AA46AAA31AD451E500408B5C /* calendar_events_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */; };
+		AA846C961AED9ED5002442D3 /* NSArray+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AA846C951AED9ED5002442D3 /* NSArray+Tools.m */; };
 		AA992E3C1AC4E8DF00637C96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E3B1AC4E8DF00637C96 /* main.m */; };
 		AA992E3F1AC4E8DF00637C96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E3E1AC4E8DF00637C96 /* AppDelegate.m */; };
 		AA992E421AC4E8DF00637C96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E411AC4E8DF00637C96 /* ViewController.m */; };
@@ -82,10 +81,6 @@
 		0D3C46531AD78EB5007B9552 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0D3C46551AD7B292007B9552 /* FindRoomNowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindRoomNowViewController.h; sourceTree = "<group>"; };
 		0D3C46561AD7B292007B9552 /* FindRoomNowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindRoomNowViewController.m; sourceTree = "<group>"; };
-		0D3C46581AD7B2AC007B9552 /* FindRoomLaterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindRoomLaterViewController.h; sourceTree = "<group>"; };
-		0D3C46591AD7B2AC007B9552 /* FindRoomLaterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindRoomLaterViewController.m; sourceTree = "<group>"; };
-		0D3C465B1AD7B2C1007B9552 /* FindRoomRandomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindRoomRandomViewController.h; sourceTree = "<group>"; };
-		0D3C465C1AD7B2C1007B9552 /* FindRoomRandomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindRoomRandomViewController.m; sourceTree = "<group>"; };
 		0D3C465E1AD7B2E4007B9552 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		0D3C465F1AD7B2E4007B9552 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		0D3C46671AD8F821007B9552 /* LeftDrawerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftDrawerTableViewCell.h; sourceTree = "<group>"; };
@@ -100,6 +95,8 @@
 		AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_today_feed_0604.csv; sourceTree = "<group>"; };
 		AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_rooms_feed_0604.csv; sourceTree = "<group>"; };
 		AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_feed_0604.csv; sourceTree = "<group>"; };
+		AA846C941AED9EC8002442D3 /* NSArray+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Tools.h"; sourceTree = "<group>"; };
+		AA846C951AED9ED5002442D3 /* NSArray+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Tools.m"; sourceTree = "<group>"; };
 		AA992E361AC4E8DF00637C96 /* UT Study Spots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UT Study Spots.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA992E3A1AC4E8DF00637C96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA992E3B1AC4E8DF00637C96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -287,6 +284,8 @@
 				AAC99F621ACBA60500BBBF75 /* Stopwatch.m */,
 				AA992E3A1AC4E8DF00637C96 /* Info.plist */,
 				AA992E3B1AC4E8DF00637C96 /* main.m */,
+				AA846C941AED9EC8002442D3 /* NSArray+Tools.h */,
+				AA846C951AED9ED5002442D3 /* NSArray+Tools.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -407,12 +406,8 @@
 		AAC99F671ACBB61700BBBF75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0D3C465B1AD7B2C1007B9552 /* FindRoomRandomViewController.h */,
-				0D3C465C1AD7B2C1007B9552 /* FindRoomRandomViewController.m */,
 				0D3C46551AD7B292007B9552 /* FindRoomNowViewController.h */,
 				0D3C46561AD7B292007B9552 /* FindRoomNowViewController.m */,
-				0D3C46581AD7B2AC007B9552 /* FindRoomLaterViewController.h */,
-				0D3C46591AD7B2AC007B9552 /* FindRoomLaterViewController.m */,
 				0D3C465E1AD7B2E4007B9552 /* ScheduleViewController.h */,
 				0D3C465F1AD7B2E4007B9552 /* ScheduleViewController.m */,
 				AAC99F641ACBB5F500BBBF75 /* LoadViewController.h */,
@@ -608,12 +603,10 @@
 				AA992E911AC67E6000637C96 /* DTTimePeriod.m in Sources */,
 				AA992E941AC67E6000637C96 /* DTTimePeriodGroup.m in Sources */,
 				AA992E741AC55C3800637C96 /* Room.m in Sources */,
-				0D3C465D1AD7B2C1007B9552 /* FindRoomRandomViewController.m in Sources */,
 				AA992E421AC4E8DF00637C96 /* ViewController.m in Sources */,
 				AA992E931AC67E6000637C96 /* DTTimePeriodCollection.m in Sources */,
 				AA992E781AC55C6600637C96 /* Building.m in Sources */,
 				0D3C46571AD7B292007B9552 /* FindRoomNowViewController.m in Sources */,
-				0D3C465A1AD7B2AC007B9552 /* FindRoomLaterViewController.m in Sources */,
 				AA992E6B1AC55B0500637C96 /* CSVReader.m in Sources */,
 				AA992E3F1AC4E8DF00637C96 /* AppDelegate.m in Sources */,
 				0D3C46691AD8F821007B9552 /* LeftDrawerTableViewCell.m in Sources */,
@@ -639,6 +632,7 @@
 				AA992E611AC4E91800637C96 /* Constants.m in Sources */,
 				AAC99F2F1AC8B63500BBBF75 /* NSMutableString+Stack.m in Sources */,
 				AAC99F601ACBA5BD00BBBF75 /* ConnectionManager.m in Sources */,
+				AA846C961AED9ED5002442D3 /* NSArray+Tools.m in Sources */,
 				AA992E671AC5262000637C96 /* Location.m in Sources */,
 				AA992E641AC4E93A00637C96 /* Utilities.m in Sources */,
 			);

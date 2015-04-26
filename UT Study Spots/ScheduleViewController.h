@@ -10,13 +10,8 @@
 @interface ScheduleViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *buildingButton;
-
 @property (weak, nonatomic) IBOutlet UIButton *roomButton;
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
-
-
-
-
 
 - (IBAction)selectBuilding:(id)sender;
 - (IBAction)selectRoom:(id)sender;

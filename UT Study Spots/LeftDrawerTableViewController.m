@@ -12,10 +12,12 @@
 
 enum {
     FindRoomNowIndex    = 0,
-    FindRoomLaterIndex  = 1,
-    FindRoomRandomIndex = 2,
-    ScheduleIndex       = 3
+//    FindRoomLaterIndex  = 1,
+//    FindRoomRandomIndex = 2,
+    ScheduleIndex       = 1
 };
+
+static const int NUM_DRAWERS = 2;
 
 static NSString *const leftDrawerCellID = @"LeftDrawerReusableCellID";
 static const CGFloat TableViewTopInset = 80.0;
@@ -61,7 +63,7 @@ static const CGFloat TableViewTopInset = 80.0;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 4;
+    return NUM_DRAWERS;
 }
 
 
@@ -76,15 +78,15 @@ static const CGFloat TableViewTopInset = 80.0;
             cell.iconImage = [UIImage imageNamed:@"RoomNow"];
             break;
             
-        case FindRoomLaterIndex:
-            cell.titleText = @"Find Room Later";
-            cell.iconImage = [UIImage imageNamed:@"RoomLater"];
-            break;
-            
-        case FindRoomRandomIndex:
-            cell.titleText = @"Find Random Room";
-            cell.iconImage = [UIImage imageNamed:@"RoomRandom"];
-            break;
+//        case FindRoomLaterIndex:
+//            cell.titleText = @"Find Room Later";
+//            cell.iconImage = [UIImage imageNamed:@"RoomLater"];
+//            break;
+//            
+//        case FindRoomRandomIndex:
+//            cell.titleText = @"Find Random Room";
+//            cell.iconImage = [UIImage imageNamed:@"RoomRandom"];
+//            break;
             
         case ScheduleIndex:
             cell.titleText = @"Room Schedules";
@@ -99,11 +101,14 @@ static const CGFloat TableViewTopInset = 80.0;
     
     if(indexPath.row == FindRoomNowIndex) {
         destinationViewController = [[AppDelegate globalDelegate] findRoomNowViewController];
-    } else if(indexPath.row == FindRoomLaterIndex) {
-        destinationViewController = [[AppDelegate globalDelegate] findRoomLaterViewController];
-    } else if(indexPath.row == FindRoomRandomIndex) {
-        destinationViewController = [[AppDelegate globalDelegate] findRoomRandomViewController];
-    } else {
+    }
+//    else if(indexPath.row == FindRoomLaterIndex) {
+//        destinationViewController = [[AppDelegate globalDelegate] findRoomLaterViewController];
+//    }
+//    else if(indexPath.row == FindRoomRandomIndex) {
+//        destinationViewController = [[AppDelegate globalDelegate] findRoomRandomViewController];
+//    }
+    else {
         destinationViewController = [[AppDelegate globalDelegate] scheduleViewController];
     }
     

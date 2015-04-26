@@ -17,8 +17,8 @@ static NSString* const leftDrawerStoryboardID = @"LeftDrawerTableViewControllerS
 
 //Centers
 static NSString* const findRoomNowStoryboardID = @"FindRoomNowViewControllerStoryboardID";
-static NSString* const findRoomLaterStoryboardID = @"FindRoomLaterViewControllerStoryboardID";
-static NSString* const findRoomRandomStoryboardID = @"FindRoomRandomViewControllerStoryboardID";
+//static NSString* const findRoomLaterStoryboardID = @"FindRoomLaterViewControllerStoryboardID";
+//static NSString* const findRoomRandomStoryboardID = @"FindRoomRandomViewControllerStoryboardID";
 static NSString* const scheduleStoryboardID = @"ScheduleViewControllerStoryboardID";
 
 @interface AppDelegate ()
@@ -52,8 +52,6 @@ static NSString* const scheduleStoryboardID = @"ScheduleViewControllerStoryboard
     
     self.drawerViewController.animator = self.drawerAnimator;
 
-    
-    
     [self.drawerViewController setBackgroundImage:[UIImage imageNamed:@"drawerBackgroundImage"]];
     
 }
@@ -118,19 +116,19 @@ static NSString* const scheduleStoryboardID = @"ScheduleViewControllerStoryboard
     return _findRoomNowViewController;
 }
 
-- (UIViewController *)findRoomLaterViewController{
-    if (!_findRoomLaterViewController){
-        _findRoomLaterViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:findRoomLaterStoryboardID];
-    }
-    return _findRoomLaterViewController;
-}
-
-- (UIViewController *)findRoomRandomViewController{
-    if (!_findRoomRandomViewController){
-        _findRoomRandomViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:findRoomRandomStoryboardID];
-    }
-    return _findRoomRandomViewController;
-}
+//- (UIViewController *)findRoomLaterViewController{
+//    if (!_findRoomLaterViewController){
+//        _findRoomLaterViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:findRoomLaterStoryboardID];
+//    }
+//    return _findRoomLaterViewController;
+//}
+//
+//- (UIViewController *)findRoomRandomViewController{
+//    if (!_findRoomRandomViewController){
+//        _findRoomRandomViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:findRoomRandomStoryboardID];
+//    }
+//    return _findRoomRandomViewController;
+//}
 
 - (UIViewController *)scheduleViewController{
     if (!_scheduleViewController){
