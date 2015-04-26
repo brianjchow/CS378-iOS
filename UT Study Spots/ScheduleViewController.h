@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScheduleViewController : UITableViewController
+@interface ScheduleViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *buildingButton;
 
@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 
 
 

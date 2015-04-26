@@ -58,6 +58,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaK-pj-G48">
+                                <rect key="frame" x="8" y="391" width="359" height="30"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="AVj-GJ-72h" kind="show" id="4Ir-ZO-rXM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -104,6 +114,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1xX-Pt-LX3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1017.5" y="896.5"/>
+        </scene>
+        <!--Search Results View Controller-->
+        <scene sceneID="X3N-nN-QqC">
+            <objects>
+                <viewController id="AVj-GJ-72h" customClass="SearchResultsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cBm-3C-38O"/>
+                        <viewControllerLayoutGuide type="bottom" id="qay-m6-XI2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bxx-ry-m07">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uI-j6-8zR">
+                                <rect key="frame" x="166" y="72" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="56k-eS-Tc1">
+                                <rect key="frame" x="0.0" y="153" width="375" height="514"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="resultCell" textLabel="kt1-7A-QPQ" style="IBUITableViewCellStyleDefault" id="8sA-uk-Nt2">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8sA-uk-Nt2" id="mAs-Na-xTW">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kt1-7A-QPQ">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="AVj-GJ-72h" id="ZOU-ij-Sgf"/>
+                                    <outlet property="delegate" destination="AVj-GJ-72h" id="j7L-ne-POW"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jCs-Kk-vKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-816.5" y="2022.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FIk-Ky-07O">
@@ -169,12 +230,79 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="yht-DI-4ix" kind="relationship" relationship="rootViewController" id="7Fs-XK-eau"/>
+                        <segue destination="Un0-xG-yWA" kind="relationship" relationship="rootViewController" id="UPL-t6-yME"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vuf-S8-hXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-118.5" y="112.5"/>
+        </scene>
+        <!--Get Room Schedule-->
+        <scene sceneID="qML-FD-bZm">
+            <objects>
+                <viewController id="Un0-xG-yWA" customClass="ScheduleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vWc-GI-2p1"/>
+                        <viewControllerLayoutGuide type="bottom" id="SE3-l6-t49"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n2x-e0-ezK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y60-5U-Ehk">
+                                <rect key="frame" x="8" y="141" width="359" height="30"/>
+                                <state key="normal" title="Choose Date">
+                                    <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectDate:" destination="Un0-xG-yWA" eventType="touchDown" id="Mk6-JY-itO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTu-G1-tP5">
+                                <rect key="frame" x="8" y="95" width="359" height="30"/>
+                                <state key="normal" title="Choose Building">
+                                    <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectBuilding:" destination="Un0-xG-yWA" eventType="touchDown" id="5N7-lj-ZsT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgJ-BP-lsb">
+                                <rect key="frame" x="8" y="186" width="359" height="30"/>
+                                <state key="normal" title="Choose Room">
+                                    <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectRoom:" destination="Un0-xG-yWA" eventType="touchDown" id="lpW-th-g5z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4S-Ac-YWz">
+                                <rect key="frame" x="8" y="268" width="359" height="30"/>
+                                <state key="normal" title="Search">
+                                    <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="AVj-GJ-72h" kind="show" identifier="toSearchResults" id="sWq-KF-9rE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Get Room Schedule" id="h04-3O-X76"/>
+                    <connections>
+                        <outlet property="buildingButton" destination="LTu-G1-tP5" id="QOl-u4-hEp"/>
+                        <outlet property="dateButton" destination="y60-5U-Ehk" id="fmB-Ce-Jh9"/>
+                        <outlet property="roomButton" destination="RgJ-BP-lsb" id="1ss-6P-Uyk"/>
+                        <outlet property="searchButton" destination="A4S-Ac-YWz" id="17d-iI-Jfs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lSt-Pp-4fS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-108" y="887"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="dvT-4a-3u4">
@@ -271,12 +399,31 @@
             </objects>
             <point key="canvasLocation" x="-1894.5" y="896.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="RUG-dO-Vb6">
+            <objects>
+                <viewController id="0Zg-y6-I2N" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vjt-GO-zVm"/>
+                        <viewControllerLayoutGuide type="bottom" id="YeQ-tQ-hYQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NPh-xs-VKo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rb4-Xq-rN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1894.5" y="1681.5"/>
+        </scene>
         <!--Get Room Schedule-->
         <scene sceneID="Sm7-f2-ESk">
             <objects>
                 <tableViewController id="yht-DI-4ix" customClass="ScheduleViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hhh-Nk-Yao">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -355,15 +502,19 @@
                         <outlet property="buildingButton" destination="XlF-iI-8Xg" id="jtY-dX-jPE"/>
                         <outlet property="dateButton" destination="lMm-gd-x78" id="ra0-6a-mLb"/>
                         <outlet property="roomButton" destination="nFg-MW-fZU" id="QyL-E8-4FX"/>
+                        <outlet property="searchOptionsTableView" destination="hhh-Nk-Yao" id="Vwp-vY-eJn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOw-Rt-eh0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-118.5" y="896.5"/>
+            <point key="canvasLocation" x="800" y="43"/>
         </scene>
     </scenes>
     <resources>
         <image name="399-list1" width="19" height="15"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sWq-KF-9rE"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

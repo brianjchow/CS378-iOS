@@ -7,6 +7,7 @@
 
 #import "FindRoomNowViewController.h"
 #import "AppDelegate.h"
+#import "SearchResultsViewController.h"
 
 #import "QueryRandomRoom.h"
 #import "Utilities.h"
@@ -25,6 +26,21 @@
     self.query = [[QueryRandomRoom alloc] initWithStartDate:[Utilities get_date]];
     
 }
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([[segue identifier] isEqualToString:@"toSearchResults"]) {
+        
+        SearchResultsViewController *dest = [segue destinationViewController];
+        
+        
+    }
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

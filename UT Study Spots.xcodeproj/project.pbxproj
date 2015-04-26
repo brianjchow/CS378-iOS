@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0849B7A80910F58753B3F88C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1230FF08FD03CA1D7BC74B /* libPods.a */; };
 		0D04E7041AD742C000890EE9 /* LeftDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D04E7031AD742C000890EE9 /* LeftDrawerTableViewController.m */; };
+		0D3568261AEDA1DE0068F654 /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3568251AEDA1DE0068F654 /* SearchResultsViewController.m */; };
+		0D3568291AEDA7A70068F654 /* LoadingViewUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3568281AEDA7A70068F654 /* LoadingViewUIView.m */; };
 		0D3C46541AD78EB5007B9552 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D3C46531AD78EB5007B9552 /* Main.storyboard */; };
 		0D3C46571AD7B292007B9552 /* FindRoomNowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C46561AD7B292007B9552 /* FindRoomNowViewController.m */; };
 		0D3C465A1AD7B2AC007B9552 /* FindRoomLaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3C46591AD7B2AC007B9552 /* FindRoomLaterViewController.m */; };
@@ -79,6 +81,10 @@
 /* Begin PBXFileReference section */
 		0D04E7021AD742C000890EE9 /* LeftDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftDrawerTableViewController.h; sourceTree = "<group>"; };
 		0D04E7031AD742C000890EE9 /* LeftDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftDrawerTableViewController.m; sourceTree = "<group>"; };
+		0D3568241AEDA1DE0068F654 /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		0D3568251AEDA1DE0068F654 /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		0D3568271AEDA7A70068F654 /* LoadingViewUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewUIView.h; sourceTree = "<group>"; };
+		0D3568281AEDA7A70068F654 /* LoadingViewUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewUIView.m; sourceTree = "<group>"; };
 		0D3C46531AD78EB5007B9552 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0D3C46551AD7B292007B9552 /* FindRoomNowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindRoomNowViewController.h; sourceTree = "<group>"; };
 		0D3C46561AD7B292007B9552 /* FindRoomNowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindRoomNowViewController.m; sourceTree = "<group>"; };
@@ -415,6 +421,8 @@
 				0D3C46591AD7B2AC007B9552 /* FindRoomLaterViewController.m */,
 				0D3C465E1AD7B2E4007B9552 /* ScheduleViewController.h */,
 				0D3C465F1AD7B2E4007B9552 /* ScheduleViewController.m */,
+				0D3568241AEDA1DE0068F654 /* SearchResultsViewController.h */,
+				0D3568251AEDA1DE0068F654 /* SearchResultsViewController.m */,
 				AAC99F641ACBB5F500BBBF75 /* LoadViewController.h */,
 				AAC99F651ACBB60400BBBF75 /* LoadViewController.m */,
 				AA992E401AC4E8DF00637C96 /* ViewController.h */,
@@ -423,6 +431,8 @@
 				0D04E7031AD742C000890EE9 /* LeftDrawerTableViewController.m */,
 				0D3C46671AD8F821007B9552 /* LeftDrawerTableViewCell.h */,
 				0D3C46681AD8F821007B9552 /* LeftDrawerTableViewCell.m */,
+				0D3568271AEDA7A70068F654 /* LoadingViewUIView.h */,
+				0D3568281AEDA7A70068F654 /* LoadingViewUIView.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -603,6 +613,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D3568261AEDA1DE0068F654 /* SearchResultsViewController.m in Sources */,
 				AAC99F321AC9072900BBBF75 /* QueryResult.m in Sources */,
 				AA992E951AC67E6000637C96 /* NSDate+DateTools.m in Sources */,
 				AA992E911AC67E6000637C96 /* DTTimePeriod.m in Sources */,
@@ -626,6 +637,7 @@
 				AA992E981AC7E07200637C96 /* InputReader.m in Sources */,
 				AA992E3C1AC4E8DF00637C96 /* main.m in Sources */,
 				0D3C46601AD7B2E4007B9552 /* ScheduleViewController.m in Sources */,
+				0D3568291AEDA7A70068F654 /* LoadingViewUIView.m in Sources */,
 				AAC99F5B1ACBA2E800BBBF75 /* SQLiteManager.m in Sources */,
 				AAC99F6A1ACBE1EB00BBBF75 /* UTCSVFeedDownloadManager.m in Sources */,
 				AA992E7B1AC55C7900637C96 /* BuildingList.m in Sources */,

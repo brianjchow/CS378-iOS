@@ -18,6 +18,7 @@
 #import "QueryRoomSchedule.h"
 #import "QueryResult.h"
 #import "Utilities.h"
+#import "SearchResultsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 // http://stackoverflow.com/questions/12002905/ios-build-fails-with-cocoapods-cannot-find-header-files
@@ -28,6 +29,7 @@
 @property (strong, nonatomic) NSArray *rooms;
 
 @property (strong, nonatomic) NSArray *campus_buildings;
+@property (strong, nonatomic) IBOutlet UITableView *searchOptionsTableView;
 
 @end
 
@@ -55,8 +57,23 @@
     
 }
 
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([[segue identifier] isEqualToString:@"toSearchResults"]) {
+        
+        SearchResultsViewController *dest = [segue destinationViewController];
+        
+        
+    }
+    
+    
+}
 
 
+
+#pragma mark - UIConfig
 
 - (void) setUpButtonUI:(UIButton *) button {
     
@@ -267,4 +284,11 @@
     datePicker.tapDismissAction = TapActionCancel;
     [datePicker showActionSheetPicker];
 }
+
+
+
+
+
+
+
 @end
