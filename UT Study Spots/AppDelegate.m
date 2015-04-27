@@ -20,6 +20,7 @@ static NSString* const findRoomNowStoryboardID = @"FindRoomNowViewControllerStor
 static NSString* const findRoomLaterStoryboardID = @"FindRoomLaterViewControllerStoryboardID";
 static NSString* const findRoomRandomStoryboardID = @"FindRoomRandomViewControllerStoryboardID";
 static NSString* const scheduleStoryboardID = @"ScheduleViewControllerStoryboardID";
+static NSString* const loadViewStoryBoardID = @"LoadViewControllerStoryboardID";
 
 @interface AppDelegate ()
 
@@ -38,7 +39,7 @@ static NSString* const scheduleStoryboardID = @"ScheduleViewControllerStoryboard
     // Override point for customization after application launch.
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = self.drawerViewController;
+    self.window.rootViewController = self.loadViewController;
     [self configureDrawerViewController];
     [self.window makeKeyAndVisible];
     
@@ -52,9 +53,11 @@ static NSString* const scheduleStoryboardID = @"ScheduleViewControllerStoryboard
     
     self.drawerViewController.animator = self.drawerAnimator;
 
+//    [self.loadViewController.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"GDCbackground"]]];
     
     
-    [self.drawerViewController setBackgroundImage:[UIImage imageNamed:@"drawerBackgroundImage"]];
+    
+    [self.drawerViewController setBackgroundImage:[UIImage imageNamed:@"backgroundClassroom"]];
     
 }
 
@@ -94,10 +97,16 @@ static NSString* const scheduleStoryboardID = @"ScheduleViewControllerStoryboard
 - (JVFloatingDrawerViewController *)drawerViewController {
     if (!_drawerViewController) {
         _drawerViewController = [[JVFloatingDrawerViewController alloc] init];
-
     }
-    
     return _drawerViewController;
+}
+
+#pragma mark LoadView
+- (UIViewController *)loadViewController {
+    if (!_loadViewController) {
+        _loadViewController = [self.mainStoryboard instantiateViewControllerWithIdentifier:loadViewStoryBoardID];
+    }
+    return _loadViewController;
 }
 
 #pragma mark Sides

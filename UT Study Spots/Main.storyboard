@@ -127,13 +127,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uI-j6-8zR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uI-j6-8zR">
                                 <rect key="frame" x="166" y="72" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="56k-eS-Tc1">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="56k-eS-Tc1">
                                 <rect key="frame" x="0.0" y="153" width="375" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -399,10 +399,10 @@
             </objects>
             <point key="canvasLocation" x="-1894.5" y="896.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Load View Controller-->
         <scene sceneID="RUG-dO-Vb6">
             <objects>
-                <viewController id="0Zg-y6-I2N" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadViewControllerStoryboardID" id="0Zg-y6-I2N" customClass="LoadViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vjt-GO-zVm"/>
                         <viewControllerLayoutGuide type="bottom" id="YeQ-tQ-hYQ"/>
@@ -413,6 +413,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="ZGX-Xh-PXO" kind="showDetail" identifier="drawerView" id="D0o-eI-pY2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rb4-Xq-rN6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -514,7 +517,8 @@
         <image name="399-list1" width="19" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sWq-KF-9rE"/>
+        <segue reference="D0o-eI-pY2"/>
+        <segue reference="4Ir-ZO-rXM"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

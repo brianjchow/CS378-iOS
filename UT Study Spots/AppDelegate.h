@@ -26,6 +26,7 @@
 @property (nonatomic, strong) UIViewController *findRoomLaterViewController;
 @property (nonatomic, strong) UIViewController *findRoomRandomViewController;
 @property (nonatomic, strong) UIViewController *scheduleViewController;
+@property (nonatomic, strong) UIViewController *loadViewController;
 
 
 //Animation for Drawer
