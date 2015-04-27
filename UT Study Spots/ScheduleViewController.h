@@ -7,7 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScheduleViewController : UITableViewController
+#import "MainTableViewController.h"
+
+@interface ScheduleViewController : MainTableViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *buildingButton;
 @property (weak, nonatomic) IBOutlet UIButton *roomButton;
@@ -16,5 +18,7 @@
 - (IBAction)selectBuilding:(id)sender;
 - (IBAction)selectRoom:(id)sender;
 - (IBAction)selectDate:(id)sender;
+
+- (IBAction)execSearch:(id)sender;
 
 @end

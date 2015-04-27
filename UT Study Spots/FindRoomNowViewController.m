@@ -6,27 +6,13 @@
 //
 
 #import "FindRoomNowViewController.h"
-#import "AppDelegate.h"
-
-#import <ActionSheetDatePicker.h>
-#import <ActionSheetStringPicker.h>
-
-#import "Building.h"
-#import "Constants.h"
-#import "NSArray+Tools.h"
-#import "NSString+Tools.h"
-#import "Query.h"
-#import "QueryRandomRoom.h"
-#import "QueryResult.h"
-#import "Utilities.h"
-#import <QuartzCore/QuartzCore.h>
-
 
 @interface FindRoomNowViewController ()
 
 @property (strong, nonatomic) QueryRandomRoom *query;
 
 @property (strong, nonatomic) NSArray *campus_buildings;
+@property (strong, nonatomic) NSArray *durations;
 
 @end
 
@@ -34,14 +20,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
+    
+    [self setUpButtonUI : self.buildingButton];
+    [self setUpButtonUI : self.dateButton];
+    [self setUpButtonUI : self.timeButton];
+    [self setUpButtonUI : self.durationButton];
+    [self setUpButtonUI : self.powerButton];
+    
     self.query = [[QueryRandomRoom alloc] initWithStartDate:[Utilities get_date]];
     
+    self.campus_buildings = [CAMPUS_BUILDINGS_FULLY_QUALIFIED sort_ascending];
+    
+    [self setupDurationsArray];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) setupDurationsArray {
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithCapacity : MINUTES_IN_DAY];
+    for (int i = 1; i < MINUTES_IN_DAY; i++) {
+        temp[i - 1] = [NSNumber numberWithInt : i];
+    }
+    
+    self.durations = temp;
 }
 
 /*
@@ -120,7 +126,7 @@
         }
     }
     
-    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Select a Building"
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Building"
                                                                                 rows : self.campus_buildings
                                                                     initialSelection : index
                                                                            doneBlock : doneBlock
@@ -138,8 +144,35 @@
 }
 
 - (IBAction)selectDuration:(UIControl *)sender {
+    ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        
+//        [self didSelectButton:self.durationButton withTitle:self.durations[selectedIndex]];
+        
+        NSLog(@"Selected duration %d", [self.durations[selectedIndex] intValue]);
+        
+        [self.query set_duration : [self.durations[selectedIndex] intValue]];
+    };
+    ActionStringCancelBlock cancelBlock = ^(ActionSheetStringPicker *picker) {
+        
+    };
+    
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Duration (minutes)"
+                                                                                rows : self.durations
+                                                                    initialSelection : [self.query get_duration] - 1
+                                                                           doneBlock : doneBlock
+                                                                         cancelBlock : cancelBlock
+                                                                              origin : sender];
+    
+    picker.tapDismissAction = TapActionCancel;
+    [picker showActionSheetPicker];
 }
 
 - (IBAction)selectPower:(UIControl *)sender {
+    
 }
+
+- (IBAction)execSearch:(id)sender {
+    
+}
+
 @end

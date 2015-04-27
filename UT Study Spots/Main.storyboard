@@ -148,7 +148,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="B7b-mc-Jt4">
-                            <rect key="frame" x="0.0" y="256" width="375" height="352"/>
+                            <rect key="frame" x="0.0" y="300" width="375" height="367"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <sections>
@@ -208,6 +208,25 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IY7-Xb-o3l">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IY7-Xb-o3l" id="sZk-gt-zEm">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ee2-bh-A5Z">
+                                                    <rect key="frame" x="8" y="7" width="359" height="30"/>
+                                                    <state key="normal" title="Go!">
+                                                        <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="execSearch:" destination="yht-DI-4ix" eventType="touchDown" id="1IN-6p-5r3"/>
+                                                        <action selector="selectDate:" destination="yht-DI-4ix" eventType="touchDown" id="OLU-pt-cBW"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -242,7 +261,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <imageView key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="bau-uV-bk9">
-                            <rect key="frame" x="0.0" y="344" width="375" height="264"/>
+                            <rect key="frame" x="0.0" y="388" width="375" height="280"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <sections>
@@ -333,6 +352,24 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="selectPower:" destination="GOT-u7-YOo" eventType="touchDown" id="lZ8-BC-OYo"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Sd3-5D-7AT">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sd3-5D-7AT" id="kpU-RS-yuT">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4u-IS-PyT">
+                                                    <rect key="frame" x="8" y="7" width="359" height="30"/>
+                                                    <state key="normal" title="Go!">
+                                                        <color key="titleColor" red="0.1333333333" green="0.50196078430000002" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="execSearch:" destination="GOT-u7-YOo" eventType="touchDown" id="whQ-vD-zNr"/>
+                                                        <action selector="selectPower:" destination="GOT-u7-YOo" eventType="touchDown" id="iIP-ap-xza"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

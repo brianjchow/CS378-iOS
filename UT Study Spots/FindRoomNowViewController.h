@@ -7,7 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FindRoomNowViewController : UITableViewController
+#import "MainTableViewController.h"
+
+@interface FindRoomNowViewController : MainTableViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *buildingButton;
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
@@ -20,5 +22,7 @@
 - (IBAction)selectTime:(id)sender;
 - (IBAction)selectDuration:(id)sender;
 - (IBAction)selectPower:(id)sender;
+
+- (IBAction)execSearch:(id)sender;
 
 @end

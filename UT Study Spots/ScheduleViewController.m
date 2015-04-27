@@ -7,20 +7,6 @@
 
 #import "ScheduleViewController.h"
 
-#import <ActionSheetDatePicker.h>
-#import <ActionSheetStringPicker.h>
-#import "AppDelegate.h"
-
-#import "Building.h"
-#import "Constants.h"
-#import "NSArray+Tools.h"
-#import "NSString+Tools.h"
-#import "Query.h"
-#import "QueryRoomSchedule.h"
-#import "QueryResult.h"
-#import "Utilities.h"
-#import <QuartzCore/QuartzCore.h>
-
 // http://stackoverflow.com/questions/12002905/ios-build-fails-with-cocoapods-cannot-find-header-files
 
 @interface ScheduleViewController ()
@@ -52,23 +38,9 @@
     
 }
 
-- (void) setUpButtonUI:(UIButton *) button {
-    
-    [button.layer setCornerRadius:5.0f];
-    button.layer.borderWidth = 1;
-    [button.layer setBorderColor:[UIColor colorWithRed:34.0f/255.0f green:128.0f/255.0f blue:207.0f/255.0f alpha:1].CGColor];
-}
-
-- (void) didSelectButton:(UIButton *) button withTitle:(NSString *) title {
-    [button setTitle:title forState:UIControlStateNormal];
-    
-    if(button.contentHorizontalAlignment != UIControlContentHorizontalAlignmentLeft){
-        NSLog(@"Changing alignment to left alignment");
-        [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    }
-    
-    [button setContentEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0)];
-    [button sizeToFit];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
@@ -126,62 +98,6 @@
     
 }
 
-- (NSArray *) getSemesterBoundsBasedOnCurrentDate {
-    //By default max and min = current date
-    NSDate *minimumDate = [Utilities get_date];
-    NSDate *maximumDate = [Utilities get_date];
-    NSDate *currentDate = [Utilities get_date];
-    NSInteger year = currentDate.year;
-    
-    //Decide which semester we  currently are in
-    if([Utilities date_is_during_spring:currentDate]) {
-        minimumDate = [Utilities get_date : SPRING_START_MONTH
-                                      day : SPRING_START_DAY
-                                     year : year
-                                     hour : 0
-                                   minute : 0];
-        
-        maximumDate = [Utilities get_date : SPRING_END_MONTH
-                                      day : SPRING_END_DAY
-                                     year : year
-                                     hour : 0
-                                   minute : 0];
-    } else if ([Utilities date_is_during_fall:currentDate]){
-        minimumDate = [Utilities get_date : FALL_START_MONTH
-                                      day : FALL_START_DAY
-                                     year : year
-                                     hour : 0
-                                   minute : 0];
-        
-        maximumDate = [Utilities get_date : FALL_END_MONTH
-                                      day : FALL_END_DAY
-                                     year : year
-                                     hour : 0
-                                   minute : 0];
-        
-    } else if ([Utilities date_is_during_summer:currentDate]) {
-        minimumDate = [Utilities get_date : SUMMER_START_MONTH
-                                      day : SUMMER_START_DAY
-                                     year : year
-                                     hour : 0
-                                   minute : 0];
-        
-        maximumDate = [Utilities get_date : SUMMER_END_MONTH
-                                      day : SUMMER_END_DAY
-                                     year : year
-                                     hour : 0
-                                   minute : 0];
-        
-    }
-    
-    return @[currentDate, minimumDate, maximumDate];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 #pragma mark - Actions
 
@@ -218,7 +134,7 @@
         }
     }
     
-    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Select a Building"
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Building"
                                                                                 rows : self.campus_buildings
                                                                     initialSelection : index
                                                                            doneBlock : doneBlock
@@ -243,7 +159,7 @@
         
     };
     
-    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Select a Room"
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Room"
                                                                                 rows : self.rooms
                                                                     initialSelection : 0
                                                                            doneBlock : doneBlock
@@ -257,9 +173,19 @@
 - (IBAction)selectDate:(UIControl *)sender {
     NSArray *currentMaxMinDateArray = [self getSemesterBoundsBasedOnCurrentDate];
     
-    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Select Date" datePickerMode:UIDatePickerModeDate selectedDate:currentMaxMinDateArray[0] minimumDate:currentMaxMinDateArray[1] maximumDate:currentMaxMinDateArray[2] target:self action:@selector(dateWasSelected:element:) origin:sender];
+    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Date"
+                                                                      datePickerMode:UIDatePickerModeDate
+                                                                        selectedDate:currentMaxMinDateArray[0]
+                                                                         minimumDate:currentMaxMinDateArray[1]
+                                                                         maximumDate:currentMaxMinDateArray[2]
+                                                                              target:self
+                                                                              action:@selector(dateWasSelected:element:)
+                                                                              origin:sender];
     
     datePicker.tapDismissAction = TapActionCancel;
     [datePicker showActionSheetPicker];
+}
+
+- (IBAction)execSearch:(id)sender {
 }
 @end

@@ -18,6 +18,7 @@
 		AA46AAA21AD451E500408B5C /* calendar_rooms_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */; };
 		AA46AAA31AD451E500408B5C /* calendar_events_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */; };
 		AA846C961AED9ED5002442D3 /* NSArray+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AA846C951AED9ED5002442D3 /* NSArray+Tools.m */; };
+		AA846C991AEDB424002442D3 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA846C981AEDB424002442D3 /* MainTableViewController.m */; };
 		AA992E3C1AC4E8DF00637C96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E3B1AC4E8DF00637C96 /* main.m */; };
 		AA992E3F1AC4E8DF00637C96 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E3E1AC4E8DF00637C96 /* AppDelegate.m */; };
 		AA992E421AC4E8DF00637C96 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E411AC4E8DF00637C96 /* ViewController.m */; };
@@ -97,6 +98,8 @@
 		AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_feed_0604.csv; sourceTree = "<group>"; };
 		AA846C941AED9EC8002442D3 /* NSArray+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Tools.h"; sourceTree = "<group>"; };
 		AA846C951AED9ED5002442D3 /* NSArray+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Tools.m"; sourceTree = "<group>"; };
+		AA846C971AEDB418002442D3 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
+		AA846C981AEDB424002442D3 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 		AA992E361AC4E8DF00637C96 /* UT Study Spots.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UT Study Spots.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA992E3A1AC4E8DF00637C96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA992E3B1AC4E8DF00637C96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -276,6 +279,8 @@
 		AA992E391AC4E8DF00637C96 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AA846C941AED9EC8002442D3 /* NSArray+Tools.h */,
+				AA846C951AED9ED5002442D3 /* NSArray+Tools.m */,
 				AAC99F2D1AC8B62900BBBF75 /* NSMutableString+Stack.h */,
 				AAC99F2E1AC8B63500BBBF75 /* NSMutableString+Stack.m */,
 				AAC99F511ACB5F0100BBBF75 /* NSString+Tools.h */,
@@ -284,8 +289,6 @@
 				AAC99F621ACBA60500BBBF75 /* Stopwatch.m */,
 				AA992E3A1AC4E8DF00637C96 /* Info.plist */,
 				AA992E3B1AC4E8DF00637C96 /* main.m */,
-				AA846C941AED9EC8002442D3 /* NSArray+Tools.h */,
-				AA846C951AED9ED5002442D3 /* NSArray+Tools.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -406,6 +409,8 @@
 		AAC99F671ACBB61700BBBF75 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AA846C971AEDB418002442D3 /* MainTableViewController.h */,
+				AA846C981AEDB424002442D3 /* MainTableViewController.m */,
 				0D3C46551AD7B292007B9552 /* FindRoomNowViewController.h */,
 				0D3C46561AD7B292007B9552 /* FindRoomNowViewController.m */,
 				0D3C465E1AD7B2E4007B9552 /* ScheduleViewController.h */,
@@ -602,6 +607,7 @@
 				AA992E951AC67E6000637C96 /* NSDate+DateTools.m in Sources */,
 				AA992E911AC67E6000637C96 /* DTTimePeriod.m in Sources */,
 				AA992E941AC67E6000637C96 /* DTTimePeriodGroup.m in Sources */,
+				AA846C991AEDB424002442D3 /* MainTableViewController.m in Sources */,
 				AA992E741AC55C3800637C96 /* Room.m in Sources */,
 				AA992E421AC4E8DF00637C96 /* ViewController.m in Sources */,
 				AA992E931AC67E6000637C96 /* DTTimePeriodCollection.m in Sources */,
