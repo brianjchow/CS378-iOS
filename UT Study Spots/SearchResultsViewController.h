@@ -12,5 +12,6 @@
 
 @property (strong,nonatomic) NSDictionary *sentData;
 
+@property (weak, nonatomic) IBOutlet UILabel *resultsLabel;
 
 @end

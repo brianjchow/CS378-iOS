@@ -21,7 +21,7 @@
     
     [self setBackgroundImage];
     [self setLoadingAnimation];
-//    [self.animationImageView startAnimating];
+    [self.animationImageView startAnimating];
     
 
         
@@ -38,7 +38,7 @@
 
 //http://stackoverflow.com/questions/23739767/how-to-centre-the-background-image-in-a-uiview-without-streching-it
 - (void)setBackgroundImage {
-    UIImage *backgroundImage = [UIImage imageNamed:@"GDCbackground"];
+    UIImage *backgroundImage = [UIImage imageNamed:@"gdcBackground"];
     UIGraphicsBeginImageContext(self.view.bounds.size);
     CGRect imagePosition = CGRectMake((self.view.bounds.size.width / 2)  - (backgroundImage.size.width / 2),
                                       (self.view.bounds.size.height / 2) - (backgroundImage.size.height / 2),
