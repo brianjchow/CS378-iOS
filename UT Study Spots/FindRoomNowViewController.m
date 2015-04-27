@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) NSArray *campus_buildings;
 @property (strong, nonatomic) NSArray *durations;
+@property (strong, nonatomic) NSArray *capacities;
 
 @end
 
@@ -27,13 +28,17 @@
     [self setUpButtonUI : self.dateButton];
     [self setUpButtonUI : self.timeButton];
     [self setUpButtonUI : self.durationButton];
+    [self setUpButtonUI : self.capacityButton];
     [self setUpButtonUI : self.powerButton];
+    
+    [self setUpButtonUI : self.execSearchButton];
     
     self.query = [[QueryRandomRoom alloc] initWithStartDate:[Utilities get_date]];
     
     self.campus_buildings = [CAMPUS_BUILDINGS_FULLY_QUALIFIED sort_ascending];
     
     [self setupDurationsArray];
+    [self setupCapacitiesArray];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,6 +53,17 @@
     }
     
     self.durations = temp;
+}
+
+- (void) setupCapacitiesArray {
+    NSInteger max_capacity = 500;
+    NSMutableArray *temp = [[NSMutableArray alloc] initWithCapacity : max_capacity];
+    temp[0] = @"0 (no preference)";
+    for (NSInteger i = 1; i < max_capacity; i++) {
+        temp[i] = [NSNumber numberWithInteger : i];
+    }
+    
+    self.capacities = temp;
 }
 
 /*
@@ -80,15 +96,27 @@
 }
 
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
-    //Locality for Desired Format of Date
-    NSLocale *localityForTimeFormat = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+//    //Locality for Desired Format of Date
+//    NSLocale *localityForTimeFormat = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+//    
+//    //Determines what dates should be formatted as
+//    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"EdMMMYYY" options:0 locale:localityForTimeFormat];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:formatString];
+//    
+//    NSString *selected_date = [dateFormatter stringFromDate : selectedDate];
     
-    //Determines what dates should be formatted as
-    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"EdMMMYYY" options:0 locale:localityForTimeFormat];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:formatString];
+    NSString *selected_date = [Utilities get_time_with_format : selectedDate format : @"E, d MMM, YYY"];
+    [self.query set_start_date : selectedDate];
     
-    [self didSelectButton:self.dateButton withTitle:[dateFormatter stringFromDate:selectedDate]];
+    
+//    NSString *selected_month = [Utilities get_time_with_format : selectedDate format : @"MMM"];
+//    NSString *selected_day = [Utilities get_time_with_format : selectedDate format : @"dd"];
+//    NSString *selected_year = [Utilities get_time_with_format : selectedDate format : @"YYYY"];
+
+//    NSLog(@"Picked date %@", selected_date);
+    
+    [self didSelectButton:self.dateButton withTitle : selected_date];
 }
 
 
@@ -138,9 +166,68 @@
 }
 
 - (IBAction)selectDate:(UIControl *)sender {
+    NSArray *currentMaxMinDateArray = [self getSemesterBoundsBasedOnCurrentDate];
+    
+    ActionSheetDatePicker *datePicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Date"
+                                                                      datePickerMode:UIDatePickerModeDate
+                                                                        selectedDate:currentMaxMinDateArray[0]
+                                                                         minimumDate:currentMaxMinDateArray[1]
+                                                                         maximumDate:currentMaxMinDateArray[2]
+                                                                              target:self
+                                                                              action:@selector(dateWasSelected:element:)
+                                                                              origin:sender];
+    
+    datePicker.tapDismissAction = TapActionCancel;
+    [datePicker showActionSheetPicker];
+}
+
+-(void)timeWasSelected:(NSDate *)selectedTime element:(id)element {
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"h:mm a"];
+    
+//    NSString *selected_time_str = [dateFormatter stringFromDate : selectedTime];
+//    NSLog(@"Selected time %@", selected_time_str);
+    
+    NSString *hour_str = [Utilities get_time_with_format : selectedTime format : @"HH"];
+    NSString *min_str = [Utilities get_time_with_format : selectedTime format : @"mm"];
+    
+    NSInteger hour = [hour_str integerValue];
+    NSInteger min = [min_str integerValue];
+    
+//    NSLog(@"Hour: %@\tMinute: %@", hour_str, min_str);
+//    NSLog(@"Hour: %ld\tMinute: %ld", hour, min);
+    
+    [self.query set_start_time : hour minute : min];
+    
+    NSLog(@"Query is now\n%@", [self.query toString]);
 }
 
 - (IBAction)selectTime:(UIControl *)sender {
+    NSInteger minute_interval = 1;  // 5;
+    
+    // clamp date
+    NSDate *curr_start_date = [self.query get_start_date];
+//    NSInteger reference_time_interval = (NSInteger) [curr_start_date timeIntervalSinceReferenceDate];
+//    NSInteger remaining_seconds = reference_time_interval % (minute_interval * 60);
+//    NSInteger time_rounded_to_5_minutes = reference_time_interval - remaining_seconds;
+//    
+//    // round up
+//    if (remaining_seconds > ((minute_interval * 60) / 2)) {
+//        time_rounded_to_5_minutes = reference_time_interval + ((minute_interval * 60) - remaining_seconds);
+//    }
+//    
+//    NSDate *selected_time = [NSDate dateWithTimeIntervalSinceReferenceDate : (NSTimeInterval) time_rounded_to_5_minutes];
+    
+    ActionSheetDatePicker *picker = [[ActionSheetDatePicker alloc] initWithTitle : @"Time"
+                                                                  datePickerMode : UIDatePickerModeTime
+                                                                    selectedDate : curr_start_date // selected_time
+                                                                          target : self
+                                                                          action : @selector(timeWasSelected : element : )
+                                                                          origin : sender];
+    
+    picker.minuteInterval = minute_interval;
+    [picker showActionSheetPicker];
 }
 
 - (IBAction)selectDuration:(UIControl *)sender {
@@ -167,12 +254,89 @@
     [picker showActionSheetPicker];
 }
 
-- (IBAction)selectPower:(UIControl *)sender {
+- (IBAction)selectCapacity:(UIControl *)sender {
+    ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        int selected_capacity;
+        
+        if (selectedIndex == 0) {
+            selected_capacity = 0;
+        }
+        else {
+            selected_capacity = [self.capacities[selectedIndex] intValue];
+        }
+        
+        NSLog(@"Selected capacity %d", selected_capacity);
+        
+        [self.query set_option_capacity : selected_capacity];
+    };
+    ActionStringCancelBlock cancelBlock = ^(ActionSheetStringPicker *picker) {
+        
+    };
     
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Capacity"
+                                                                                rows : self.capacities
+                                                                    initialSelection : [self.query get_option_power]
+                                                                           doneBlock : doneBlock
+                                                                         cancelBlock : cancelBlock
+                                                                              origin : sender];
+    
+    picker.tapDismissAction = TapActionCancel;
+    [picker showActionSheetPicker];
 }
 
-- (IBAction)execSearch:(id)sender {
+- (IBAction)selectPower:(UIControl *)sender {
+    bool is_gdc = [[self.query get_option_search_building] is_gdc];
+    NSArray *vals;
     
+    if (is_gdc) {
+        vals = @[@"No", @"Yes"];
+    }
+    else {
+        vals = @[@"No"];
+        
+        [self.query set_option_power : false];      // no data for non-GDC buildings
+    }
+    
+    ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+        NSLog(@"Selected power option %d", [vals[selectedIndex] boolValue]);
+        
+        [self.query set_option_power : [vals[selectedIndex] boolValue]];
+    };
+    ActionStringCancelBlock cancelBlock = ^(ActionSheetStringPicker *picker) {
+        
+    };
+    
+    ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Power"
+                                                                                rows : vals
+                                                                    initialSelection : [self.query get_option_power]
+                                                                           doneBlock : doneBlock
+                                                                         cancelBlock : cancelBlock
+                                                                              origin : sender];
+    
+    picker.tapDismissAction = TapActionCancel;
+    [picker showActionSheetPicker];
+}
+
+- (void) prepareForSegue : (UIStoryboardSegue *) segue sender : (id) sender {
+    
+    NSLog(@"Entered prepareForSegue, FindRoomNowViewController.m");
+    
+    if ([segue.identifier isEqualToString : FIND_ROOM_SEGUE_ID] &&
+        [segue.destinationViewController isKindOfClass : [SearchResultsViewController class]]) {
+        
+        QueryResult *query_result = [self.query search];
+        
+        SearchResultsViewController *search_results_vc = (SearchResultsViewController *) segue.destinationViewController;
+        [search_results_vc set_query_result : self.query query_result : query_result];
+        
+        UIBarButtonItem *back_button = [[UIBarButtonItem alloc] initWithTitle : @"Back"
+                                                                    style : UIBarButtonItemStylePlain
+                                                                   target : nil
+                                                                   action : nil];
+        
+        self.navigationItem.backBarButtonItem = back_button;
+    }
+
 }
 
 @end

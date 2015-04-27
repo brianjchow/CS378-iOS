@@ -15,14 +15,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 @property (weak, nonatomic) IBOutlet UIButton *timeButton;
 @property (weak, nonatomic) IBOutlet UIButton *durationButton;
+@property (weak, nonatomic) IBOutlet UIButton *capacityButton;
 @property (weak, nonatomic) IBOutlet UIButton *powerButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *execSearchButton;
 
 - (IBAction)selectBuilding:(id)sender;
 - (IBAction)selectDate:(id)sender;
 - (IBAction)selectTime:(id)sender;
 - (IBAction)selectDuration:(id)sender;
+- (IBAction)selectCapacity:(id)sender;
 - (IBAction)selectPower:(id)sender;
-
-- (IBAction)execSearch:(id)sender;
 
 @end

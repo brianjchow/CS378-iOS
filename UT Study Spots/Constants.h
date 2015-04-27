@@ -70,6 +70,7 @@ static NSString *const SEARCH_GDC_ONLY = @"search_gdc_only";
 static NSString *const SEARCH_BUILDING = @"search_building";
 static NSString *const SEARCH_ROOM = @"search_room";
 static NSString *const RANDOM = @"Random";
+static NSString *const NO_ROOMS_FOUND = @"No rooms found.";
 
 static int const MAX_CAPACITY = 50;
 \
@@ -187,10 +188,11 @@ static NSString *const SEARCH_STATUS_STRINGS[] = {
 };
 
 
-static int const NUM_SEARCH_TYPES = 2;
+static int const NUM_SEARCH_TYPES = 3;
 typedef NS_ENUM(NSUInteger, SearchType) {
     RANDOM_ROOM = 0,
-    ROOM_SCHEDULE = 1
+    ROOM_SCHEDULE = 1,
+    UNKNOWN = 2
 };
 
 typedef NS_ENUM(NSUInteger, HTTPResponseCode) {

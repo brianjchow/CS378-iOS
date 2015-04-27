@@ -29,6 +29,8 @@
     [self setUpButtonUI:self.roomButton];
     [self setUpButtonUI:self.dateButton];
     
+    [self setUpButtonUI : self.execSearchButton];
+    
     self.query = [[QueryRoomSchedule alloc] init];
     [self update_rooms_arr];
     
@@ -44,19 +46,31 @@
 }
 
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
-    //Locality for Desired Format of Date
-    NSLocale *localityForTimeFormat = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    //    //Locality for Desired Format of Date
+    //    NSLocale *localityForTimeFormat = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    //
+    //    //Determines what dates should be formatted as
+    //    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"EdMMMYYY" options:0 locale:localityForTimeFormat];
+    //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //    [dateFormatter setDateFormat:formatString];
+    //
+    //    NSString *selected_date = [dateFormatter stringFromDate : selectedDate];
     
-    //Determines what dates should be formatted as
-    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"EdMMMYYY" options:0 locale:localityForTimeFormat];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:formatString];
+    NSString *selected_date = [Utilities get_time_with_format : selectedDate format : @"E, d MMM, YYY"];
+    [self.query set_start_date : selectedDate];
     
-    [self didSelectButton:self.dateButton withTitle:[dateFormatter stringFromDate:selectedDate]];
+    
+    //    NSString *selected_month = [Utilities get_time_with_format : selectedDate format : @"MMM"];
+    //    NSString *selected_day = [Utilities get_time_with_format : selectedDate format : @"dd"];
+    //    NSString *selected_year = [Utilities get_time_with_format : selectedDate format : @"YYYY"];
+    
+    //    NSLog(@"Picked date %@", selected_date);
+    
+    [self didSelectButton:self.dateButton withTitle : selected_date];
 }
 
 - (void) update_rooms_arr {
-    NSString *no_rooms_found = @"No rooms found.";
+    NSString *no_rooms_found = NO_ROOMS_FOUND;
     
     NSString *search_building_str = [self.query get_option_search_building];
     
@@ -186,6 +200,26 @@
     [datePicker showActionSheetPicker];
 }
 
-- (IBAction)execSearch:(id)sender {
+- (void) prepareForSegue : (UIStoryboardSegue *) segue sender : (id) sender {
+    
+    NSLog(@"Entered prepareForSegue, ScheduleViewController.m");
+    
+    if ([segue.identifier isEqualToString : GET_ROOM_SCHEDULE_SEGUE_ID] &&
+        [segue.destinationViewController isKindOfClass : [SearchResultsViewController class]]) {
+        
+        QueryResult *query_result = [self.query search];
+        
+        SearchResultsViewController *search_results_vc = (SearchResultsViewController *) segue.destinationViewController;
+        [search_results_vc set_query_result : self.query query_result : query_result];
+        search_results_vc.curr_room_in_focus = [self.query get_option_search_room];
+        
+        UIBarButtonItem *back_button = [[UIBarButtonItem alloc] initWithTitle : @"Back"
+                                                                        style : UIBarButtonItemStylePlain
+                                                                       target : nil
+                                                                       action : nil];
+        
+        self.navigationItem.backBarButtonItem = back_button;
+    }
+    
 }
 @end

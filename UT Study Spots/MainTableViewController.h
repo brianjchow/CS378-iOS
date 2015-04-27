@@ -24,8 +24,12 @@
 #import "QueryRandomRoom.h"
 #import "QueryRoomSchedule.h"
 #import "QueryResult.h"
+#import "SearchResultsViewController.h"
 #import "Utilities.h"
 #import <QuartzCore/QuartzCore.h>
+
+static NSString *const FIND_ROOM_SEGUE_ID = @"findRoomViewSegue";
+static NSString *const GET_ROOM_SCHEDULE_SEGUE_ID = @"getRoomScheduleViewSegue";
 
 @interface MainTableViewController : UITableViewController
 

@@ -15,10 +15,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *roomButton;
 @property (weak, nonatomic) IBOutlet UIButton *dateButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *execSearchButton;
+
 - (IBAction)selectBuilding:(id)sender;
 - (IBAction)selectRoom:(id)sender;
 - (IBAction)selectDate:(id)sender;
-
-- (IBAction)execSearch:(id)sender;
 
 @end

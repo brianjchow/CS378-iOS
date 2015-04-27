@@ -17,6 +17,8 @@
 		AA46AAA11AD451E500408B5C /* calendar_events_today_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */; };
 		AA46AAA21AD451E500408B5C /* calendar_rooms_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */; };
 		AA46AAA31AD451E500408B5C /* calendar_events_feed_0604.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */; };
+		AA546D4C1AEED85600828BFC /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA546D4B1AEED85600828BFC /* SearchResultsViewController.m */; };
+		AA546D4F1AEEE48500828BFC /* SearchResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA546D4E1AEEE48500828BFC /* SearchResultsTableViewCell.m */; };
 		AA846C961AED9ED5002442D3 /* NSArray+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AA846C951AED9ED5002442D3 /* NSArray+Tools.m */; };
 		AA846C991AEDB424002442D3 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA846C981AEDB424002442D3 /* MainTableViewController.m */; };
 		AA992E3C1AC4E8DF00637C96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E3B1AC4E8DF00637C96 /* main.m */; };
@@ -96,6 +98,10 @@
 		AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_today_feed_0604.csv; sourceTree = "<group>"; };
 		AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_rooms_feed_0604.csv; sourceTree = "<group>"; };
 		AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_feed_0604.csv; sourceTree = "<group>"; };
+		AA546D4A1AEED85600828BFC /* SearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsViewController.h; sourceTree = "<group>"; };
+		AA546D4B1AEED85600828BFC /* SearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsViewController.m; sourceTree = "<group>"; };
+		AA546D4D1AEEE47300828BFC /* SearchResultsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultsTableViewCell.h; sourceTree = "<group>"; };
+		AA546D4E1AEEE48500828BFC /* SearchResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsTableViewCell.m; sourceTree = "<group>"; };
 		AA846C941AED9EC8002442D3 /* NSArray+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Tools.h"; sourceTree = "<group>"; };
 		AA846C951AED9ED5002442D3 /* NSArray+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Tools.m"; sourceTree = "<group>"; };
 		AA846C971AEDB418002442D3 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
@@ -415,6 +421,10 @@
 				0D3C46561AD7B292007B9552 /* FindRoomNowViewController.m */,
 				0D3C465E1AD7B2E4007B9552 /* ScheduleViewController.h */,
 				0D3C465F1AD7B2E4007B9552 /* ScheduleViewController.m */,
+				AA546D4A1AEED85600828BFC /* SearchResultsViewController.h */,
+				AA546D4B1AEED85600828BFC /* SearchResultsViewController.m */,
+				AA546D4D1AEEE47300828BFC /* SearchResultsTableViewCell.h */,
+				AA546D4E1AEEE48500828BFC /* SearchResultsTableViewCell.m */,
 				AAC99F641ACBB5F500BBBF75 /* LoadViewController.h */,
 				AAC99F651ACBB60400BBBF75 /* LoadViewController.m */,
 				AA992E401AC4E8DF00637C96 /* ViewController.h */,
@@ -603,6 +613,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA546D4C1AEED85600828BFC /* SearchResultsViewController.m in Sources */,
 				AAC99F321AC9072900BBBF75 /* QueryResult.m in Sources */,
 				AA992E951AC67E6000637C96 /* NSDate+DateTools.m in Sources */,
 				AA992E911AC67E6000637C96 /* DTTimePeriod.m in Sources */,
@@ -620,6 +631,7 @@
 				AAC99F5A1ACBA2E800BBBF75 /* Reachability.m in Sources */,
 				AAC99F531ACB5F0E00BBBF75 /* NSString+Tools.m in Sources */,
 				AAC99F661ACBB60400BBBF75 /* LoadViewController.m in Sources */,
+				AA546D4F1AEEE48500828BFC /* SearchResultsTableViewCell.m in Sources */,
 				AA992E701AC55BCB00637C96 /* Event.m in Sources */,
 				AA992E7E1AC55CA200637C96 /* Query.m in Sources */,
 				AA992E981AC7E07200637C96 /* InputReader.m in Sources */,
