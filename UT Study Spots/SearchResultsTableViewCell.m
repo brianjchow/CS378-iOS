@@ -19,6 +19,9 @@ static const int TV_CELL_ROW_WIDTH = 80;
 @property (weak, nonatomic, readwrite) IBOutlet UIImageView *photo_thumb;
 @property (weak, nonatomic, readwrite) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic, readwrite) IBOutlet UILabel *detailsLabel;
+
+@property (strong, nonatomic, readwrite) NSString *this_building_name;
+@property (strong, nonatomic, readwrite) NSString *this_room_num;
 @end
 
 @implementation SearchResultsTableViewCell
@@ -37,12 +40,15 @@ static const int TV_CELL_ROW_WIDTH = 80;
     
     SearchType search_type = [[self.contents objectForKey : search_type_key] unsignedIntegerValue];
     SearchStatus search_status = [[self.contents objectForKey : search_status_key] unsignedIntegerValue];
+    NSString *search_building = [self.contents objectForKey : search_building_key];
     NSString *search_result = [self.contents objectForKey : search_result_key];
     
+    self.this_building_name = search_building;
+    self.this_room_num = search_result;
+    
     if (search_type == RANDOM_ROOM) {
-        NSString *search_building = [self.contents objectForKey : search_building_key];
         self.titleLabel.text = [NSString stringWithFormat : @"%@ %@", search_building, search_result];
-        self.detailsLabel.text = @"";
+        self.detailsLabel.text = @"Next class at:";
         
         search_building = [search_building lowercaseString];
 
@@ -111,5 +117,7 @@ static const int TV_CELL_ROW_WIDTH = 80;
     
     return out;
 }
+
+
 
 @end

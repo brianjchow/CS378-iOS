@@ -218,10 +218,14 @@
                                                    rooms_to_remove : rooms_to_remove];
     }
     
+//    NSLog(@"step 0: rooms to remove is now\n%@", rooms_to_remove);
+    
     /* Check room characteristics (options) */
     rooms_to_remove = [self add_invalid_rooms_by_options : search_building
                                              valid_rooms : all_rooms
                                          rooms_to_remove : rooms_to_remove];
+    
+//    NSLog(@"step 1: rooms to remove is now\n%@", rooms_to_remove);
     
     /* If search occurs during one of the two long semesters, check course schedule */
     if (search_is_during_long_semester) {
@@ -229,6 +233,8 @@
                                                          valid_rooms : all_rooms
                                                      rooms_to_remove : rooms_to_remove];
     }
+
+//    NSLog(@"step 2: rooms to remove is now\n%@", rooms_to_remove);
     
     /* Search complete */
     
@@ -323,7 +329,7 @@
     
 //    NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    int today = [super get_this_day_of_week];
+    int today = [super get_this_day_of_week];   // NSLog(@"TODAY IS %d\n", today);
     Room *curr_room;
     
     NSDate *curr_start_date, *curr_end_date, *query_start_date, *query_end_date;
@@ -375,7 +381,10 @@
             curr_start_date = [self copy_date_mdy : query_start_date to : curr_start_date];
             curr_end_date = [self copy_date_mdy : query_end_date to : query_end_date];
             
-            if ([Utilities times_overlap : curr_start_date
+//            NSLog(@"\nCurr start date: %@\nCurr end date: %@\nQuery start date: %@\nQuery end date: %@\n", [curr_start_date toString], [curr_end_date toString], [query_start_date toString], [query_end_date toString]);
+            
+//            if ([Utilities times_overlap : curr_start_date
+            if ([Utilities dates_overlap : curr_start_date
                                     end1 : curr_end_date
                                   start2 : query_start_date
                                     end2 : query_end_date]) {

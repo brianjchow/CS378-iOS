@@ -307,7 +307,12 @@
         else {
             selected_capacity = [self.capacities[selectedIndex] intValue];
             
-            [self didSelectButton : self.capacityButton withTitle : [NSString stringWithFormat : @"Capacity:\t%d people", selected_capacity]];
+            NSString *people = @"people";
+            if (selected_capacity == 1) {
+                people = @"person";
+            }
+            
+            [self didSelectButton : self.capacityButton withTitle : [NSString stringWithFormat : @"Capacity:\t%d %@", selected_capacity, people]];
         }
         
         NSLog(@"Selected capacity %d", selected_capacity);
@@ -320,7 +325,7 @@
     
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Capacity"
                                                                                 rows : self.capacities
-                                                                    initialSelection : [self.query get_option_power]
+                                                                    initialSelection : [self.query get_option_capacity]
                                                                            doneBlock : doneBlock
                                                                          cancelBlock : cancelBlock
                                                                               origin : sender];
@@ -374,7 +379,7 @@
         
         QueryResult *query_result = [self.query search];
         
-        NSLog(@"Results\n%@", [query_result toString]);
+//        NSLog(@"Results\n%@", [query_result toString]);
         
         SearchResultsViewController *search_results_vc = (SearchResultsViewController *) segue.destinationViewController;
         [search_results_vc set_query_result : self.query query_result : query_result];

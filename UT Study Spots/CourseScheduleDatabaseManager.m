@@ -68,7 +68,7 @@ static NSString *const END_TIME = @"end_time";
     if (building_is_gdc) {
         out = [self initialise_gdc_room_properties];
         
-        NSLog(@"%@", out);
+//        NSLog(@"%@", out);
         
 //        for (NSString *room_num in out) {
 //            NSLog(@"Room num: %@\tType is NSString: %d", room_num, [room_num isKindOfClass : [NSString class]]);
@@ -138,7 +138,7 @@ static NSString *const END_TIME = @"end_time";
             
             if (room == nil) {
                 
-                if (_DEBUG && building_is_gdc ) NSLog(@"SHOULDN'T SEE THIS FOR GDC (%@)", room_num);
+//                if (_DEBUG && building_is_gdc ) NSLog(@"SHOULDN'T SEE THIS FOR GDC (%@)", room_num);
                 
                 if (building_is_gdc) {
                     NSString *curr_room = nil;

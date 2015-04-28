@@ -195,9 +195,19 @@
         
     };
     
+    NSString *curr_room = [self.query get_option_search_room];
+    
+    NSInteger start_index = 0;
+    for (NSInteger i = 0; i < [self.rooms count]; i++) {
+        if ([self.rooms[i] equals : curr_room]) {
+            start_index = i;
+            break;
+        }
+    }
+    
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Room"
                                                                                 rows : self.rooms
-                                                                    initialSelection : 0
+                                                                    initialSelection : start_index
                                                                            doneBlock : doneBlock
                                                                          cancelBlock : cancelBlock
                                                                               origin : sender];
@@ -231,7 +241,7 @@
         
         QueryResult *query_result = [self.query search];
         
-        NSLog(@"Results\n%@", [query_result toString]);
+//        NSLog(@"Results\n%@", [query_result toString]);
         
         SearchResultsViewController *search_results_vc = (SearchResultsViewController *) segue.destinationViewController;
         [search_results_vc set_query_result : self.query query_result : query_result];

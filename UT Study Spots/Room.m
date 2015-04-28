@@ -81,14 +81,20 @@ static NSString *const TAB = @"    ";
         [events addObject : event];
     }
     else {
+        bool inserted = false;
         NSUInteger insert_index = 0;
         while (insert_index < [events count]) {
             if ([event compare : [events objectAtIndex : insert_index]] < 0) {
                 [events insertObject : event atIndex : insert_index];
+                inserted = true;
                 break;
             }
             
             insert_index++;
+        }
+        
+        if (!inserted) {
+            [events addObject : event];
         }
     }
     

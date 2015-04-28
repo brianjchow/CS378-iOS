@@ -181,7 +181,7 @@
 //    
 //    return today;
     
-    return ((int) self.date.StartDate.weekday);
+    return ((int) self.date.StartDate.weekday - 1);
 }
 
 - (bool) set_duration : (int) duration {
@@ -229,11 +229,26 @@
         // TODO - throw IAException
     }
     
-    NSLog(@"In Query, setting start date: %@", [start_date toString]);
+//    NSLog(@"In Query, setting start date: %@", [start_date toString]);
+    
+//    NSInteger month = start_date.month;
+//    NSInteger day = start_date.day;
+//    NSInteger year = start_date.year;
+//    NSLog(@"month: %ld\tday: %ld\tyear: %ld", month, day, year);
+    
+    NSDate *temp = self.date.StartDate;
+    NSInteger orig_hour = [[Utilities get_time_with_format : temp format : @"HH"] integerValue];
+    NSInteger orig_min = [[Utilities get_time_with_format : temp format : @"mm"] integerValue];
+    
+    self.date.StartDate = start_date;
+    [self set_start_time : (NSUInteger) orig_hour minute : (NSUInteger) orig_min];
+
     
 //    start_date = [Utilities set_to_current_time_zone : start_date];
-    self.date.StartDate = start_date;
+//    self.date.StartDate = start_date;
     [self set_end_date];
+    
+//    NSLog(@"Exiting Query, setting start date finished: %@", [self.date.StartDate toString]);
     
     return true;
 }

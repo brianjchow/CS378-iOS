@@ -24,6 +24,9 @@ static NSString *const search_result_key = @"search_result";
 @property (weak, nonatomic, readonly) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic, readonly) IBOutlet UILabel *detailsLabel;
 
+@property (strong, nonatomic, readonly) NSString *this_building_name;
+@property (strong, nonatomic, readonly) NSString *this_room_num;
+
 /*
  @property (strong, nonatomic) NSDictionary *image;
  @property (strong, nonatomic) UIImage *image_data;

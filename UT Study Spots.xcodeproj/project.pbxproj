@@ -428,6 +428,8 @@
 				AA546D4B1AEED85600828BFC /* SearchResultsViewController.m */,
 				AA546D4D1AEEE47300828BFC /* SearchResultsTableViewCell.h */,
 				AA546D4E1AEEE48500828BFC /* SearchResultsTableViewCell.m */,
+				AA546D501AEF1CE200828BFC /* PhotoScrollViewController.h */,
+				AA546D511AEF1CEE00828BFC /* PhotoScrollViewController.m */,
 				AAC99F641ACBB5F500BBBF75 /* LoadViewController.h */,
 				AAC99F651ACBB60400BBBF75 /* LoadViewController.m */,
 				AA992E401AC4E8DF00637C96 /* ViewController.h */,
@@ -436,8 +438,6 @@
 				0D04E7031AD742C000890EE9 /* LeftDrawerTableViewController.m */,
 				0D3C46671AD8F821007B9552 /* LeftDrawerTableViewCell.h */,
 				0D3C46681AD8F821007B9552 /* LeftDrawerTableViewCell.m */,
-				AA546D501AEF1CE200828BFC /* PhotoScrollViewController.h */,
-				AA546D511AEF1CEE00828BFC /* PhotoScrollViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

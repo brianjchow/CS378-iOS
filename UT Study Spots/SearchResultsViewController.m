@@ -266,7 +266,7 @@ static NSString *const PHOTO_SV_SEGUE_ID = @"photoScrollViewSegue";
             return;
         }
         
-        psvc.image_title = self.headerLabel.text;
+        psvc.image_title = [NSString stringWithFormat : @"%@ %@", selected.this_building_name, selected.this_room_num];
         psvc.image_name = [selected get_image_name];
         
         NSIndexPath *selected_row = [self.results_table_view indexPathForSelectedRow];
