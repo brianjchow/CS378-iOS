@@ -30,6 +30,8 @@ static NSString *const search_result_key = @"search_result";
  @property (strong, nonatomic) UIImageView *imageview_data;
  */
 
+- (NSString *) get_image_name;
+
 @end
 
 #endif

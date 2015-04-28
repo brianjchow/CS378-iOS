@@ -181,7 +181,7 @@ static NSString *const SEARCH_STATUS_STRINGS[] = {
     @"This room has no scheduled events for today",
     @"Go home and sleep, you procrastinator",
     @"Some or all rooms available (summer hours); check course schedules",
-    @"Some or all rooms available (finals schedule or campus closed for holidays",
+    @"Some or all rooms available (finals schedule or campus closed for holidays)",
     @"Not enough info available for search; please try again",
     @"Unknown search error; please try again",
     @"Search successful"

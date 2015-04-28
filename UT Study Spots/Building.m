@@ -20,7 +20,7 @@
 + (NSDictionary *) populate : (NSString *) building_code db_filename : (NSString *) db_filename;
 
 @property (strong, nonatomic, readwrite) NSString *name;
-@property (strong, nonatomic,) NSDictionary *rooms;  // NSDictionary<String, Room>
+@property (strong, nonatomic, retain) NSDictionary *rooms;  // NSDictionary<String, Room>
 
 @end
 
@@ -118,35 +118,35 @@
 
 // overridden
 - (id) copy {
-    Building *copy = [[Building alloc] init : [self.name copy]];
-    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
+//    Building *copy = [[Building alloc] init : [self.name copy]];
+//    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
+//    
+//    NSString *curr_room_str;
+//    Room *curr_room;
+//    for (curr_room_str in [self.rooms allKeys]) {
+//        curr_room = [self.rooms objectForKey : curr_room_str];
+//        [copy.rooms setValue : [curr_room copy] forKey : [curr_room_str copy]];
+//    }
+//    
+//    return copy;
     
-    NSString *curr_room_str;
-    Room *curr_room;
-    for (curr_room_str in [self.rooms allKeys]) {
-        curr_room = [self.rooms objectForKey : curr_room_str];
-        [copy.rooms setValue : [curr_room copy] forKey : [curr_room_str copy]];
-    }
-    
-    return copy;
-    
-//    return self;
+    return self;
 }
 
 - (id) copyWithZone : (NSZone *) zone {
-    Building *copy = [[[self class] allocWithZone : zone] init : [self.name copy]];
-    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
+//    Building *copy = [[[self class] allocWithZone : zone] init : [self.name copy]];
+//    copy.rooms = [[NSMutableDictionary alloc] initWithCapacity : [self.rooms count]];
+//    
+//    NSString *curr_room_str;
+//    Room *curr_room;
+//    for (curr_room_str in [self.rooms allKeys]) {
+//        curr_room = [self.rooms objectForKey : curr_room_str];
+//        [copy.rooms setValue : [curr_room copyWithZone : zone] forKey : [curr_room_str copyWithZone : zone]];
+//    }
+//    
+//    return copy;
     
-    NSString *curr_room_str;
-    Room *curr_room;
-    for (curr_room_str in [self.rooms allKeys]) {
-        curr_room = [self.rooms objectForKey : curr_room_str];
-        [copy.rooms setValue : [curr_room copyWithZone : zone] forKey : [curr_room_str copyWithZone : zone]];
-    }
-    
-    return copy;
-    
-//    return self;
+    return self;
 }
 
 - (NSComparisonResult) compare : (Building *) otherObject {

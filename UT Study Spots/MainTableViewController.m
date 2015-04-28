@@ -25,7 +25,7 @@
     [button setTitle:title forState:UIControlStateNormal];
     
     if(button.contentHorizontalAlignment != UIControlContentHorizontalAlignmentLeft){
-        NSLog(@"Changing alignment to left alignment");
+//        NSLog(@"Changing alignment to left alignment");
         [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     }
     

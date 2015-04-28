@@ -24,6 +24,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    if ([Utilities is_null : self.query]) {
+        self.query = [[QueryRoomSchedule alloc] init];
+        [self update_rooms_arr];
+    }
+    
     //Set up ui
     [self setUpButtonUI:self.buildingButton];
     [self setUpButtonUI:self.roomButton];
@@ -31,10 +36,25 @@
     
     [self setUpButtonUI : self.execSearchButton];
     
-    self.query = [[QueryRoomSchedule alloc] init];
-    [self update_rooms_arr];
+    [self didSelectButton : self.buildingButton
+                withTitle : [NSString stringWithFormat : @"Building:\t%@", [self.query get_option_search_building]]];
     
-    self.campus_buildings = [CAMPUS_BUILDINGS_FULLY_QUALIFIED sort_ascending];
+    [self didSelectButton : self.dateButton
+                withTitle : [NSString stringWithFormat : @"Start date:\t%@", [Utilities get_time_with_format : [self.query get_start_date] format : @"EEE, MMM dd, yyyy"]]];
+    
+    if ([[self.query get_option_search_room] equals : RANDOM]) {
+        [self didSelectButton : self.roomButton
+                    withTitle : [NSString stringWithFormat : @"Room:\t\t%@", self.rooms[0]]];
+        [self.query set_option_search_room : self.rooms[0]];
+    }
+    else {
+        [self didSelectButton : self.roomButton
+                    withTitle : [NSString stringWithFormat : @"Room:\t\t%@", [self.query get_option_search_room]]];
+    }
+    
+    if ([Utilities is_null : self.campus_buildings]) {
+        self.campus_buildings = [CAMPUS_BUILDINGS_FULLY_QUALIFIED sort_ascending];
+    }
     
 //    NSLog(@"\n\n%@\n\n", self.campus_buildings);
     
@@ -56,7 +76,7 @@
     //
     //    NSString *selected_date = [dateFormatter stringFromDate : selectedDate];
     
-    NSString *selected_date = [Utilities get_time_with_format : selectedDate format : @"E, d MMM, YYY"];
+    NSString *selected_date = [Utilities get_time_with_format : selectedDate format : @"EEE, MMM dd, yyyy"];
     [self.query set_start_date : selectedDate];
     
     
@@ -64,9 +84,9 @@
     //    NSString *selected_day = [Utilities get_time_with_format : selectedDate format : @"dd"];
     //    NSString *selected_year = [Utilities get_time_with_format : selectedDate format : @"YYYY"];
     
-    //    NSLog(@"Picked date %@", selected_date);
+    NSLog(@"In ScheduleViewController, selected date %@", selected_date);
     
-    [self didSelectButton:self.dateButton withTitle : selected_date];
+    [self didSelectButton:self.dateButton withTitle : [NSString stringWithFormat : @"Start date:\t%@", selected_date]];
 }
 
 - (void) update_rooms_arr {
@@ -110,6 +130,8 @@
         }
     }
     
+    [self didSelectButton : self.roomButton withTitle : [NSString stringWithFormat : @"Room:\t\t%@", self.rooms[0]]];
+    [self.query set_option_search_room : self.rooms[0]];
 }
 
 
@@ -129,7 +151,7 @@
         
         NSLog(@"Picked building %@", self.campus_buildings[selectedIndex]);
         
-        [self didSelectButton:self.buildingButton withTitle:self.campus_buildings[selectedIndex]];
+        [self didSelectButton:self.buildingButton withTitle: [NSString stringWithFormat : @"Building:\t%@", self.campus_buildings[selectedIndex]]];
         
         [self.query set_option_search_building : self.campus_buildings[selectedIndex]];
         [self update_rooms_arr];
@@ -163,7 +185,7 @@
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         NSLog(@"Picked room %@", self.rooms[selectedIndex]);
         
-        [self didSelectButton:self.roomButton withTitle:self.rooms[selectedIndex]];
+        [self didSelectButton:self.roomButton withTitle:[NSString stringWithFormat : @"Room:\t\t%@", self.rooms[selectedIndex]]];
         
         NSLog(@"Picked room %@", selectedValue);
         
@@ -209,6 +231,8 @@
         
         QueryResult *query_result = [self.query search];
         
+        NSLog(@"Results\n%@", [query_result toString]);
+        
         SearchResultsViewController *search_results_vc = (SearchResultsViewController *) segue.destinationViewController;
         [search_results_vc set_query_result : self.query query_result : query_result];
         search_results_vc.curr_room_in_focus = [self.query get_option_search_room];
@@ -222,4 +246,5 @@
     }
     
 }
+
 @end

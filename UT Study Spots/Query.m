@@ -64,12 +64,24 @@
     return self.duration;
 }
 
+- (int) get_option_capacity {
+    return 0;
+}
+
+- (bool) get_option_power {
+    return false;
+}
+
 - (NSDate *) get_end_date {
     return self.date.EndDate;
 }
 
 - (NSString *) get_option_search_building {
     return self.search_building;
+}
+
+- (NSString *) get_option_search_room {
+    return nil;
 }
 
 - (NSDate *) get_start_date {
@@ -216,6 +228,8 @@
     if ([Utilities is_null : start_date]) {
         // TODO - throw IAException
     }
+    
+    NSLog(@"In Query, setting start date: %@", [start_date toString]);
     
 //    start_date = [Utilities set_to_current_time_zone : start_date];
     self.date.StartDate = start_date;

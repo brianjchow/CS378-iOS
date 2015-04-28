@@ -10,8 +10,11 @@
 
 #import "SearchResultsTableViewCell.h"
 
+#import "Building.h"
 #import "Constants.h"
+#import "NSString+Tools.h"
 #import "QueryResult.h"
+#import "Room.h"
 #import "Utilities.h"
 
 static NSString *const SEARCH_RESULTS_CELL_ID = @"result_cell";
@@ -24,10 +27,7 @@ static NSString *const SEARCH_RESULTS_CELL_ID = @"result_cell";
 
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *queryDetailsLabel;
-
-//@property (strong,nonatomic) NSDictionary *sentData;
-//
-//@property (weak, nonatomic) IBOutlet UILabel *resultsLabel;
+@property (strong, nonatomic) IBOutlet UITableView *results_table_view;
 
 - (void) set_query_result : (Query *) query query_result : (QueryResult *) query_result;
 

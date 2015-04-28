@@ -466,7 +466,7 @@
     }
     
     else if ([self date_is_during_summer : date]) {
-        out = SEARCH_STATUS_STRINGS[HOLIDAY];
+        out = SEARCH_STATUS_STRINGS[SUMMER];
     }
     
     else if ([self date_is_during_fall_trimester : date]) {

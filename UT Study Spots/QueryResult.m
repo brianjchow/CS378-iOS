@@ -52,7 +52,7 @@
 }
 
 - (NSString *) get_random_room {
-    if ([self.results count] <= 0 || self.search_status == SEARCH_SUCCESS) {
+    if ([self.results count] <= 0 || self.search_status != SEARCH_SUCCESS) {
         return (SEARCH_STATUS_STRINGS[self.search_status]);
     }
     

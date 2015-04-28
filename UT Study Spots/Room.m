@@ -67,7 +67,7 @@ static NSString *const TAB = @"    ";
         return false;
     }
 
-//    NSLog(@"%@", [event toString]);
+//    NSLog(@"Adding event on %d\n%@", day_of_week, [event toString]);
     
     NSNumber *day = [NSNumber numberWithInt : day_of_week];
     

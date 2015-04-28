@@ -68,7 +68,7 @@ static NSString *const END_TIME = @"end_time";
     if (building_is_gdc) {
         out = [self initialise_gdc_room_properties];
         
-//        NSLog(@"%@", out);
+        NSLog(@"%@", out);
         
 //        for (NSString *room_num in out) {
 //            NSLog(@"Room num: %@\tType is NSString: %d", room_num, [room_num isKindOfClass : [NSString class]]);
@@ -125,7 +125,7 @@ static NSString *const END_TIME = @"end_time";
 //        NSLog(@"Room number: %@ (%lu) (%d) (%@)", room_num, room_num.length, [room_num isKindOfClass : [NSString class]], [[room_num class] description]);
         
         if (start_date && end_date) {
-            
+//            NSLog(@"\n\tRoom num: %@\n\tCapacity: %ld\n\tName: %@\n\tMeets: %@\n\tStart: %ld\n\tEnd: %ld", room_num, capacity, name, meeting_days, start_time, end_time);
             room = [out objectForKey : room_num];
 //            if (room == nil && building_is_gdc) {
 ////                NSLog(@"Skipping %@", room_num);
@@ -138,7 +138,7 @@ static NSString *const END_TIME = @"end_time";
             
             if (room == nil) {
                 
-//                if (_DEBUG && building_is_gdc ) NSLog(@"SHOULDN'T SEE THIS FOR GDC (%@)", room_num);
+                if (_DEBUG && building_is_gdc ) NSLog(@"SHOULDN'T SEE THIS FOR GDC (%@)", room_num);
                 
                 if (building_is_gdc) {
                     NSString *curr_room = nil;
@@ -167,6 +167,9 @@ static NSString *const END_TIME = @"end_time";
                     room = [[Room alloc] initWithLocation : location];
                 }
             }
+//            else {
+//                NSLog(@"FEWJIOFJWE\n%@", [room toString]);
+//            }
             
             for (int i = MONDAY; i <= SUNDAY; i++) {
                 if ([[meeting_days objectAtIndex : i] boolValue]) {

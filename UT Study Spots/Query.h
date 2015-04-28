@@ -27,8 +27,11 @@
 - (QueryResult *) search;
 
 - (int) get_duration;
+- (int) get_option_capacity;
+- (bool) get_option_power;
 - (NSDate *) get_end_date;
 - (NSString *) get_option_search_building;
+- (NSString *) get_option_search_room;
 - (NSDate *) get_start_date;
 - (bool) set_duration : (int) duration;
 - (bool) set_option_search_building : (NSString *) building_code;
