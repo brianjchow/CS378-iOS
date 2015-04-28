@@ -137,7 +137,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeB-xO-6fR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1894.5" y="896.5"/>
+            <point key="canvasLocation" x="-2354.5" y="896.5"/>
         </scene>
         <!--Get Room Schedule-->
         <scene sceneID="Sm7-f2-ESk">
@@ -523,12 +523,35 @@
             </objects>
             <point key="canvasLocation" x="-718.5" y="1804.5"/>
         </scene>
+        <!--Load View Controller-->
+        <scene sceneID="aVL-ch-OZu">
+            <objects>
+                <viewController storyboardIdentifier="LoadViewControllerStoryboardID" id="sGw-XX-izi" customClass="LoadViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PwC-B4-sQ1"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bb2-cr-hV9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gsy-Xw-44I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="GOT-u7-YOo" kind="showDetail" id="r8I-MM-4vc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="26G-s5-qNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1907.5" y="896.5"/>
+        </scene>
     </scenes>
     <resources>
         <image name="399-list1" width="19" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="3f6-QD-pcp"/>
+        <segue reference="r8I-MM-4vc"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

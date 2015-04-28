@@ -132,6 +132,9 @@ static NSString *const END_TIME = @"end_time";
 //                
 //                continue;
 //            }
+//            if (building_is_gdc) {
+//                continue;
+//            }
 
             location = [[Location alloc] initSeparated : building_code room : room_num];
             event = [[Event alloc] initWithDatesAndLocation : name start_date : start_date end_date : end_date location : location];
