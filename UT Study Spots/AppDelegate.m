@@ -10,6 +10,8 @@
 #import "JVFloatingDrawerViewController.h"
 #import "JVFloatingDrawerSpringAnimator.h"
 
+#import "Constants.h"
+
 static NSString* const storyboardMainID = @"Main";
 
 //Drawers
@@ -38,9 +40,11 @@ static NSString* const loadViewStoryBoardID = @"LoadViewControllerStoryboardID";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+//    [Constants init];
+    
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.rootViewController = self.drawerViewController;
-    self.window.rootViewController = self.loadViewController;
+    self.window.rootViewController = self.drawerViewController;
+//    self.window.rootViewController = self.loadViewController;
     [self configureDrawerViewController];
     [self.window makeKeyAndVisible];
     

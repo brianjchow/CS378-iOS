@@ -14,10 +14,37 @@
 @property (strong, nonatomic) NSArray *campus_buildings;
 @property (strong, nonatomic) NSArray *durations;
 @property (strong, nonatomic) NSArray *capacities;
+@property (strong, nonatomic) NSArray *powers;
 
 @end
 
 @implementation FindRoomNowViewController
+
+- (void) drawButtons {
+    [self setUpButtonUI : self.buildingButton];
+    [self setUpButtonUI : self.dateButton];
+    [self setUpButtonUI : self.timeButton];
+    [self setUpButtonUI : self.durationButton];
+    [self setUpButtonUI : self.capacityButton];
+    [self setUpButtonUI : self.powerButton];
+    [self setUpButtonUI : self.execSearchButton];
+}
+
+- (void) setButtonContents {
+    int fully_qualified_index = [[self.query get_option_search_building] get_fully_qualified_building_name];
+    if (fully_qualified_index > -1) {
+        [self selectBuildingButton : CAMPUS_BUILDINGS_FULLY_QUALIFIED[fully_qualified_index]];
+    }
+    else {
+        [self selectBuildingButton : GDC];
+    }
+    
+    [self selectDateButton : [Utilities get_time_with_format : [self.query get_start_date] format : @"EEE, MMM dd, yyyy"]];
+    [self selectTimeButton : [Utilities get_time_with_format : [self.query get_start_date] format : @"h:mm a"]];
+    [self selectDurationButton : [self.query get_duration]];
+    [self selectCapacityButton : [self.query get_option_capacity]];
+    [self selectPowerButton : BOOL_STRS_YES_NO[[self.query get_option_power]]];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,45 +55,9 @@
         self.query = [[QueryRandomRoom alloc] initWithStartDate : [Utilities get_date]];
     }
     
-    [self setUpButtonUI : self.buildingButton];
-    [self setUpButtonUI : self.dateButton];
-    [self setUpButtonUI : self.timeButton];
-    [self setUpButtonUI : self.durationButton];
-    [self setUpButtonUI : self.capacityButton];
-    [self setUpButtonUI : self.powerButton];
-    
-    [self setUpButtonUI : self.execSearchButton];
-    
-    [self didSelectButton : self.buildingButton
-                withTitle : [NSString stringWithFormat : @"Building:\t%@", [self.query get_option_search_building]]];
-    
-    [self didSelectButton : self.dateButton
-                withTitle : [NSString stringWithFormat : @"Start date:\t%@", [Utilities get_time_with_format : [self.query get_start_date] format : @"EEE, MMM dd, yyyy"]]];
-    
-    [self didSelectButton : self.timeButton
-                withTitle : [NSString stringWithFormat : @"Start time:\t%@", [Utilities get_time_with_format : [self.query get_start_date] format : @"h:mm a"]]];
-    
-    [self didSelectButton : self.durationButton
-                withTitle : [NSString stringWithFormat : @"Duration:\t%d minute(s)", [self.query get_duration]]];
-    
-    if ([self.query get_option_capacity] == 0) {
-        [self didSelectButton : self.capacityButton
-                    withTitle : @"Capacity:\t0 people (no preference)"];
-    }
-    else {
-        [self didSelectButton : self.capacityButton
-                    withTitle : [NSString stringWithFormat : @"Capacity:\t%d people", [self.query get_option_capacity]]];
-    }
-    
-    if ([[self.query get_option_search_building] is_gdc]) {
-        [self didSelectButton : self.powerButton
-                    withTitle : [NSString stringWithFormat : @"Power:\t\t%@", BOOL_STRS[[self.query get_option_power]]]];
-    }
-    else {
-        [self didSelectButton : self.powerButton
-                    withTitle : @"Power:\tfalse"];
-    }
-    
+    [self drawButtons];
+    [self setButtonContents];
+
     if ([Utilities is_null : self.campus_buildings]) {
         self.campus_buildings = [CAMPUS_BUILDINGS_FULLY_QUALIFIED sort_ascending];
     }
@@ -75,6 +66,15 @@
     }
     if ([Utilities is_null : self.capacities]) {
         [self setupCapacitiesArray];
+    }
+    
+    if ([Utilities is_null : self.powers]) {
+        if ([[self.query get_option_search_building] is_gdc]) {
+            self.powers = @[ @"No", @"Yes" ];
+        }
+        else {
+            self.powers = @[ @"No" ];
+        }
     }
 }
 
@@ -124,7 +124,6 @@
     [button setTitle:title forState:UIControlStateNormal];
     
     if(button.contentHorizontalAlignment != UIControlContentHorizontalAlignmentLeft){
-//        NSLog(@"Changing alignment to left alignment");
         [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     }
     
@@ -133,27 +132,9 @@
 }
 
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
-    //    //Locality for Desired Format of Date
-    //    NSLocale *localityForTimeFormat = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    //
-    //    //Determines what dates should be formatted as
-    //    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"EdMMMYYY" options:0 locale:localityForTimeFormat];
-    //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //    [dateFormatter setDateFormat:formatString];
-    //
-    //    NSString *selected_date = [dateFormatter stringFromDate : selectedDate];
-    
     NSString *selected_date = [Utilities get_time_with_format : selectedDate format : @"EEE, MMM dd, yyyy"];
     [self.query set_start_date : selectedDate];
-    
-    
-    //    NSString *selected_month = [Utilities get_time_with_format : selectedDate format : @"MMM"];
-    //    NSString *selected_day = [Utilities get_time_with_format : selectedDate format : @"dd"];
-    //    NSString *selected_year = [Utilities get_time_with_format : selectedDate format : @"YYYY"];
-    
-    //    NSLog(@"Picked date %@", selected_date);
-    
-    [self didSelectButton:self.dateButton withTitle : [NSString stringWithFormat : @"Start date:\t%@", selected_date]];
+    [self selectDateButton : selected_date];
 }
 
 
@@ -170,11 +151,27 @@
 - (IBAction)selectBuilding:(UIControl *)sender {
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
-        NSLog(@"Picked building %@", self.campus_buildings[selectedIndex]);
+        NSString *selected_building = self.campus_buildings[selectedIndex];
         
-        [self didSelectButton:self.buildingButton withTitle: [NSString stringWithFormat : @"Building:\t%@", self.campus_buildings[selectedIndex]]];
+//        NSLog(@"Picked building %@", selected_building);
         
-        [self.query set_option_search_building : self.campus_buildings[selectedIndex]];
+        [self selectBuildingButton : selected_building];
+        
+        NSString *trimmed = [selected_building substring : 0 stop : BUILDING_CODE_LENGTH];
+        [self.query set_option_search_building : trimmed];
+        
+        if ([trimmed is_gdc]) {
+            self.powers = @[ @"No", @"Yes" ];
+        }
+        else {
+            if ([self.powers count] > 1) {
+                self.powers = @[ @"No" ];
+                [self.query set_option_power : false];
+                [self selectPowerButton : @"No"];
+            }
+        }
+        
+//        [self.query set_option_search_building : self.campus_buildings[selectedIndex]];
 //        [self update_rooms_arr];
     };
     ActionStringCancelBlock cancelBlock = ^(ActionSheetStringPicker *picker) {
@@ -223,30 +220,22 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"h:mm a"];
     
-//    NSString *selected_time_str = [dateFormatter stringFromDate : selectedTime];
-//    NSLog(@"Selected time %@", selected_time_str);
-    
     NSString *hour_str = [Utilities get_time_with_format : selectedTime format : @"HH"];
     NSString *min_str = [Utilities get_time_with_format : selectedTime format : @"mm"];
     
     NSInteger hour = [hour_str integerValue];
     NSInteger min = [min_str integerValue];
     
-//    NSLog(@"Hour: %@\tMinute: %@", hour_str, min_str);
-//    NSLog(@"Hour: %ld\tMinute: %ld", hour, min);
-    
     [self.query set_start_time : hour minute : min];
     
-    [self didSelectButton : self.timeButton
-                withTitle : [NSString stringWithFormat : @"Start time:\t%@", [Utilities get_time_with_format : [self.query get_start_date] format : @"hh:mm a"]]];
+    [self selectTimeButton : [Utilities get_time_with_format : [self.query get_start_date] format : @"hh:mm a"]];
     
-    NSLog(@"Query is now\n%@", [self.query toString]);
+//    NSLog(@"Query is now\n%@", [self.query toString]);
 }
 
 - (IBAction)selectTime:(UIControl *)sender {
     NSInteger minute_interval = 1;  // 5;
     
-    // clamp date
     NSDate *curr_start_date = [self.query get_start_date];
 //    NSInteger reference_time_interval = (NSInteger) [curr_start_date timeIntervalSinceReferenceDate];
 //    NSInteger remaining_seconds = reference_time_interval % (minute_interval * 60);
@@ -274,9 +263,9 @@
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         int selected_value = [self.durations[selectedIndex] intValue];
         
-        NSLog(@"Selected duration %d", selected_value);
+//        NSLog(@"Selected duration %d", selected_value);
         
-        [self didSelectButton : self.durationButton withTitle : [NSString stringWithFormat : @"Duration:\t%d minute(s)", selected_value]];
+        [self selectDurationButton : selected_value];
         
         [self.query set_duration : selected_value];
     };
@@ -301,21 +290,14 @@
         
         if (selectedIndex == 0) {
             selected_capacity = 0;
-            
-            [self didSelectButton : self.capacityButton withTitle : @"Capacity:\t0 people (no preference)"];
         }
         else {
             selected_capacity = [self.capacities[selectedIndex] intValue];
-            
-            NSString *people = @"people";
-            if (selected_capacity == 1) {
-                people = @"person";
-            }
-            
-            [self didSelectButton : self.capacityButton withTitle : [NSString stringWithFormat : @"Capacity:\t%d %@", selected_capacity, people]];
         }
         
-        NSLog(@"Selected capacity %d", selected_capacity);
+        [self selectCapacityButton : selected_capacity];
+        
+//        NSLog(@"Selected capacity %d", selected_capacity);
         
         [self.query set_option_capacity : selected_capacity];
     };
@@ -335,23 +317,15 @@
 }
 
 - (IBAction)selectPower:(UIControl *)sender {
-    bool is_gdc = [[self.query get_option_search_building] is_gdc];
-    NSArray *vals;
-    
-    if (is_gdc) {
-        vals = @[@"No", @"Yes"];
-    }
-    else {
-        vals = @[@"No"];
-        
-        [self.query set_option_power : false];      // no data for non-GDC buildings
+    if ([self.powers count] == 1) {
+        [self.query set_option_power : false];  // no data for non-GDC buildings
     }
     
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        bool selected_val = [vals[selectedIndex] boolValue];
-        NSLog(@"Selected power option %d", selected_val);
+        bool selected_val = [self.powers[selectedIndex] boolValue];
+//        NSLog(@"Selected power option %d", selected_val);
         
-        [self didSelectButton : self.powerButton withTitle : [NSString stringWithFormat : @"Power:\t\t%@", BOOL_STRS[selected_val]]];
+        [self selectPowerButton : BOOL_STRS_YES_NO[selected_val]];
         
         [self.query set_option_power : selected_val];
     };
@@ -360,7 +334,7 @@
     };
     
     ActionSheetStringPicker *picker = [[ActionSheetStringPicker alloc] initWithTitle : @"Power"
-                                                                                rows : vals
+                                                                                rows : self.powers
                                                                     initialSelection : [self.query get_option_power]
                                                                            doneBlock : doneBlock
                                                                          cancelBlock : cancelBlock
@@ -392,6 +366,46 @@
         self.navigationItem.backBarButtonItem = back_button;
     }
 
+}
+
+- (void) selectBuildingButton : (NSString *) title {
+    [self didSelectButton : self.buildingButton
+                withTitle : [NSString stringWithFormat : @"Building:\t%@", title]];
+}
+
+- (void) selectDateButton : (NSString *) title {
+    [self didSelectButton : self.dateButton
+                withTitle : [NSString stringWithFormat : @"Start date:\t%@", title]];
+}
+
+- (void) selectTimeButton : (NSString *) title {
+    [self didSelectButton : self.timeButton
+                withTitle : [NSString stringWithFormat : @"Start time:\t%@", title]];
+}
+
+- (void) selectDurationButton : (int) duration {
+    [self didSelectButton : self.durationButton
+                withTitle : [NSString stringWithFormat : @"Duration:\t%d minute(s)", duration]];
+}
+
+- (void) selectCapacityButton : (int) capacity {
+    if (capacity == 0) {
+        [self didSelectButton : self.capacityButton
+                    withTitle : @"Capacity:\t0 people (no preference)"];
+    }
+    else if (capacity == 1) {
+        [self didSelectButton : self.capacityButton
+                    withTitle : @"Capacity:\t1 person"];
+    }
+    else if (capacity > 1) {
+        [self didSelectButton : self.capacityButton
+                    withTitle : [NSString stringWithFormat : @"Capacity:\t%d people", capacity]];
+    }
+}
+
+- (void) selectPowerButton : (NSString *) title {
+    [self didSelectButton : self.powerButton
+                withTitle : [NSString stringWithFormat : @"Power:\t\t%@", title]];
 }
 
 @end

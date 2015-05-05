@@ -34,7 +34,7 @@
 
 @implementation CSVReader
 
-static NSString *const LOCAL_CSV_VERSION_DATE = @"0604";
+static NSString *const LOCAL_CSV_VERSION_DATE = @"2804";
 
 static char const DELIMITER = '\"';
 
@@ -53,15 +53,18 @@ static int lines_ignored = 0;
     if (!_DEBUG_USING_LOCAL_CSV_FEEDS) {
         if (!_DEBUG) { NSLog(@"CSVReader: now reading CSV feeds from UTCS servers..."); }
         
-        [UTCSVFeedDownloadManager download_all];
-        
-        // timeouts; http://stackoverflow.com/a/11616144
-        UTCSVFeedDownloadManager *manager = [UTCSVFeedDownloadManager csv_dl_manager];
-        while (manager.downloadIsInProgress) {
-            // do nothing
-            // this blocks for a max of UTCSVFeedDownloadManager.TIMEOUT_DURATION
+        bool has_cxn = [ConnectionManager has_wifi] || [ConnectionManager has_wwan];
+        if (has_cxn) {
+            [UTCSVFeedDownloadManager download_all];
             
-            // TODO - change to some timeout listener/delegate of some sort
+            // timeouts; http://stackoverflow.com/a/11616144
+            UTCSVFeedDownloadManager *manager = [UTCSVFeedDownloadManager csv_dl_manager];
+            while (manager.downloadIsInProgress) {
+                // do nothing
+                // this blocks for a max of UTCSVFeedDownloadManager.TIMEOUT_DURATION
+                
+                // TODO - change to some timeout listener/delegate of some sort
+            }
         }
         
         NSLog(@"CSVReader: finished downloading CSV feeds from UTCS servers. Now attempting to read from Documents dir...");

@@ -260,6 +260,8 @@
         }
     }
     
+    all_valid_rooms = [self sort_by_time : all_valid_rooms];
+    
     query_result = [[QueryResult alloc] init : RANDOM_ROOM
                                search_status : search_status
                                building_name : search_building_str
@@ -379,7 +381,7 @@
 //            curr_end_date = [calendar dateFromComponents : curr_comps];
             
             curr_start_date = [self copy_date_mdy : query_start_date to : curr_start_date];
-            curr_end_date = [self copy_date_mdy : query_end_date to : query_end_date];
+            curr_end_date = [self copy_date_mdy : query_end_date to : curr_end_date];
             
 //            NSLog(@"\nCurr start date: %@\nCurr end date: %@\nQuery start date: %@\nQuery end date: %@\n", [curr_start_date toString], [curr_end_date toString], [query_start_date toString], [query_end_date toString]);
             
@@ -441,6 +443,30 @@
         return true;
     }
     return false;
+}
+
+- (NSMutableArray *) sort_by_time : (NSArray *) to_sort {
+    NSMutableArray *out = [[NSMutableArray alloc] initWithCapacity : [to_sort count]];
+    
+    for (Event *event in to_sort) {
+        bool inserted = false;
+        NSUInteger insert_index = 0;
+        while (insert_index < [out count]) {
+            if ([event compare : [out objectAtIndex : insert_index]] < 0) {
+                [out insertObject : event atIndex : insert_index];
+                inserted = true;
+                break;
+            }
+            
+            insert_index++;
+        }
+        
+        if (!inserted) {
+            [out addObject : event];
+        }
+    }
+    
+    return out;
 }
 
 @end

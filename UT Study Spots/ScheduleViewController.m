@@ -20,6 +20,28 @@
 
 @implementation ScheduleViewController
 
+- (void) drawButtons {
+    [self setUpButtonUI:self.buildingButton];
+    [self setUpButtonUI:self.roomButton];
+    [self setUpButtonUI:self.dateButton];
+    [self setUpButtonUI : self.execSearchButton];
+}
+
+- (void) setButtonContents {
+    int fully_qualified_index = [[self.query get_option_search_building] get_fully_qualified_building_name];
+    if (fully_qualified_index > -1) {
+        [self didSelectButton : self.buildingButton
+                    withTitle : [NSString stringWithFormat : @"Building:\t%@", CAMPUS_BUILDINGS_FULLY_QUALIFIED[fully_qualified_index]]];
+    }
+    else {
+        [self didSelectButton : self.buildingButton
+                    withTitle : [NSString stringWithFormat : @"Building:\t%@", GDC]];
+    }
+    
+    [self selectDateButton : [Utilities get_time_with_format : [self.query get_start_date] format : @"EEE, MMM dd, yyyy"]];
+    [self selectRoomButton : [self.query get_option_search_room]];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -29,35 +51,14 @@
         [self update_rooms_arr];
     }
     
-    //Set up ui
-    [self setUpButtonUI:self.buildingButton];
-    [self setUpButtonUI:self.roomButton];
-    [self setUpButtonUI:self.dateButton];
-    
-    [self setUpButtonUI : self.execSearchButton];
-    
-    [self didSelectButton : self.buildingButton
-                withTitle : [NSString stringWithFormat : @"Building:\t%@", [self.query get_option_search_building]]];
-    
-    [self didSelectButton : self.dateButton
-                withTitle : [NSString stringWithFormat : @"Start date:\t%@", [Utilities get_time_with_format : [self.query get_start_date] format : @"EEE, MMM dd, yyyy"]]];
-    
-    if ([[self.query get_option_search_room] equals : RANDOM]) {
-        [self didSelectButton : self.roomButton
-                    withTitle : [NSString stringWithFormat : @"Room:\t\t%@", self.rooms[0]]];
-        [self.query set_option_search_room : self.rooms[0]];
-    }
-    else {
-        [self didSelectButton : self.roomButton
-                    withTitle : [NSString stringWithFormat : @"Room:\t\t%@", [self.query get_option_search_room]]];
-    }
+    [self drawButtons];
+    [self setButtonContents];
     
     if ([Utilities is_null : self.campus_buildings]) {
         self.campus_buildings = [CAMPUS_BUILDINGS_FULLY_QUALIFIED sort_ascending];
     }
     
 //    NSLog(@"\n\n%@\n\n", self.campus_buildings);
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,27 +67,9 @@
 }
 
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
-    //    //Locality for Desired Format of Date
-    //    NSLocale *localityForTimeFormat = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    //
-    //    //Determines what dates should be formatted as
-    //    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"EdMMMYYY" options:0 locale:localityForTimeFormat];
-    //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //    [dateFormatter setDateFormat:formatString];
-    //
-    //    NSString *selected_date = [dateFormatter stringFromDate : selectedDate];
-    
     NSString *selected_date = [Utilities get_time_with_format : selectedDate format : @"EEE, MMM dd, yyyy"];
     [self.query set_start_date : selectedDate];
-    
-    
-    //    NSString *selected_month = [Utilities get_time_with_format : selectedDate format : @"MMM"];
-    //    NSString *selected_day = [Utilities get_time_with_format : selectedDate format : @"dd"];
-    //    NSString *selected_year = [Utilities get_time_with_format : selectedDate format : @"YYYY"];
-    
-    NSLog(@"In ScheduleViewController, selected date %@", selected_date);
-    
-    [self didSelectButton:self.dateButton withTitle : [NSString stringWithFormat : @"Start date:\t%@", selected_date]];
+    [self selectDateButton : selected_date];
 }
 
 - (void) update_rooms_arr {
@@ -130,7 +113,10 @@
         }
     }
     
-    [self didSelectButton : self.roomButton withTitle : [NSString stringWithFormat : @"Room:\t\t%@", self.rooms[0]]];
+//    [self didSelectButton : self.roomButton withTitle : [NSString stringWithFormat : @"Room:\t\t%@", self.rooms[0]]];
+//    [self.query set_option_search_room : self.rooms[0]];
+    
+    [self selectRoomButton : self.rooms[0]];
     [self.query set_option_search_room : self.rooms[0]];
 }
 
@@ -149,9 +135,9 @@
 - (IBAction)selectBuilding:(UIControl *)sender {
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
         
-        NSLog(@"Picked building %@", self.campus_buildings[selectedIndex]);
+//        NSLog(@"Picked building %@", self.campus_buildings[selectedIndex]);
         
-        [self didSelectButton:self.buildingButton withTitle: [NSString stringWithFormat : @"Building:\t%@", self.campus_buildings[selectedIndex]]];
+        [self selectBuildingButton : self.campus_buildings[selectedIndex]];
         
         [self.query set_option_search_building : self.campus_buildings[selectedIndex]];
         [self update_rooms_arr];
@@ -183,11 +169,11 @@
 
 - (IBAction)selectRoom:(UIControl *)sender {
     ActionStringDoneBlock doneBlock = ^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-        NSLog(@"Picked room %@", self.rooms[selectedIndex]);
+//        NSLog(@"Picked room %@", self.rooms[selectedIndex]);
         
-        [self didSelectButton:self.roomButton withTitle:[NSString stringWithFormat : @"Room:\t\t%@", self.rooms[selectedIndex]]];
+        [self selectRoomButton : self.rooms[selectedIndex]];
         
-        NSLog(@"Picked room %@", selectedValue);
+//        NSLog(@"Picked room %@", selectedValue);
         
         [self.query set_option_search_room : self.rooms[selectedIndex]];
     };
@@ -255,6 +241,26 @@
         self.navigationItem.backBarButtonItem = back_button;
     }
     
+}
+
+- (void) selectBuildingButton : (NSString *) title {
+    [self didSelectButton : self.buildingButton
+                withTitle : [NSString stringWithFormat : @"Building:\t%@", title]];
+}
+
+- (void) selectDateButton : (NSString *) title {
+    [self didSelectButton : self.dateButton
+                withTitle : [NSString stringWithFormat : @"Start date:\t%@", title]];
+}
+
+- (void) selectRoomButton : (NSString *) title {
+    if ([title equals : RANDOM]) {
+        title = self.rooms[0];
+        [self.query set_option_search_room : self.rooms[0]];
+    }
+
+    [self didSelectButton : self.roomButton
+                withTitle : [NSString stringWithFormat : @"Room:\t\t%@", title]];
 }
 
 @end

@@ -58,13 +58,26 @@ static NSString *const PHOTO_SV_SEGUE_ID = @"photoScrollViewSegue";
 }
 
 - (void) handle_search_find_room {
+    SearchStatus search_status = [self.query_result get_search_status];
     self.curr_room_in_focus = [self.query_result get_random_room];
-    self.headerLabel.text = [NSString stringWithFormat : @"%@ %@", [self.query_result get_building_name], self.curr_room_in_focus];
+    
+//    if ([self.curr_room_in_focus equals : SEARCH_STATUS_STRINGS[NO_ROOMS_AVAIL]]) {
+//        self.headerLabel.text = [self.query_result get_building_name];
+//    }
+//    else {
+//        self.headerLabel.text = [NSString stringWithFormat : @"%@ %@", [self.query_result get_building_name], self.curr_room_in_focus];
+//    }
+    
+    int fully_qualified_index = [[self.query_result get_building_name] get_fully_qualified_building_name];
+    if (fully_qualified_index > -1) {
+        self.headerLabel.text = CAMPUS_BUILDINGS_FULLY_QUALIFIED[fully_qualified_index];
+    }
+    else {
+        search_status = SEARCH_ERROR;
+    }
     
     NSString *TAB = @"    ";
     NSMutableString *msg = [[NSMutableString alloc] init];
-    
-    SearchStatus search_status = [self.query_result get_search_status];
     
     if (search_status == SEARCH_ERROR) {
         [msg appendString : @"We're not sure why this is happening, but shoot us an email containing the information below and we'll get it fixed. Thanks!\n\n"];
@@ -128,7 +141,18 @@ static NSString *const PHOTO_SV_SEGUE_ID = @"photoScrollViewSegue";
 }
 
 - (void) handle_search_get_room_schedule {
-    self.headerLabel.text = [NSString stringWithFormat : @"%@ %@", [self.query_result get_building_name], self.curr_room_in_focus];
+    if ([self.curr_room_in_focus equalsIgnoreCase : NO_ROOMS_FOUND]) {
+        int fully_qualified_index = [[self.query_result get_building_name] get_fully_qualified_building_name];
+        if (fully_qualified_index > -1) {
+            self.headerLabel.text = CAMPUS_BUILDINGS_FULLY_QUALIFIED[fully_qualified_index];
+        }
+        else {
+            self.headerLabel.text = [self.query_result get_building_name];      // TODO - SET SEARCH STATUS AND HANDLE
+        }
+    }
+    else {
+        self.headerLabel.text = [NSString stringWithFormat : @"%@ %@", [self.query_result get_building_name], self.curr_room_in_focus];
+    }
     
     Room *search_room;
     

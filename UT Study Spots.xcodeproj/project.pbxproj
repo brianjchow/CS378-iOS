@@ -20,6 +20,9 @@
 		AA546D4C1AEED85600828BFC /* SearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA546D4B1AEED85600828BFC /* SearchResultsViewController.m */; };
 		AA546D4F1AEEE48500828BFC /* SearchResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA546D4E1AEEE48500828BFC /* SearchResultsTableViewCell.m */; };
 		AA546D521AEF1CEE00828BFC /* PhotoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA546D511AEF1CEE00828BFC /* PhotoScrollViewController.m */; };
+		AA609DB51AF82F720014DE89 /* calendar_events_feed_2804.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA609DB21AF82F720014DE89 /* calendar_events_feed_2804.csv */; };
+		AA609DB61AF82F720014DE89 /* calendar_events_today_feed_2804.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA609DB31AF82F720014DE89 /* calendar_events_today_feed_2804.csv */; };
+		AA609DB71AF82F720014DE89 /* calendar_rooms_feed_2804.csv in Resources */ = {isa = PBXBuildFile; fileRef = AA609DB41AF82F720014DE89 /* calendar_rooms_feed_2804.csv */; };
 		AA846C961AED9ED5002442D3 /* NSArray+Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = AA846C951AED9ED5002442D3 /* NSArray+Tools.m */; };
 		AA846C991AEDB424002442D3 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA846C981AEDB424002442D3 /* MainTableViewController.m */; };
 		AA992E3C1AC4E8DF00637C96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA992E3B1AC4E8DF00637C96 /* main.m */; };
@@ -105,6 +108,9 @@
 		AA546D4E1AEEE48500828BFC /* SearchResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultsTableViewCell.m; sourceTree = "<group>"; };
 		AA546D501AEF1CE200828BFC /* PhotoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoScrollViewController.h; sourceTree = "<group>"; };
 		AA546D511AEF1CEE00828BFC /* PhotoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoScrollViewController.m; sourceTree = "<group>"; };
+		AA609DB21AF82F720014DE89 /* calendar_events_feed_2804.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_feed_2804.csv; sourceTree = "<group>"; };
+		AA609DB31AF82F720014DE89 /* calendar_events_today_feed_2804.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_events_today_feed_2804.csv; sourceTree = "<group>"; };
+		AA609DB41AF82F720014DE89 /* calendar_rooms_feed_2804.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = calendar_rooms_feed_2804.csv; sourceTree = "<group>"; };
 		AA846C941AED9EC8002442D3 /* NSArray+Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Tools.h"; sourceTree = "<group>"; };
 		AA846C951AED9ED5002442D3 /* NSArray+Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Tools.m"; sourceTree = "<group>"; };
 		AA846C971AEDB418002442D3 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
@@ -383,6 +389,9 @@
 		AAC99F3D1ACA26F300BBBF75 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				AA609DB21AF82F720014DE89 /* calendar_events_feed_2804.csv */,
+				AA609DB31AF82F720014DE89 /* calendar_events_today_feed_2804.csv */,
+				AA609DB41AF82F720014DE89 /* calendar_rooms_feed_2804.csv */,
 				AA46AA9E1AD451E500408B5C /* calendar_events_today_feed_0604.csv */,
 				AA46AA9F1AD451E500408B5C /* calendar_rooms_feed_0604.csv */,
 				AA46AAA01AD451E500408B5C /* calendar_events_feed_0604.csv */,
@@ -532,11 +541,14 @@
 				AA46AAA11AD451E500408B5C /* calendar_events_today_feed_0604.csv in Resources */,
 				AA46AAA21AD451E500408B5C /* calendar_rooms_feed_0604.csv in Resources */,
 				0D3C46541AD78EB5007B9552 /* Main.storyboard in Resources */,
+				AA609DB71AF82F720014DE89 /* calendar_rooms_feed_2804.csv in Resources */,
 				AAC99F461ACA26F300BBBF75 /* master_course_schedule_f14.db in Resources */,
 				AAC99F431ACA26F300BBBF75 /* calendar_events_feed_0412.csv in Resources */,
 				AAC99F471ACA26F300BBBF75 /* master_course_schedule_s15.db in Resources */,
 				AA992E471AC4E8DF00637C96 /* Images.xcassets in Resources */,
 				AAC99F451ACA26F300BBBF75 /* calendar_rooms_feed_0412.csv in Resources */,
+				AA609DB61AF82F720014DE89 /* calendar_events_today_feed_2804.csv in Resources */,
+				AA609DB51AF82F720014DE89 /* calendar_events_feed_2804.csv in Resources */,
 				AA992E8F1AC67E6000637C96 /* DateTools.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

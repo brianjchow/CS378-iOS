@@ -16,12 +16,12 @@
                         <color key="barTintColor" red="0.13333333333333333" green="0.50196078431372548" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="GOT-u7-YOo" kind="relationship" relationship="rootViewController" id="HAf-OI-ZCy"/>
+                        <segue destination="sGw-XX-izi" kind="relationship" relationship="rootViewController" id="fQp-4t-5IN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WzP-0g-J1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1468.5" y="112.5"/>
+            <point key="canvasLocation" x="-1418.5" y="112.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="d1n-DO-XA1">
@@ -534,24 +534,33 @@
                     <view key="view" contentMode="scaleToFill" id="gsy-Xw-44I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZx-ze-FWJ">
+                                <rect key="frame" x="16" y="147" width="343" height="64"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="KUn-LB-ZZb"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="GOT-u7-YOo" kind="showDetail" id="r8I-MM-4vc"/>
+                        <outlet property="loadingLabel" destination="cZx-ze-FWJ" id="TQh-Xm-3c4"/>
+                        <segue destination="GOT-u7-YOo" kind="show" identifier="findRoomNowSegue" id="Ric-Oe-GKk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26G-s5-qNI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1907.5" y="896.5"/>
+            <point key="canvasLocation" x="-1911.5" y="400.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="399-list1" width="19" height="15"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3f6-QD-pcp"/>
-        <segue reference="r8I-MM-4vc"/>
+        <segue reference="0fI-7c-mtN"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

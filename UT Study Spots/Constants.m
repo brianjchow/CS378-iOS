@@ -127,7 +127,7 @@ static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER;
         NSLog(@"Num rooms in GDC  list: %d", [[BUILDING_CACHELIST_THIS_SEMESTER get_building : GDC] get_num_rooms]);
         
         //        NSLog(@"\n");
-        NSLog(@"\n%@", [gdc_instance_this_semester toString]);
+//        NSLog(@"\n%@", [gdc_instance_this_semester toString]);
     }
     
     if (COURSE_SCHEDULE_NEXT_SEMESTER) {
@@ -194,6 +194,10 @@ static BuildingList *BUILDING_CACHELIST_NEXT_SEMESTER;
     
     if (![all_keys containsObject : CSV_FEED_ALL_TODAYS_EVENTS_WRITE_SUCCESS]) {
         [default_prefs setValue : [NSNumber numberWithBool : NO] forKey : CSV_FEED_ALL_TODAYS_EVENTS_WRITE_SUCCESS];
+    }
+    
+    if (![all_keys containsObject : SHOW_WIFI_WWAN_WARNING]) {
+        [default_prefs setValue : [NSNumber numberWithBool : YES] forKey : SHOW_WIFI_WWAN_WARNING];
     }
     
     if ([default_prefs count] > 0) {

@@ -84,4 +84,36 @@
     return @[currentDate, minimumDate, maximumDate];
 }
 
+//- (void) selectBuildingButton : (NSString *) title {
+//    
+//}
+//
+//- (void) selectDateButton : (NSString *) title {
+//    
+//}
+//
+//- (void) selectTimeButton : (NSString *) title {
+//    
+//}
+//
+//- (void) selectRoomButton : (NSString *) title {
+//    
+//}
+//
+//- (void) selectDurationButton : (NSString *) title {
+//    
+//}
+//
+//- (void) selectCapacityButton : (NSString *) title {
+//    
+//}
+//
+//- (void) selectPowerButton : (NSString *) title {
+//    
+//}
+
+
+
+
+
 @end

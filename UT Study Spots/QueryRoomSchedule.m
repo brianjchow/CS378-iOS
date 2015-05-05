@@ -206,6 +206,8 @@
                     search_is_during_long_semester : search_is_during_long_semester];
     }
     
+    all_events = [self sort_by_time : all_events];
+    
     NSArray *schedule = [self eventset_to_string : all_events];
     
     /* Search complete here */
@@ -365,6 +367,54 @@
     }
     return false;
 }
+
+- (NSOrderedSet *) sort_by_time : (NSOrderedSet *) to_sort {
+    NSMutableOrderedSet *out = [[NSMutableOrderedSet alloc] initWithCapacity : [to_sort count]];
+    
+    for (Event *event in to_sort) {
+        bool inserted = false;
+        NSUInteger insert_index = 0;
+        while (insert_index < [out count]) {
+            if ([event compare : [out objectAtIndex : insert_index]] < 0) {
+                [out insertObject : event atIndex : insert_index];
+                inserted = true;
+                break;
+            }
+            
+            insert_index++;
+        }
+        
+        if (!inserted) {
+            [out addObject : event];
+        }
+    }
+    
+    return out;
+}
+
+//- (NSMutableArray *) sort_by_time : (NSArray *) to_sort {
+//    NSMutableArray *out = [[NSMutableArray alloc] initWithCapacity : [to_sort count]];
+//    
+//    for (Event *event in to_sort) {
+//        bool inserted = false;
+//        NSUInteger insert_index = 0;
+//        while (insert_index < [out count]) {
+//            if ([event compare : [out objectAtIndex : insert_index]] < 0) {
+//                [out insertObject : event atIndex : insert_index];
+//                inserted = true;
+//                break;
+//            }
+//            
+//            insert_index++;
+//        }
+//        
+//        if (!inserted) {
+//            [out addObject : event];
+//        }
+//    }
+//    
+//    return out;
+//}
 
 
 @end

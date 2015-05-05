@@ -42,6 +42,8 @@
 
 /* Project-specific methods */
 
+- (int) get_fully_qualified_building_name;
+
 - (bool) is_gdc;
 
 - (bool) is_campus_building;

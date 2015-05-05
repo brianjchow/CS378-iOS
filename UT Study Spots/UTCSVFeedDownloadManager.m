@@ -98,59 +98,65 @@ static const NSUInteger DAILY_UPDATE_MINUTE = 59;
         
         NSOperationQueue *dl_queue = [[NSOperationQueue alloc] init];
         
-        [NSURLConnection sendAsynchronousRequest : all_events_url_request
-                                           queue : dl_queue
-         
-         // https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSURLResponse_Class/index.html#//apple_ref/occ/instp/NSURLResponse/URL
-                               completionHandler : ^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   long response_code = (long) ((NSHTTPURLResponse *) response).statusCode;
-                                   
-                                   if (_DEBUG) {
-                                       NSLog(@"all_events CSV feed download complete; HTTP response code %ld; download in progress: %@", response_code, BOOL_STRS[manager.downloadIsInProgress]);
-                                   }
-                                   
-                                   SUCCESS = [UTCSVFeedDownloadManager handle_completion_handler : ALL_EVENTS_SCHEDULE_FILENAME
-                                                                                    curr_success : SUCCESS
-                                                                                        response : response
-                                                                                            data : data
-                                                                                           error : error];
-                               }];
+        if (![UTCSVFeedDownloadManager feed_is_current : ALL_EVENTS_SCHEDULE_FILENAME]) {
+            [NSURLConnection sendAsynchronousRequest : all_events_url_request
+                                               queue : dl_queue
+             
+             // https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSURLResponse_Class/index.html#//apple_ref/occ/instp/NSURLResponse/URL
+                                   completionHandler : ^(NSURLResponse *response, NSData *data, NSError *error) {
+                                       long response_code = (long) ((NSHTTPURLResponse *) response).statusCode;
+                                       
+                                       if (_DEBUG) {
+                                           NSLog(@"all_events CSV feed download complete; HTTP response code %ld; download in progress: %@", response_code, BOOL_STRS[manager.downloadIsInProgress]);
+                                       }
+                                       
+                                       SUCCESS = [UTCSVFeedDownloadManager handle_completion_handler : ALL_EVENTS_SCHEDULE_FILENAME
+                                                                                        curr_success : SUCCESS
+                                                                                            response : response
+                                                                                                data : data
+                                                                                               error : error];
+                                   }];
+        }
         
-        [NSURLConnection sendAsynchronousRequest : all_rooms_url_request
-                                           queue : dl_queue
-         
-                               completionHandler : ^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   long response_code = (long) ((NSHTTPURLResponse *) response).statusCode;
-                                   
-                                   if (_DEBUG) {
-                                       NSLog(@"all_rooms CSV feed download complete; HTTP response code %ld; download in progress: %@", response_code, BOOL_STRS[manager.downloadIsInProgress]);
-                                   }
-                                   
-                                   SUCCESS = [UTCSVFeedDownloadManager handle_completion_handler : ALL_ROOMS_SCHEDULE_FILENAME
-                                                                                    curr_success : SUCCESS
-                                                                                        response : response
-                                                                                            data : data
-                                                                                           error : error];
-                                   
-                               }];
+        if (![UTCSVFeedDownloadManager feed_is_current : ALL_ROOMS_SCHEDULE_FILENAME]) {
+            [NSURLConnection sendAsynchronousRequest : all_rooms_url_request
+                                               queue : dl_queue
+             
+                                   completionHandler : ^(NSURLResponse *response, NSData *data, NSError *error) {
+                                       long response_code = (long) ((NSHTTPURLResponse *) response).statusCode;
+                                       
+                                       if (_DEBUG) {
+                                           NSLog(@"all_rooms CSV feed download complete; HTTP response code %ld; download in progress: %@", response_code, BOOL_STRS[manager.downloadIsInProgress]);
+                                       }
+                                       
+                                       SUCCESS = [UTCSVFeedDownloadManager handle_completion_handler : ALL_ROOMS_SCHEDULE_FILENAME
+                                                                                        curr_success : SUCCESS
+                                                                                            response : response
+                                                                                                data : data
+                                                                                               error : error];
+                                       
+                                   }];
+        }
         
-        [NSURLConnection sendAsynchronousRequest : todays_events_url_request
-                                           queue : dl_queue
-         
-                               completionHandler : ^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   long response_code = (long) ((NSHTTPURLResponse *) response).statusCode;
-                                   
-                                   if (_DEBUG) {
-                                       NSLog(@"todays_events CSV feed download complete; HTTP response code %ld; download in progress: %@", response_code, BOOL_STRS[manager.downloadIsInProgress]);
-                                   }
-                                   
-                                   SUCCESS = [UTCSVFeedDownloadManager handle_completion_handler : ALL_TODAYS_EVENTS_FILENAME
-                                                                                    curr_success : SUCCESS
-                                                                                        response : response
-                                                                                            data : data
-                                                                                           error : error];
-                                   
-                               }];
+        if (![UTCSVFeedDownloadManager feed_is_current : ALL_TODAYS_EVENTS_FILENAME]) {
+            [NSURLConnection sendAsynchronousRequest : todays_events_url_request
+                                               queue : dl_queue
+             
+                                   completionHandler : ^(NSURLResponse *response, NSData *data, NSError *error) {
+                                       long response_code = (long) ((NSHTTPURLResponse *) response).statusCode;
+                                       
+                                       if (_DEBUG) {
+                                           NSLog(@"todays_events CSV feed download complete; HTTP response code %ld; download in progress: %@", response_code, BOOL_STRS[manager.downloadIsInProgress]);
+                                       }
+                                       
+                                       SUCCESS = [UTCSVFeedDownloadManager handle_completion_handler : ALL_TODAYS_EVENTS_FILENAME
+                                                                                        curr_success : SUCCESS
+                                                                                            response : response
+                                                                                                data : data
+                                                                                               error : error];
+                                       
+                                   }];
+        }
         
         NSLog(@"HERE 2.0");
     });
@@ -459,11 +465,13 @@ static const NSUInteger DAILY_UPDATE_MINUTE = 59;
         NSLog(@"\nChecking if file \"%@\" is current\n\tLast modified: %@\n\tUpdate time: %@", filename, [last_modified toString], [now toString]);
     }
     
+    bool is_current = false;
+    
     if (last_modified.dayOfYear == curr_day_of_year &&
         last_modified.year == curr_year &&
         [last_modified isLaterThan : now]) {
         
-        return true;
+        is_current = true;
     }
     
     // disable this block if updates should always occur from 0000 to 0859
@@ -473,11 +481,15 @@ static const NSUInteger DAILY_UPDATE_MINUTE = 59;
         
         NSDate *yesterday_update_time = [Utilities get_date : curr_month day : curr_day - 1 year : curr_year hour : DAILY_UPDATE_HOUR minute : DAILY_UPDATE_MINUTE];
         if ([last_modified isLaterThan : yesterday_update_time]) {
-            return true;
+            is_current = true;
         }
     }
     
-    return false;
+    if (_DEBUG) {
+        NSLog(@"\nFile \"%@\" is current: %@", filename, BOOL_STRS[is_current]);
+    }
+    
+    return is_current;
 }
 
 + (bool) get_feed_write_success : (NSString *) filename {

@@ -197,6 +197,30 @@
 
 // **************
 
+- (int) get_fully_qualified_building_name {
+    if ([Utilities is_null : self] || self.length != BUILDING_CODE_LENGTH) {
+        // TODO - throw IAException
+    }
+    
+    int out = -1;
+    
+    NSString *curr_bldg;
+    for (int i = 0; i < [CAMPUS_BUILDINGS_FULLY_QUALIFIED count]; i++) {
+        curr_bldg = CAMPUS_BUILDINGS_FULLY_QUALIFIED[i];
+        if (curr_bldg.length < BUILDING_CODE_LENGTH) {
+            continue;
+        }
+        
+        curr_bldg = [CAMPUS_BUILDINGS_FULLY_QUALIFIED[i] substring : 0 stop : BUILDING_CODE_LENGTH];
+        if ([self equalsIgnoreCase : curr_bldg]) {
+            out = i;
+            break;
+        }
+    }
+    
+    return out;
+}
+
 - (bool) is_gdc {
     if ([Utilities is_null : self]) {
         // TODO - throw exception

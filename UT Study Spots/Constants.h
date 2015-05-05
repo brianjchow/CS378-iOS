@@ -20,7 +20,7 @@
 /* Project-wide constants */
 
 static bool const _DEBUG = true;
-static bool const _DEBUG_USING_LOCAL_CSV_FEEDS = true;
+static bool const _DEBUG_USING_LOCAL_CSV_FEEDS = false;
 static bool const _DEBUG_CSV_FEEDS_VERBOSE = false;
 static bool const _DEBUG_CSV_READER = false;
 
@@ -28,6 +28,7 @@ static NSString *const CSV_FEEDS_WRITE_SUCCESS = @"CSV_FEEDS_WRITE_SUCCESS";
 static NSString *const CSV_FEED_ALL_EVENTS_WRITE_SUCCESS = @"CSV_FEED_ALL_EVENTS_WRITE_SUCCESS";
 static NSString *const CSV_FEED_ALL_ROOMS_WRITE_SUCCESS = @"CSV_FEED_ALL_ROOMS_WRITE_SUCCESS";
 static NSString *const CSV_FEED_ALL_TODAYS_EVENTS_WRITE_SUCCESS = @"CSV_FEED_ALL_ROOMS_WRITE_SUCCESS";
+static NSString *const SHOW_WIFI_WWAN_WARNING = @"SHOW_WIFI_WWAN_WARNING";
 
 static NSString *const COURSE_SCHEDULE_THIS_SEMESTER = @"master_course_schedule_s15";    //"master_course_schedule_f14"
 static NSString *const COURSE_SCHEDULE_NEXT_SEMESTER = nil;     //"master_course_schedule_s15"
@@ -155,6 +156,8 @@ static unsigned const UNIT_FLAGS = NSCalendarUnitYear | NSCalendarUnitMonth | NS
 static NSStringEncoding const DEFAULT_STRING_ENCODING = NSUTF8StringEncoding;
 
 static NSString *const BOOL_STRS[] = { @"false", @"true" };
+
+static NSString *const BOOL_STRS_YES_NO[] = { @"No", @"Yes" };
 
 
 
